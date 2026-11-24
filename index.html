@@ -2,144 +2,164 @@
 <html lang="tl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>ZERO LIVE V12 - Live. Laugh. Play.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZERO LIVE V13 - Date with friends near you</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-body{background:#F6F5FB;color:#1A1730;-webkit-font-smoothing:antialiased}
-.page{display:none;max-width:480px;margin:0 auto;min-height:100vh;padding:20px 16px 96px}
+body{background:#FFD400;color:#111;-webkit-font-smoothing:antialiased}
+.page{display:none;max-width:480px;margin:0 auto;min-height:100vh;padding:16px 16px 96px;background:#FFFBEA}
 .page.active{display:block}
 .center{text-align:center}
-.logo{font-size:32px;font-weight:900;letter-spacing:-.5px;line-height:1}
-.logo span{color:#7C3AED}
-.tag{font-size:12px;color:#8A86A8;margin:6px 0 20px}
-.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.card h2{font-size:20px}.card .sub{font-size:13px;color:#8A86A8;margin:4px 0 16px}
-.btn{display:flex;align-items:center;gap:12px;background:#F6F5FB;border:1px solid #EDEAF7;border-radius:14px;padding:14px;cursor:pointer;font-weight:600;font-size:14px;margin-bottom:10px}
-.btn span{width:28px;height:28px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-label{font-size:12px;font-weight:700;color:#555;margin-top:4px;display:block}
-input{width:100%;background:#F6F5FB;border:1px solid #EDEAF7;border-radius:14px;padding:14px;color:#1A1730;margin:6px 0 12px;outline:none;font-size:14px}
-input:focus{border-color:#7C3AED;background:#fff}
-.main-btn{background:#7C3AED;border:none;border-radius:14px;padding:15px;width:100%;color:#fff;font-weight:800;font-size:15px;cursor:pointer}
-.main-btn.gold{background:#111;color:#fff}
-.link{color:#7C3AED;font-weight:800;cursor:pointer}
-.guest{margin-top:14px;background:#fff;border:1px solid #EDEAF7;border-radius:14px;padding:13px;font-size:13px;text-align:center;cursor:pointer;color:#555}
-.footer{font-size:11px;color:#9A96B0;text-align:center;margin-top:14px;line-height:1.6}
-.search{width:100%;background:#fff;border:1px solid #EDEAF7;border-radius:999px;padding:12px 16px;color:#1A1730;margin:12px 0;outline:none}
+.logo{font-size:30px;font-weight:900;letter-spacing:-.5px;line-height:1}
+.logo span{color:#111}.logo i{font-style:normal;background:#111;color:#FFD400;padding:2px 8px;border-radius:10px}
+.tag{font-size:12px;color:#666;margin:6px 0 16px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.card h2{font-size:20px}.card .sub{font-size:13px;color:#888;margin:4px 0 14px}
+.btn{display:flex;align-items:center;gap:12px;background:#FFFBEA;border:1px solid #F1E68A;border-radius:14px;padding:13px;cursor:pointer;font-weight:600;font-size:14px;margin-bottom:10px}
+.btn span{width:28px;height:28px;background:#FFD400;border-radius:50%;display:flex;align-items:center;justify-content:center}
+label{font-size:12px;font-weight:700;color:#666;display:block}
+input{width:100%;background:#FFFBEA;border:1px solid #F1E68A;border-radius:14px;padding:13px;margin:6px 0 10px;outline:none;font-size:14px}
+input:focus{border-color:#111;background:#fff}
+.main-btn{background:#111;border:none;border-radius:14px;padding:15px;width:100%;color:#FFD400;font-weight:900;font-size:15px;cursor:pointer}
+.link{font-weight:800;cursor:pointer;text-decoration:underline}
+.guest{margin-top:12px;background:#fff;border:1px solid #eee;border-radius:14px;padding:12px;font-size:13px;text-align:center;cursor:pointer}
+.footer{font-size:11px;color:#999;text-align:center;margin-top:14px;line-height:1.6}
+/* DISCOVER - SWIPE */
+.swipe-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.10);position:relative}
+.swipe-img{height:340px;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:110px;position:relative}
+.swipe-img .near{position:absolute;top:12px;left:12px;background:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}
+.swipe-img .live{position:absolute;top:12px;right:12px;background:#FF3B5C;color:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}
+.swipe-info{padding:16px}
+.swipe-info h2{font-size:22px}.swipe-info p{font-size:13px;color:#888;margin:4px 0 10px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}.tags span{background:#FFFBEA;border:1px solid #F1E68A;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.swipe-btns{display:flex;gap:12px;margin-top:16px}.swipe-btns button{flex:1;padding:14px;border-radius:999px;border:none;font-weight:900;font-size:14px;cursor:pointer}.nope{background:#F1F1F1}.like{background:#111;color:#FFD400;font-size:16px}.micbtn{background:#FFD400}
+.match-banner{background:#111;color:#FFD400;padding:12px;border-radius:14px;text-align:center;font-weight:800;margin:12px 0;display:none}
 .rooms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.room{background:#fff;border-radius:18px;padding:16px;text-align:center;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.room .live{position:absolute;top:12px;right:12px;background:#FF3B5C;color:#fff;font-size:10px;padding:4px 8px;border-radius:999px;font-weight:800}
-.avatar{width:56px;height:56px;border-radius:50%;background:#F1EFFF;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 10px}
-.room h3{font-size:14px}.room p{font-size:11px;color:#8A86A8;margin:5px 0 10px;line-height:1.4}
-.join{background:#111;border:none;color:#fff;padding:10px;width:100%;border-radius:12px;font-weight:700;cursor:pointer;font-size:13px}
-.mini{display:flex;gap:4px;justify-content:center;margin:6px 0}.mini i{width:18px;height:18px;border-radius:50%;background:#EDEAF7;display:flex;align-items:center;justify-content:center;font-size:9px;font-style:normal;color:#555}
-.topbar{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:14px;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.topbar b{font-size:18px}.topbar small{color:#8A86A8;font-size:11px}
-.host{text-align:center;margin:18px 0 12px}.host .big{width:88px;height:88px;border-radius:50%;background:#FFF7D6;display:flex;align-items:center;justify-content:center;font-size:44px;margin:auto;border:3px solid #FFE27A}
-.hint{font-size:12px;color:#7C3AED;text-align:center;background:#F1EFFF;padding:10px;border-radius:12px;margin-bottom:12px}
+.room{background:#fff;border-radius:18px;padding:14px;text-align:center;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.room .live{position:absolute;top:10px;right:10px;background:#FF3B5C;color:#fff;font-size:10px;padding:4px 8px;border-radius:999px;font-weight:800}
+.avatar{width:52px;height:52px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px}
+.room h3{font-size:14px}.room p{font-size:11px;color:#888;margin:5px 0 10px}
+.join{background:#111;border:none;color:#FFD400;padding:10px;width:100%;border-radius:12px;font-weight:800;cursor:pointer}
+.chatlist{display:flex;flex-direction:column;gap:10px}.chat-item{display:flex;gap:12px;background:#fff;padding:12px;border-radius:16px;align-items:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}.chat-item .av{width:48px;height:48px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 48px}.chat-item b{font-size:14px}.chat-item small{color:#888;font-size:12px}.chat-item .go{margin-left:auto;background:#FFD400;padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px}
+.topbar{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:13px;border-radius:16px}
+.host{text-align:center;margin:16px 0 10px}.host .big{width:84px;height:84px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:42px;margin:auto;border:3px solid #111}
+.hint{font-size:12px;text-align:center;background:#fff;padding:10px;border-radius:12px;margin-bottom:10px}
 .seats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
-.seat{background:#fff;border:1px solid #EDEAF7;border-radius:16px;padding:12px 6px;text-align:center;font-size:11px;min-height:92px;cursor:pointer;position:relative}
-.seat .a{width:40px;height:40px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:20px;background:#F6F5FB}
-.seat.selected{border-color:#7C3AED;background:#F1EFFF}
-.seat.ringed{border-color:#EAB308;background:#FFFBEB;box-shadow:0 0 0 2px #FDE68A}
-.seat.ringed .a{box-shadow:0 0 0 3px #FDE68A}
-.seat .badge{position:absolute;top:-6px;right:-4px;background:#7C3AED;color:#fff;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px}
-.seat .conn{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:9px;padding:2px 7px;border-radius:999px;white-space:nowrap}
-.chatbox{background:#fff;border-radius:16px;padding:14px;font-size:13px;margin:10px 0;box-shadow:0 2px 12px rgba(0,0,0,.04)}.chatbox div{margin:6px 0;line-height:1.5}
-.wheelbox{background:#fff;border-radius:20px;padding:16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.wheel{width:132px;height:132px;border-radius:50%;margin:12px auto;background:conic-gradient(#FDE68A 0 45deg,#DDD6FE 45deg 90deg,#FBCFE8 90deg 135deg,#BFDBFE 135deg 180deg,#FDE68A 180deg 225deg,#DDD6FE 225deg 270deg,#FBCFE8 270deg 315deg,#BFDBFE 315deg 360deg);border:4px solid #fff;box-shadow:0 6px 20px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;transition:transform 2.2s cubic-bezier(.1,.8,.2,1);cursor:pointer}
-.wheel span{background:#111;color:#fff;border-radius:999px;padding:8px 12px;font-weight:800;font-size:12px}
-.bets{display:flex;gap:8px;margin-top:10px}.bets button{flex:1;background:#F6F5FB;border:1px solid #EDEAF7;color:#1A1730;padding:10px;border-radius:12px;font-weight:700;cursor:pointer}.bets button.on{background:#111;color:#fff}
-.actions{display:flex;gap:8px;margin:12px 0}.actions button{flex:1;background:#fff;border:1px solid #EDEAF7;border-radius:12px;padding:10px;cursor:pointer;font-size:12px}
-.msg{display:flex;gap:8px}.msg input{flex:1;margin:0}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #EDEAF7;display:flex;padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:10;max-width:480px;margin:0 auto}
-.nav button{flex:1;background:none;border:none;color:#9A96B0;font-weight:700;font-size:12px;cursor:pointer}.nav button.on{color:#7C3AED}
-.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:11px 18px;border-radius:999px;font-weight:700;font-size:13px;display:none;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:90%;text-align:center}
+.seat{background:#fff;border:1px solid #eee;border-radius:16px;padding:11px 6px;text-align:center;font-size:11px;min-height:90px;cursor:pointer;position:relative}
+.seat .a{width:38px;height:38px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:20px;background:#FFFBEA}
+.seat.selected{border-color:#111;background:#FFFBEB}.seat.ringed{border-color:#EAB308;background:#FFFBEB;box-shadow:0 0 0 2px #FDE68A}.seat .badge{position:absolute;top:-6px;right:-4px;background:#111;color:#FFD400;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px}.seat .conn{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#111;color:#FFD400;font-size:9px;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.chatbox{background:#fff;border-radius:16px;padding:12px;font-size:13px;margin:10px 0}.chatbox div{margin:5px 0}
+.wheelbox{background:#fff;border-radius:18px;padding:14px;text-align:center}
+.wheel{width:126px;height:126px;border-radius:50%;margin:10px auto;background:conic-gradient(#FFD400 0 45deg,#111 45deg 90deg,#FF8A00 90deg 135deg,#FFE27A 135deg 180deg,#FFD400 180deg 225deg,#111 225deg 270deg,#FF8A00 270deg 315deg,#FFE27A 315deg 360deg);border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;transition:transform 2.2s cubic-bezier(.1,.8,.2,1);cursor:pointer}.wheel span{background:#111;color:#FFD400;border-radius:999px;padding:8px 12px;font-weight:800;font-size:12px}
+.bets{display:flex;gap:8px;margin-top:10px}.bets button{flex:1;background:#FFFBEA;border:1px solid #F1E68A;padding:10px;border-radius:12px;font-weight:700;cursor:pointer}.bets button.on{background:#111;color:#FFD400}
+.actions{display:flex;gap:8px;margin:12px 0}.actions button{flex:1;background:#fff;border:1px solid #eee;border-radius:12px;padding:10px;cursor:pointer;font-size:12px}
+.msg{display:flex;gap:8px}.msg input{flex:1;margin:0;background:#fff}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:10;max-width:480px;margin:0 auto}
+.nav button{flex:1;background:none;border:none;color:#aaa;font-weight:700;font-size:12px;cursor:pointer}.nav button.on{color:#111}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#111;color:#FFD400;padding:11px 18px;border-radius:999px;font-weight:800;font-size:13px;display:none;z-index:99;max-width:90%;text-align:center}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:flex-end;justify-content:center}.modal.open{display:flex}
-.sheet{background:#fff;width:100%;max-width:480px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px;color:#1A1730}
-.gift-tabs{display:flex;gap:8px;margin:12px 0}.gift-tabs button{flex:1;padding:9px;border-radius:999px;border:1px solid #EDEAF7;background:#F6F5FB;color:#1A1730;cursor:pointer;font-size:12px}.gift-tabs button.on{background:#111;color:#fff}
+.sheet{background:#fff;width:100%;max-width:480px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px}
+.gift-tabs{display:flex;gap:8px;margin:12px 0}.gift-tabs button{flex:1;padding:9px;border-radius:999px;border:1px solid #eee;background:#FFFBEA;cursor:pointer;font-size:12px}.gift-tabs button.on{background:#111;color:#FFD400}
 .gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.gift{background:#F6F5FB;border:1px solid #EDEAF7;border-radius:16px;padding:12px 6px;text-align:center;cursor:pointer}.gift.on{border-color:#111;background:#FFFBEB}
-.gift .e{font-size:30px}.gift b{font-size:12px;display:block;margin:4px 0 2px}.gift small{color:#7C3AED;font-size:11px;font-weight:700}
+.gift{background:#FFFBEA;border:1px solid #F1E68A;border-radius:16px;padding:11px 6px;text-align:center;cursor:pointer}.gift.on{border-color:#111;background:#FFFBEB}
+.gift .e{font-size:28px}.gift b{font-size:12px;display:block}.gift small{color:#888;font-size:11px;font-weight:700}
+.qty{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0}.qty button{width:36px;height:36px;border-radius:50%;border:1px solid #eee;background:#FFFBEA;font-size:20px;cursor:pointer}
+.sendgift{background:#111;border:none;width:100%;padding:14px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;color:#FFD400}
+.seat-pick{display:flex;gap:8px;overflow-x:auto;padding:8px 0}.seat-pick button{flex:0 0 auto;background:#FFFBEA;border:1px solid #F1E68A;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-size:12px}.seat-pick button.on{background:#111;color:#FFD400}
+.ring-bar{background:#FFFBEB;border:1px solid #FDE68A;padding:10px;border-radius:14px;text-align:center;font-weight:700;margin:10px 0;display:none;font-size:13px}
 .gift-anim{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-size:90px;z-index:200;display:none;animation:pop .8s ease}
 @keyframes pop{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}100%{transform:translate(-50%,-80%) scale(1);opacity:0}}
-.qty{display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0}.qty button{width:36px;height:36px;border-radius:50%;border:1px solid #EDEAF7;background:#F6F5FB;font-size:20px;cursor:pointer}.qty b{font-size:16px}
-.sendgift{background:#111;border:none;width:100%;padding:15px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;color:#fff}
-.seat-pick{display:flex;gap:8px;overflow-x:auto;padding:8px 0;scrollbar-width:none}.seat-pick button{flex:0 0 auto;background:#F6F5FB;border:1px solid #EDEAF7;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-size:12px}.seat-pick button.on{background:#111;color:#fff}
-.ring-bar{background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;font-weight:700;text-align:center;padding:10px;border-radius:14px;margin:10px 0;display:none;font-size:13px}
-.pill{display:inline-block;background:#F1EFFF;color:#7C3AED;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
 </style>
 </head>
 <body>
-<div class="toast" id="toast"></div>
-<div class="gift-anim" id="giftAnim">🎁</div>
+<div class="toast" id="toast"></div><div class="gift-anim" id="giftAnim">🎁</div>
 
-<!-- V12 - PAGE 1 : LOG IN -->
+<!-- LOGIN -->
 <div class="page active" id="p-login">
-  <div class="center" style="padding-top:28px"><div class="logo">ZERO <span>LIVE</span></div><div class="tag">Live. Laugh. Play. • No Coins Needed.</div></div>
-  <div class="card">
-    <div class="center"><h2>Welcome back</h2><div class="sub">Log in to join CHAIN SMOK room.</div></div>
-    <div class="btn" onclick="goRooms('Google')"><span>G</span> Continue with Google</div>
-    <div class="btn" onclick="goRooms('Facebook')"><span>f</span> Continue with Facebook</div>
-    <div class="btn" onclick="goRooms('Phone')"><span>📞</span> Continue with Phone Number</div>
-    <label>Username</label><input id="user" placeholder="Enter your username" value="Guest">
-    <label>Password</label><input id="pass" type="password" placeholder="Enter your password" value="1234">
-    <button class="main-btn" onclick="login()">Log In</button>
+  <div class="center" style="padding-top:22px"><div class="logo">ZERO <i>LIVE</i></div><div class="tag">Date with friends near you • Live Mic Room</div></div>
+  <div class="card"><div class="center"><h2>Welcome back</h2><div class="sub">Log in to join CHAIN SMOK room.</div></div>
+  <div class="btn" onclick="goDiscover('Google')"><span>G</span> Continue with Google</div>
+  <div class="btn" onclick="goDiscover('Facebook')"><span>f</span> Continue with Facebook</div>
+  <div class="btn" onclick="goDiscover('Phone')"><span>📞</span> Continue with Phone Number</div>
+  <label>Username</label><input id="user" value="Guest"><label>Password</label><input id="pass" type="password" value="1234">
+  <button class="main-btn" onclick="login()">Log In</button></div>
+  <div class="center" style="margin-top:14px;font-size:13px">Don't have account? <span class="link" onclick="toast('Sign Up FREE!')">Sign Up FREE</span></div>
+  <div class="guest" onclick="goDiscover('Guest')">Guest Mode — Play as Guest • 0 Coins →</div>
+  <div class="footer">FREE FUN POINTS ONLY • No real money • For entertainment only.<br><b>V13 • Dating + Live Mic</b></div>
+</div>
+
+<!-- DISCOVER - SWIPE -->
+<div class="page" id="p-discover">
+  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Swipe to meet more friends!</h2><div class="tag">Nearby • Date with friends near you</div></div>
+  <div class="match-banner" id="matchBanner">🎉 IT'S A MATCH! Pwede na kayo mag-Live Mic!</div>
+  <div class="swipe-card">
+    <div class="swipe-img"><span class="near">📍 Nearby • <span id="dist">2.1 km</span></span><span class="live">● LIVE MIC</span><span id="pEmoji">👩</span></div>
+    <div class="swipe-info"><h2 id="pName">Lie Ann, 22</h2><p id="pBio">Hugot Night host • Gusto ko ng kausap sa mic 🎤</p><div class="tags"><span>🎤 Live Mic</span><span>💬 Chat</span><span>📍 Quezon City</span><span id="pTag">Hugot</span></div>
+    <div class="swipe-btns"><button class="nope" onclick="nextPerson()">✕ Pass</button><button class="micbtn" onclick="openRoomFromDiscover()">🎤 Live Mic</button><button class="like" onclick="likePerson()">❤️ Like</button></div></div>
   </div>
-  <div class="center" style="margin-top:16px;font-size:13px">Don't have account? <span class="link" onclick="toast('Sign Up FREE!')">Sign Up FREE</span></div>
-  <div class="guest" onclick="goRooms('Guest')">Guest Mode — Play as Guest • 0 Coins →</div>
-  <div class="footer">FREE FUN POINTS ONLY<br>No real money • For entertainment only.<br><b>V12 • Clean Edition</b></div>
+  <div class="center" style="font-size:12px;color:#888;margin-top:10px">Swipe / Like → Match → Live Mic Room + Ring 💍</div>
+  <div style="margin-top:14px"><b style="font-size:14px">Nearby now:</b></div>
+  <div class="chatlist" id="nearbyList" style="margin-top:8px"></div>
 </div>
 
-<!-- V12 - PAGE 2 : ROOMS -->
+<!-- CHATS - GET CONNECTED -->
+<div class="page" id="p-chats">
+  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Get connected!</h2><div class="tag">Chats • Yung mga nag-match sayo</div></div>
+  <div class="chatlist" id="chatList"></div>
+  <div class="center" style="margin-top:12px;font-size:12px;color:#888">Pag nag-Chat ka, pwede mo siya i-invite sa Live Mic Room!</div>
+</div>
+
+<!-- ROOMS -->
 <div class="page" id="p-rooms">
-  <div class="center"><div class="logo" style="font-size:26px">ZERO <span>LIVE</span></div><h2 style="font-size:20px;margin-top:10px">Rooms</h2><div class="sub" style="margin:4px 0">Live Laugh Play — Choose your room.</div></div>
-  <input class="search" id="search" placeholder="🔍  Search rooms, hosts" oninput="filterRooms()">
+  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Live Mic Rooms</h2><div class="tag">Choose your room — parang party room!</div></div>
+  <input class="search" id="search" placeholder="🔍 Search rooms, hosts" oninput="filterRooms()" style="background:#fff">
   <div class="rooms" id="roomList"></div>
-  <div class="center" style="margin-top:14px;font-size:13px">Balance: <b id="bal2">10,000 Fun Points</b> • <span class="link" onclick="addPoints(10000)">Free Refill +10,000</span></div>
+  <div class="center" style="margin-top:12px;font-size:13px">Balance: <b id="bal2">10,000 Fun Points</b> • <span class="link" onclick="addPoints(10000)">Free Refill</span></div>
 </div>
 
-<!-- V12 - PAGE 3 : LOOB NG ROOM -->
+<!-- INSIDE ROOM -->
 <div class="page" id="p-room">
-  <div class="topbar"><div><b id="roomName">CHAIN SMOK</b><br><small>host ID 1846091 • 2,081 score</small></div><div style="text-align:right"><span class="pill">● LIVE</span><br><small style="display:block;margin-top:6px">👁 9 viewers</small></div></div>
-  <div class="host"><div class="big">🐱</div><b style="display:block;margin-top:10px">SANTINO ZONE — Host</b><div style="font-size:12px;color:#8A86A8">CHAIN SMOK Room • Total Gifts: <b id="totalGifts">0 FP</b></div></div>
+  <div class="topbar"><div><b id="roomName">CHAIN SMOK</b><br><small>host ID 1846091 • 2,081 score</small></div><div style="text-align:right"><span style="background:#FF3B5C;color:#fff;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800">● LIVE MIC</span></div></div>
+  <div class="host"><div class="big">🐱</div><b style="display:block;margin-top:8px">SANTINO ZONE — Host</b><div style="font-size:12px;color:#888">Total Gifts: <b id="totalGifts">0 FP</b></div></div>
   <div class="ring-bar" id="ringBar"></div>
-  <div class="hint">Tap a seat to choose who to gift — magri-RING siya 💍</div>
+  <div class="hint">Tap a seat — pag nag-gift ka, magri-RING at magko-CONNECT kayo 💍</div>
   <div class="seats" id="seats"></div>
   <div class="chatbox" id="chat"><b>Chat (89)</b><div><b>Kai:</b> yo who's next?</div><div><b>Pink Speaking:</b> freestyle incoming 🔥</div></div>
-  <div class="wheelbox">
-    <b>Lucky Wheel — Followers Edition</b><div style="font-size:12px;color:#8A86A8;margin-top:4px">Balance: <b id="bal">10,000</b> FP • <span class="link" onclick="addPoints(10000)">Free Refill</span></div>
-    <div class="wheel" id="wheel" onclick="spin()"><span>SPIN 🎡</span></div>
-    <div style="font-size:13px" id="wheelMsg">Pili ka ng follower, taya ka, pindot SPIN!</div>
-    <div class="bets"><button onclick="setBet(50,this)">Bet 50</button><button class="on" onclick="setBet(100,this)">Bet 100</button><button onclick="setBet(200,this)">Bet 200</button></div>
-    <div style="font-size:12px;margin-top:10px;color:#8A86A8">Prize Pool: <b style="color:#1A1730">002694 FP</b></div>
-  </div>
+  <div class="wheelbox"><b>Lucky Wheel — Followers Edition</b><div style="font-size:12px;color:#888">Balance: <b id="bal">10,000</b> FP • <span class="link" onclick="addPoints(10000)">Free Refill</span></div>
+  <div class="wheel" id="wheel" onclick="spin()"><span>SPIN 🎡</span></div><div style="font-size:13px" id="wheelMsg">Pili ka ng follower, taya ka, pindot SPIN!</div>
+  <div class="bets"><button onclick="setBet(50,this)">Bet 50</button><button class="on" onclick="setBet(100,this)">Bet 100</button><button onclick="setBet(200,this)">Bet 200</button></div>
+  <div style="font-size:12px;margin-top:8px;color:#888">Prize Pool: <b style="color:#111">002694 FP</b></div></div>
   <div class="actions"><button onclick="react('Cheer')">👏 Cheer</button><button onclick="react('Clap')">👏 Clap</button><button onclick="react('Laugh')">😂 Laugh</button><button onclick="react('Tension')">⚡ Tension</button></div>
   <div class="msg"><input id="msg" placeholder="Type a message..."><button class="join" style="width:84px" onclick="sendMsg()">Send</button></div>
-  <div style="display:flex;gap:10px;margin-top:12px"><button class="main-btn" onclick="joinMic()">Join Mic 🎤</button><button class="main-btn gold" onclick="openGift()">🎁 Gift + Ring</button></div>
-  <div class="center" style="font-size:12px;margin-top:10px;color:#8A86A8">Ring Connections: <b id="ringList" style="color:#1A1730">Wala pa — mag-gift ka para mag-connect!</b></div>
+  <div style="display:flex;gap:10px;margin-top:12px"><button class="main-btn" onclick="joinMic()">Join Mic 🎤</button><button class="main-btn" style="background:#FFD400;color:#111" onclick="openGift()">🎁 Gift + Ring</button></div>
+  <div class="center" style="font-size:12px;margin-top:10px;color:#888">Ring Connections: <b id="ringList" style="color:#111">Wala pa — mag-gift ka!</b></div>
 </div>
 
-<!-- GIFT MODAL V12 -->
+<!-- GIFT MODAL -->
 <div class="modal" id="giftModal" onclick="if(event.target==this)closeGift()">
-  <div class="sheet">
-    <div style="display:flex;justify-content:space-between;align-items:center"><b>Send Gift + Ring to <span id="giftTo">Cherry</span></b><span onclick="closeGift()" style="cursor:pointer;font-size:18px">✕</span></div>
-    <div style="font-size:12px;color:#8A86A8;margin-top:4px">Balance: <b id="bal3">10,000</b> FP • Magri-RING yung seat niya!</div>
-    <div style="font-size:13px;font-weight:800;margin-top:14px">1. Sino bibigyan mo?</div>
-    <div class="seat-pick" id="seatPick"></div>
-    <div style="font-size:13px;font-weight:800">2. Pili ng Gift (1 to 9,999)</div>
-    <div class="gift-tabs"><button class="on" onclick="filterGift('all',this)">All</button><button onclick="filterGift('cheap',this)">1 - 99</button><button onclick="filterGift('mid',this)">100 - 999</button><button onclick="filterGift('vip',this)">1K - 9,999</button></div>
-    <div class="gifts" id="giftList"></div>
-    <div class="qty"><button onclick="changeQty(-1)">−</button><b>Qty: <span id="qty">1</span></b><button onclick="changeQty(1)">+</button><span style="font-size:13px">Total: <b id="giftTotal">1 FP</b></span></div>
-    <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:12px;font-size:12px;text-align:center">💍 Si <b id="ringPreview">Cherry</b> magkaka-GOLD RING + CONNECTED kay <b id="ringMe">Guest</b>!</div>
-    <button class="sendgift" onclick="sendGift()" style="margin-top:12px">Send Gift + Ring 💍🎁</button>
-  </div>
+  <div class="sheet"><div style="display:flex;justify-content:space-between"><b>Send Gift + Ring to <span id="giftTo">Cherry</span></b><span onclick="closeGift()" style="cursor:pointer;font-size:18px">✕</span></div>
+  <div style="font-size:12px;color:#888">Balance: <b id="bal3">10,000</b> FP • Magri-RING yung seat niya!</div>
+  <div style="font-weight:800;margin-top:12px;font-size:13px">1. Sino bibigyan mo?</div><div class="seat-pick" id="seatPick"></div>
+  <div style="font-weight:800;font-size:13px">2. Pili ng Gift (1 to 9,999)</div>
+  <div class="gift-tabs"><button class="on" onclick="filterGift('all',this)">All</button><button onclick="filterGift('cheap',this)">1-99</button><button onclick="filterGift('mid',this)">100-999</button><button onclick="filterGift('vip',this)">1K-9,999</button></div>
+  <div class="gifts" id="giftList"></div>
+  <div class="qty"><button onclick="changeQty(-1)">−</button><b>Qty: <span id="qty">1</span></b><button onclick="changeQty(1)">+</button><span style="font-size:13px">Total: <b id="giftTotal">1 FP</b></span></div>
+  <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:12px;font-size:12px;text-align:center">💍 Si <b id="ringPreview">Cherry</b> magkaka-GOLD RING + CONNECTED kay <b id="ringMe">Guest</b>!</div>
+  <button class="sendgift" onclick="sendGift()" style="margin-top:12px">Send Gift + Ring 💍🎁</button></div>
 </div>
 
-<div class="nav"><button class="on" onclick="show('p-rooms',this)">▶ Live Rooms</button><button onclick="show('p-room',this)">🎤 Mic</button><button onclick="openGift()">🎁 Gifts</button><button onclick="toast('Me - Profile mo')">👤 Me</button></div>
+<div class="nav"><button onclick="show('p-discover',this)">👆 Discover</button><button onclick="show('p-chats',this)">💬 Chats</button><button class="on" onclick="show('p-rooms',this)">🎤 Rooms</button><button onclick="openGift()">🎁 Gifts</button><button onclick="toast('Me - Profile mo')">👤 Me</button></div>
 
 <script>
-let balance=10000,bet=100,myName="Guest",qty=1,selectedGift=null,selectedCat='all',totalGifted=0,selectedSeat="Cherry";
+let balance=10000,bet=100,myName="Guest",qty=1,selectedGift=null,selectedCat='all',totalGifted=0,selectedSeat="Cherry",pIdx=0;
+let people=[
+ {name:"Lie Ann, 22",emoji:"👩",bio:"Hugot Night host • Gusto ko ng kausap sa mic 🎤",tag:"Hugot",dist:"2.1 km"},
+ {name:"Cherry, 21",emoji:"👑",bio:"Host • Mahilig mag-karaoke at mag-live mic",tag:"Karaoke",dist:"1.4 km"},
+ {name:"Mia, 23",emoji:"💗",bio:"Co-Host • Chill talk lang, tara mic tayo!",tag:"Chill Talk",dist:"3.2 km"},
+ {name:"Ken, 24",emoji:"🧑",bio:"Co-Host • Gusto ko ng ka-duet sa mic!",tag:"Duet",dist:"0.8 km"},
+ {name:"SANTINO, 20",emoji:"🐱",bio:"Cat host • Meow, tara live mic?",tag:"Fun",dist:"1.1 km"},
+ {name:"DogHat, 22",emoji:"🐶",bio:"Fun Bets master • Tara taya tayo!",tag:"Fun Bets",dist:"2.8 km"},
+];
 let rooms=[
  {name:"CHAIN SMOK",view:"2.4k watching • Lucky Wheel",emoji:"🎤",members:["DogHat","Lie Ann","rey pinyo","Mopy","SANTINO"]},
  {name:"SANTINO ZONE",view:"1.8k watching • Karaoke Room",emoji:"🐱",members:[]},
@@ -149,32 +169,41 @@ let rooms=[
  {name:"rey pinyo",view:"620 watching • Chill Talk",emoji:"😎",members:[]},
 ];
 let gifts=[
- {name:"Rose",emoji:"🌹",price:1,cat:"cheap"},{name:"Heart",emoji:"❤️",price:5,cat:"cheap"},{name:"Candy",emoji:"🍬",price:9,cat:"cheap"},{name:"Coffee",emoji:"☕",price:15,cat:"cheap"},{name:"Beer",emoji:"🍺",price:25,cat:"cheap"},{name:"Bubble Tea",emoji:"🧋",price:35,cat:"cheap"},{name:"Cat",emoji:"🐱",price:49,cat:"cheap"},{name:"DogHat",emoji:"🐶",price:55,cat:"cheap"},{name:"Clap",emoji:"👏",price:69,cat:"cheap"},{name:"Kiss",emoji:"💋",price:88,cat:"cheap"},{name:"Star",emoji:"⭐",price:99,cat:"cheap"},
- {name:"Flower",emoji:"🌸",price:120,cat:"mid"},{name:"Guitar",emoji:"🎸",price:150,cat:"mid"},{name:"Mic",emoji:"🎤",price:199,cat:"mid"},{name:"Crown Mini",emoji:"👑",price:250,cat:"mid"},{name:"Diamond",emoji:"💎",price:300,cat:"mid"},{name:"Fire",emoji:"🔥",price:350,cat:"mid"},{name:"Rocket",emoji:"🚀",price:499,cat:"mid"},{name:"Sports Car",emoji:"🏎️",price:555,cat:"mid"},{name:"Cake",emoji:"🎂",price:666,cat:"mid"},{name:"Teddy",emoji:"🧸",price:777,cat:"mid"},{name:"Neon Crown",emoji:"👑",price:888,cat:"mid"},{name:"Dragon",emoji:"🐉",price:999,cat:"mid"},
- {name:"Golden Mic",emoji:"🎙️",price:1000,cat:"vip"},{name:"VIP Badge",emoji:"🏅",price:1500,cat:"vip"},{name:"Luxury Car",emoji:"🚗",price:2000,cat:"vip"},{name:"Castle",emoji:"🏰",price:2500,cat:"vip"},{name:"Galaxy",emoji:"🌌",price:3000,cat:"vip"},{name:"Phoenix",emoji:"🦅",price:4000,cat:"vip"},{name:"Unicorn",emoji:"🦄",price:5000,cat:"vip"},{name:"Superstar",emoji:"🌟",price:7500,cat:"vip"},{name:"ZERO KING",emoji:"👑",price:9999,cat:"vip"},
+ {name:"Rose",emoji:"🌹",price:1,cat:"cheap"},{name:"Heart",emoji:"❤️",price:5,cat:"cheap"},{name:"Candy",emoji:"🍬",price:9,cat:"cheap"},{name:"Coffee",emoji:"☕",price:15,cat:"cheap"},{name:"Beer",emoji:"🍺",price:25,cat:"cheap"},{name:"Bubble Tea",emoji:"🧋",price:35,cat:"cheap"},{name:"Cat",emoji:"🐱",price:49,cat:"cheap"},{name:"Kiss",emoji:"💋",price:88,cat:"cheap"},{name:"Star",emoji:"⭐",price:99,cat:"cheap"},
+ {name:"Flower",emoji:"🌸",price:120,cat:"mid"},{name:"Guitar",emoji:"🎸",price:150,cat:"mid"},{name:"Mic",emoji:"🎤",price:199,cat:"mid"},{name:"Diamond",emoji:"💎",price:300,cat:"mid"},{name:"Fire",emoji:"🔥",price:350,cat:"mid"},{name:"Rocket",emoji:"🚀",price:499,cat:"mid"},{name:"Cake",emoji:"🎂",price:666,cat:"mid"},{name:"Teddy",emoji:"🧸",price:777,cat:"mid"},{name:"Dragon",emoji:"🐉",price:999,cat:"mid"},
+ {name:"Golden Mic",emoji:"🎙️",price:1000,cat:"vip"},{name:"Luxury Car",emoji:"🚗",price:2000,cat:"vip"},{name:"Castle",emoji:"🏰",price:2500,cat:"vip"},{name:"Galaxy",emoji:"🌌",price:3000,cat:"vip"},{name:"Unicorn",emoji:"🦄",price:5000,cat:"vip"},{name:"Superstar",emoji:"🌟",price:7500,cat:"vip"},{name:"ZERO KING",emoji:"👑",price:9999,cat:"vip"},
  {name:"Gold Ring",emoji:"💍",price:999,cat:"mid"},{name:"Diamond Ring",emoji:"💎",price:1999,cat:"vip"},{name:"Couple Ring",emoji:"💍",price:2999,cat:"vip"},{name:"Eternal Ring",emoji:"💍",price:9999,cat:"vip"},
 ];
 let seatsData=[
  {name:"Mia Co-Host",emoji:"👩",tag:"CO-HOST",gift:0},{name:"Cherry",emoji:"👑",tag:"Host",gift:0},{name:"Ken Co-Host",emoji:"🧑",tag:"CO-HOST • VIP",gift:0},{name:"Pink Speaking",emoji:"💗",tag:"Speaking",gift:0},{name:"Ryu",emoji:"🧑‍🎤",tag:"Ryu",gift:0},{name:"Blue Speaking",emoji:"💙",tag:"Speaking",gift:0},{name:"VIP Lena",emoji:"👸",tag:"Muted",gift:0},{name:"Kai",emoji:"🧑",tag:"",gift:0},{name:"Orange",emoji:"🧡",tag:"",gift:0},{name:"Green",emoji:"💚",tag:"",gift:0},{name:"Black",emoji:"🖤",tag:"",gift:0},{name:"Empty",emoji:"+",tag:"Join +",gift:0},
 ];
-let connected={};
+let connected={}, matched=[];
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2600)}
 function show(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');window.scrollTo(0,0)}
-function login(){myName=document.getElementById('user').value||"Guest";document.getElementById('ringMe').innerText=myName;goRooms('Login')}
-function goRooms(f){toast('Welcome '+myName+'!');show('p-rooms');renderRooms()}
-function renderRooms(){let q=(document.getElementById('search').value||"").toLowerCase();document.getElementById('roomList').innerHTML=rooms.filter(r=>r.name.toLowerCase().includes(q)).map(r=>`<div class="room"><span class="live">LIVE</span><div class="avatar">${r.emoji}</div><h3>${r.name}</h3><p>${r.view}</p>${r.members.length?`<div class="mini">${r.members.map(m=>`<i>${m[0]}</i>`).join('')}</div>`:''}<button class="join" onclick="openRoom('${r.name}')">Join</button></div>`).join('')}
+function login(){myName=document.getElementById('user').value||"Guest";document.getElementById('ringMe').innerText=myName;goDiscover('Login')}
+function goDiscover(f){toast('Welcome '+myName+'!');show('p-discover');renderPeople();renderChats();renderRooms()}
+function renderPeople(){let p=people[pIdx%people.length];document.getElementById('pEmoji').innerText=p.emoji;document.getElementById('pName').innerText=p.name;document.getElementById('pBio').innerText=p.bio;document.getElementById('pTag').innerText=p.tag;document.getElementById('dist').innerText=p.dist}
+function nextPerson(){pIdx++;renderPeople();toast('Pass — next person!')}
+function likePerson(){let p=people[pIdx%people.length];matched.push(p);document.getElementById('matchBanner').style.display='block';document.getElementById('matchBanner').innerText="🎉 IT'S A MATCH with "+p.name+"! Chat na kayo / Live Mic na!";toast('❤️ You liked '+p.name);renderChats();setTimeout(()=>{pIdx++;renderPeople()},800)}
+function openRoomFromDiscover(){let p=people[pIdx%people.length];openRoom(p.name.split(',')[0]);toast('Live Mic with '+p.name+'!')}
+function renderChats(){
+ let list = matched.length?matched:people.slice(0,4);
+ document.getElementById('chatList').innerHTML=list.map((p,i)=>`<div class="chat-item" onclick="openRoomFromDiscover()"><div class="av">${p.emoji}</div><div><b>${p.name}</b><br><small>${i==0?'Gusto mo mag-live mic? 🎤':'Tara chat tayo! 💬'}</small></div><span class="go">Chat</span></div>`).join('');
+ document.getElementById('nearbyList').innerHTML=people.map(p=>`<div class="chat-item" onclick="openRoomFromDiscover()"><div class="av">${p.emoji}</div><div><b>${p.name}</b><br><small>📍 ${p.dist} away • ${p.tag}</small></div><span class="go">View</span></div>`).join('');
+}
+function renderRooms(){let q=(document.getElementById('search').value||"").toLowerCase();document.getElementById('roomList').innerHTML=rooms.filter(r=>r.name.toLowerCase().includes(q)).map(r=>`<div class="room"><span class="live">LIVE</span><div class="avatar">${r.emoji}</div><h3>${r.name}</h3><p>${r.view}</p>${r.members.length?`<div class="mini">${r.members.map(m=>`<i>${m[0]}</i>`).join('')}</div>`:''}<button class="join" onclick="openRoom('${r.name}')">Join Mic</button></div>`).join('')}
 function filterRooms(){renderRooms()}
-function openRoom(n){document.getElementById('roomName').innerText=n;toast('Pasok ka sa '+n+' room!');show('p-room');renderSeats()}
+function openRoom(n){document.getElementById('roomName').innerText=n;toast('Pasok ka sa '+n+' Live Mic Room!');show('p-room');renderSeats()}
 function renderSeats(){
  document.getElementById('seats').innerHTML=seatsData.map(s=>{
   let ring=s.gift>0?'ringed':'';let sel=s.name==selectedSeat?'selected':'';
   let badge=s.gift>0?`<span class="badge">🎁 ${s.gift.toLocaleString()}</span>`:'';
   let conn=connected[s.name]?`<span class="conn">💍 ${connected[s.name]} ↔ ${s.name}</span>`:'';
-  return `<div class="seat ${ring} ${sel}" onclick="takeSeat('${s.name}')">${conn}${badge}<div class="a">${s.emoji}</div><b>${s.name}</b><br><small style="color:#8A86A8">${s.tag}</small></div>`
+  return `<div class="seat ${ring} ${sel}" onclick="takeSeat('${s.name}')">${conn}${badge}<div class="a">${s.emoji}</div><b>${s.name}</b><br><small style="color:#888">${s.tag}</small></div>`
  }).join('');
  document.getElementById('seatPick').innerHTML=seatsData.filter(s=>s.name!='Empty').map(s=>`<button class="${s.name==selectedSeat?'on':''}" onclick="pickSeat('${s.name}')">${s.emoji} ${s.name}</button>`).join('');
 }
-function takeSeat(n){if(n=='Empty'){toast('Umupo ka sa Empty Seat!');return}pickSeat(n);toast('Pinili mo si '+n)}
+function takeSeat(n){if(n=='Empty'){toast('Umupo ka!');return}pickSeat(n);toast('Pinili mo si '+n)}
 function pickSeat(n){selectedSeat=n;document.getElementById('giftTo').innerText=n;document.getElementById('ringPreview').innerText=n;renderSeats()}
 function joinMic(){toast('Join Mic — Umakyat ka!')}
 function setBet(v,el){bet=v;document.querySelectorAll('.bets button').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
@@ -192,7 +221,7 @@ function changeQty(d){qty=Math.max(1,Math.min(99,qty+d));document.getElementById
 function updateGiftTotal(){if(!selectedGift)return;document.getElementById('giftTotal').innerText=(selectedGift.price*qty).toLocaleString()+' FP'}
 function sendGift(){
  if(!selectedGift)return;let total=selectedGift.price*qty;
- if(balance<total){toast('Kulang! Free Refill muna!');addPoints(10000);return}
+ if(balance<total){toast('Kulang! Free Refill!');addPoints(10000);return}
  balance-=total;totalGifted+=total;updateBal();closeGift();
  let seat=seatsData.find(s=>s.name==selectedSeat);if(seat){seat.gift+=total;connected[selectedSeat]=myName;}
  renderSeats();
@@ -202,7 +231,7 @@ function sendGift(){
  document.getElementById('chat').innerHTML+='<div><b>'+myName+' 💍🎁</b> nag-send ng '+qty+'x '+selectedGift.emoji+' '+selectedGift.name+' kay '+selectedSeat+' — CONNECTED NA!</div>';
  toast('💍 Connected ka na kay '+selectedSeat+'!');
 }
-renderRooms();renderSeats();updateBal();selectedGift=gifts[0];
+renderPeople();renderChats();renderRooms();renderSeats();updateBal();selectedGift=gifts[0];
 </script>
 </body>
 </html>
