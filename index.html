@@ -1,216 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZERO LIVE - REAL VIDEO CALL</title>
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<title>ZERO LIVE - Live. Laugh. Play.</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#0f0f0f;color:#fff;padding-bottom:78px}
-header{background:linear-gradient(90deg,#ff9eb5,#e6007a);margin:10px 12px;padding:12px 14px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:10px;z-index:20}
-.logo{font-size:22px;font-weight:900;color:#111}
-.hicons{font-size:22px}
-.topTabs{display:flex;gap:8px;padding:8px 12px;overflow-x:auto}
-.topTabs button{flex:0 0 auto;border:0;padding:9px 15px;border-radius:20px;font-weight:800;cursor:pointer;background:#222;color:#fff}
-.topTabs button.active{background:#ff2d78}
-.videoBox{margin:0 12px;background:#000;border-radius:20px;overflow:hidden;position:relative;height:360px}
-.videoBox video{width:100%;height:100%;object-fit:cover;background:#111}
-.liveBadge{position:absolute;top:12px;left:12px;background:#ff0000;padding:5px 10px;border-radius:6px;font-weight:900;font-size:13px}
-.viewers{position:absolute;top:12px;left:80px;background:rgba(0,0,0,.6);padding:5px 10px;border-radius:20px;font-size:13px}
-.rank{position:absolute;top:12px;right:12px;background:#ffcc00;color:#111;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}
-.hostName{position:absolute;bottom:12px;left:12px}
-.hostName b{font-size:20px;text-shadow:0 2px 8px #000}
-.roomBox{margin:12px;background:#1c1c1c;padding:14px;border-radius:16px}
-.roomBox input{width:100%;padding:12px;border:0;border-radius:12px;background:#333;color:#fff;margin:6px 0;outline:none}
-.roomBox button{width:100%;padding:12px;border:0;border-radius:12px;background:#ff2d78;color:#fff;font-weight:800;cursor:pointer;margin-top:6px}
-.roomBox .copy{background:#ffcc00;color:#111}
-.seats{background:linear-gradient(90deg,#ff5ea8,#c44dff);margin:0 12px;padding:14px 10px;border-radius:0 0 20px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.seat{text-align:center;cursor:pointer;background:rgba(0,0,0,.2);border-radius:14px;padding:8px 4px}
-.seat video{width:100%;height:70px;object-fit:cover;border-radius:10px;background:#000}
-.seat img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #fff}
-.seat .empty{width:56px;height:56px;border-radius:50%;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:auto}
-.seat p{font-size:11px;font-weight:700;margin-top:4px;line-height:1.2}
-.seat.active{border:2px solid #ffcc00;background:rgba(255,204,0,.2)}
-.controls{margin:12px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
-.controls button{border:0;padding:13px 0;border-radius:14px;font-weight:800;cursor:pointer;color:#fff;background:#222;font-size:13px}
-.controls button.on{background:#00c853}
-.controls button.off{background:#ff2d78}
-.controls button.gold{background:#ffcc00;color:#111}
-.pk{margin:12px;background:linear-gradient(90deg,#ff2d78,#7a00ff);border-radius:16px;padding:14px}
-.pkBar{display:flex;height:14px;background:#333;border-radius:20px;overflow:hidden;margin:10px 0}
-.chat{margin:12px;background:#1c1c1c;border-radius:16px;padding:12px}
-.chatMsg{display:flex;gap:8px;margin-bottom:8px}
-.chatMsg img{width:30px;height:30px;border-radius:50%;object-fit:cover}
-.chatMsg div{background:#2a2a2a;padding:8px 10px;border-radius:14px;font-size:14px}
-.chatInput{display:flex;gap:8px;margin-top:10px}
-.chatInput input{flex:1;padding:12px;border:0;border-radius:20px;background:#333;color:#fff;outline:none}
-.chatInput button{border:0;padding:0 16px;border-radius:20px;background:#ff2d78;color:#fff;font-weight:800}
-.grid{padding:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#1c1c1c;border-radius:16px;overflow:hidden;cursor:pointer;position:relative}
-.card img{width:100%;height:160px;object-fit:cover}
-.card .in{padding:10px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:9px 0 8px;border-top:1px solid #222;z-index:30}
-.bottom div{text-align:center;font-size:12px;color:#888;cursor:pointer;font-weight:700}
-.bottom div.active{color:#ff2d78}
-.bottom div span{font-size:24px;display:block}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-end;justify-content:center;z-index:99}
-.modal.open{display:flex}
-.box{background:#1c1c1c;width:100%;max-width:560px;border-radius:22px 22px 0 0;padding:20px;max-height:92vh;overflow:auto}
-@media(min-width:600px){.modal{align-items:center}.box{border-radius:20px}}
-.box input{width:100%;padding:13px;margin:6px 0;border:1px solid #333;border-radius:12px;background:#2a2a2a;color:#fff}
-.box button{width:100%;padding:14px;background:#ff2d78;color:#fff;border:0;border-radius:12px;font-weight:800;cursor:pointer;margin-top:8px}
-.close{float:right;cursor:pointer;font-size:22px}
-.small{font-size:12px;color:#aaa}
-.giftGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
-.giftItem{background:#2a2a2a;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer}
-.giftItem.active{border:2px solid #ff2d78}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0a0620;color:#fff}
+.page{display:none;min-height:100vh;padding:16px;padding-bottom:90px}
+.page.active{display:block}
+.center{text-align:center}
+.logo{font-size:42px;font-weight:900;line-height:.9}.logo span{color:#b45cff}
+.tag{color:#c9a6ff;font-size:13px;margin:6px 0 16px}
+.card{background:rgba(20,12,50,.95);border:1px solid #7b2fff;border-radius:20px;padding:18px}
+h2{font-size:24px}.sub{color:#b9a5ff;font-size:13px;margin:6px 0 16px}
+.btn{display:flex;align-items:center;gap:10px;background:#140b33;border:1px solid #8a5cff;border-radius:12px;padding:13px 14px;margin-bottom:10px;cursor:pointer;font-weight:700}
+input{width:100%;background:#0f0830;border:1px solid #7b2fff;border-radius:12px;padding:13px;color:#fff;margin:6px 0 10px;outline:none}
+.login-btn{background:linear-gradient(90deg,#b45cff,#6a1bff);border:none;border-radius:14px;padding:15px;width:100%;color:#fff;font-weight:900;font-size:18px;cursor:pointer}
+.link{color:#ff9dff;font-weight:800;cursor:pointer}
+.guest{margin-top:14px;border:1px solid #444;border-radius:20px;padding:10px;font-size:13px;cursor:pointer}
+.footer{font-size:11px;color:#8f7fd1;text-align:center;margin-top:14px}
+.search{width:100%;background:#140b33;border:1px solid #b45cff;border-radius:25px;padding:12px 14px;color:#fff;margin:12px 0}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.room{background:#140b33;border:1px solid #7b2fff;border-radius:16px;padding:14px;text-align:center;position:relative}
+.room .live{position:absolute;top:10px;right:10px;background:#ff2d55;font-size:11px;padding:3px 8px;border-radius:6px;font-weight:900}
+.avatar{width:64px;height:64px;border-radius:50%;border:2px solid #ff4dff;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 8px;background:#2a1060}
+.room h3{font-size:15px}.room p{font-size:11px;color:#a9c6ff;margin:5px 0 10px}
+.join{background:linear-gradient(90deg,#ff2fd6,#7b2fff);border:none;color:#fff;padding:10px;width:100%;border-radius:10px;font-weight:900;cursor:pointer}
+.mini{display:flex;gap:4px;justify-content:center;margin:6px 0}.mini i{width:20px;height:20px;border-radius:50%;background:#3a1a70;display:flex;align-items:center;justify-content:center;font-size:9px;font-style:normal}
+.topbar{display:flex;justify-content:space-between;align-items:center}.topbar b{font-size:22px;color:#7dd7ff}.topbar small{color:#aaa}
+.host{text-align:center;margin:14px 0}.host .big{width:110px;height:110px;border-radius:50%;border:3px solid #00e5ff;font-size:60px;display:flex;align-items:center;justify-content:center;margin:auto;background:#1a0f45;box-shadow:0 0 20px #00e5ff}
+.seats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.seat{background:#140b33;border:1px solid #2a4bff;border-radius:14px;padding:10px;text-align:center;font-size:11px;min-height:96px;cursor:pointer;position:relative;transition:.3s}
+.seat .a{width:44px;height:44px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:22px;background:#2a1060;border:2px solid #00e5ff;position:relative;z-index:2}
+.seat.empty{opacity:.6}
+/* RING CONNECT */
+.seat.selected{border-color:#ff2fd6;box-shadow:0 0 15px #ff2fd6}
+.seat.ringed{border-color:#ffd700;box-shadow:0 0 25px #ffd700,0 0 40px #ff2fd6;background:#2a1a00}
+.seat.ringed .a{border-color:#ffd700;box-shadow:0 0 0 4px #ffd700,0 0 20px #ffd700;animation:ringPulse 1s infinite}
+.seat.ringed::before{content:"";position:absolute;inset:-6px;border:2px solid #ffd700;border-radius:18px;animation:ringPulse 1s infinite}
+.seat .gift-badge{position:absolute;top:-8px;right:-4px;background:#ff2fd6;color:#fff;font-size:11px;font-weight:900;padding:3px 7px;border-radius:20px;z-index:3}
+.seat .connect{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#ffd700;color:#000;font-size:10px;font-weight:900;padding:2px 8px;border-radius:20px;white-space:nowrap;z-index:3}
+@keyframes ringPulse{0%{box-shadow:0 0 0 0 #ffd70088}100%{box-shadow:0 0 0 12px #ffd70000}}
+.chatbox{background:#120a35;border:1px solid #7b2fff;border-radius:14px;padding:10px;font-size:13px;margin:10px 0}.chatbox div{margin:5px 0}
+.wheelbox{background:linear-gradient(90deg,#2a0a50,#1a0f45);border:1px solid #ffd700;border-radius:14px;padding:12px;text-align:center}
+.wheel{width:150px;height:150px;border-radius:50%;margin:10px auto;background:conic-gradient(#ffd700 0 45deg,#6a1bff 45deg 90deg,#ff2fd6 90deg 135deg,#00e5ff 135deg 180deg,#ffd700 180deg 225deg,#6a1bff 225deg 270deg,#ff2fd6 270deg 315deg,#00e5ff 315deg 360deg);border:6px solid #ffd700;display:flex;align-items:center;justify-content:center;transition:transform 2.5s cubic-bezier(.1,.8,.2,1);cursor:pointer}
+.wheel span{background:#000a;border-radius:50%;padding:10px;font-weight:900}
+.bets{display:flex;gap:8px;justify-content:center;margin-top:8px}.bets button{flex:1;background:#1a0f45;border:1px solid #b45cff;color:#fff;padding:10px;border-radius:10px;font-weight:800;cursor:pointer}.bets button.on{background:#ff2fd6}
+.actions{display:flex;gap:8px;margin:10px 0}.actions button{flex:1;background:#140b33;border:1px solid #555;border-radius:10px;padding:10px;color:#fff;cursor:pointer}
+.msg{display:flex;gap:8px}.msg input{flex:1}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0f0830;border-top:1px solid #333;display:flex;padding:10px 0;z-index:10}.nav button{flex:1;background:none;border:none;color:#888;font-weight:800;cursor:pointer}.nav button.on{color:#ff4dff}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 16px;border-radius:20px;font-weight:800;display:none;z-index:99}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:100;align-items:flex-end;justify-content:center}.modal.open{display:flex}
+.sheet{background:#140b33;width:100%;max-height:88vh;overflow:auto;border-radius:22px 22px 0 0;padding:16px;border:1px solid #ff4dff}
+.gift-tabs{display:flex;gap:8px;margin:10px 0}.gift-tabs button{flex:1;padding:9px;border-radius:20px;border:1px solid #555;background:#1a0f45;color:#fff;cursor:pointer}.gift-tabs button.on{background:#ff2fd6}
+.gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gift{background:#1a0f45;border:1px solid #333;border-radius:14px;padding:10px;text-align:center;cursor:pointer}.gift.on{border-color:#ffd700;box-shadow:0 0 15px #ffd700;background:#2a1a00}
+.gift .e{font-size:32px}.gift b{font-size:12px;display:block;margin:4px 0 2px}.gift small{color:#ffd700;font-size:11px}
+.gift-anim{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-size:100px;z-index:200;display:none;animation:pop .9s ease}
+@keyframes pop{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}50%{transform:translate(-50%,-50%) scale(1.4);opacity:1}100%{transform:translate(-50%,-80%) scale(1);opacity:0}}
+.qty{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0}.qty button{width:38px;height:38px;border-radius:50%;border:1px solid #fff;background:#1a0f45;color:#fff;font-size:20px;cursor:pointer}.qty b{font-size:18px}
+.sendgift{background:linear-gradient(90deg,#ff2fd6,#ffd700);border:none;width:100%;padding:15px;border-radius:14px;font-weight:900;font-size:16px;cursor:pointer}
+.seat-pick{display:flex;gap:8px;overflow-x:auto;padding:8px 0}.seat-pick button{flex:0 0 auto;background:#1a0f45;border:1px solid #555;color:#fff;padding:8px 12px;border-radius:20px;cursor:pointer;white-space:nowrap}.seat-pick button.on{background:#ffd700;color:#000;border-color:#ffd700}
+.ring-bar{background:linear-gradient(90deg,#ffd700,#ff2fd6);color:#000;font-weight:900;text-align:center;padding:8px;border-radius:12px;margin:8px 0;display:none}
 </style>
 </head>
 <body>
-<header><div class="logo">⚡ ZERO LIVE 📹</div><div class="hicons" onclick="openProfile()">🔔 ⋯</div></header>
-<div class="topTabs"><button class="active">🔥 For You</button><button onclick="alert('Singing Room!')">🎤 Singing</button><button onclick="alert('Talk Room!')">💬 Talk</button><button onclick="startCamera()">📹 GO LIVE</button></div>
+<div class="toast" id="toast"></div>
+<div class="gift-anim" id="giftAnim">🎁</div>
 
-<div class="videoBox">
-<video id="mainVideo" autoplay playsinline muted></video>
-<span class="liveBadge">LIVE</span><span class="viewers">👁 <span id="viewers">1</span> viewers</span><span class="rank">⭐ VIDEO CALL</span>
-<div class="hostName"><b id="mainName">Ikaw - Host 🎤</b><p id="camStatus">📷 Camera OFF - Click START CAMERA sa baba!</p></div>
+<div class="page active" id="p-login">
+  <div class="center"><div class="logo">🎤 ZERO<br><span>LIVE</span></div><div class="tag">Live. Laugh. Play. No Coins Needed.</div></div>
+  <div class="card">
+    <div class="center"><h2>Welcome Back</h2><div class="sub">Log in to join CHAIN SMOK room.</div></div>
+    <div class="btn" onclick="goRooms('Google')"><b>G</b>&nbsp; Continue with Google</div>
+    <div class="btn" onclick="goRooms('Facebook')"><b>f</b>&nbsp; Continue with Facebook</div>
+    <div class="btn" onclick="goRooms('Phone')"><b>📞</b>&nbsp; Continue with Phone Number</div>
+    <label>Username</label><input id="user" placeholder="Enter your username" value="Guest">
+    <label>Password</label><input id="pass" type="password" placeholder="Enter your password" value="1234">
+    <button class="login-btn" onclick="login()">LOG IN</button>
+  </div>
+  <div class="center" style="margin-top:14px">Don't have account? <span class="link" onclick="toast('Sign Up FREE!')">Sign Up FREE</span></div>
+  <div class="guest center" onclick="goRooms('Guest')">Guest Mode - Play as Guest - 0 Coins ▶ 👤</div>
+  <div class="footer">FREE FUN POINTS ONLY • No real money • For entertainment only.</div>
 </div>
 
-<!-- ROOM ID - PARA MAGKITA 2 PHONE -->
-<div class="roomBox">
-<b>🔗 VIDEO CALL ROOM - PARA MAGKITA KAYO NG KAIBIGAN MO!</b>
-<p class="small">Step 1: Click START CAMERA. Step 2: Copy mo Room ID mo, send mo sa kaibigan mo. Step 3: Kaibigan mo i-paste yung ID mo at click JOIN!</p>
-<input id="myId" placeholder="Your Room ID - auto generate..." readonly>
-<input id="friendId" placeholder="Paste Room ID ng kaibigan mo dito...">
-<button onclick="copyId()">📋 Copy My Room ID</button>
-<button onclick="joinFriend()" style="background:#00c853">📞 JOIN Kaibigan - Video Call Na!</button>
-<p class="small" id="peerStatus" style="margin-top:8px;color:#ffcc00">Peer: Connecting...</p>
+<div class="page" id="p-rooms">
+  <div class="center"><div class="logo" style="font-size:32px">ZERO <span>LIVE ROOMS</span></div><h2 style="margin-top:8px">ROOMS • <span style="color:#b45cff">Live Laugh Play</span></h2><div class="sub">Choose your room.</div></div>
+  <input class="search" id="search" placeholder="🔍 Search rooms, hosts" oninput="filterRooms()">
+  <div class="rooms" id="roomList"></div>
+  <div class="footer">Balance: <b id="bal2" style="color:#ffd700">10,000 Fun Points</b> • <span onclick="addPoints(10000)" style="color:#ff9dff;cursor:pointer">Free Refill +10,000</span></div>
 </div>
 
-<div class="seats" id="seats"></div>
+<div class="page" id="p-room">
+  <div class="topbar"><div><b id="roomName">CHAIN SMOK</b><br><small>host ID 1846091 • 2081 score • LIVE 🔴</small></div><div style="text-align:right"><small>👁 9 viewers<br>🏆 4831 / 4136 / 3942</small></div></div>
+  <div class="host"><div class="big">🐱</div><b>👑 SANTINO ZONE - HOST</b><div style="font-size:12px;color:#aaa">CHAIN SMOK Room • Total Gifts: <b id="totalGifts" style="color:#ffd700">0 FP</b></div></div>
 
-<div class="controls">
-<button id="btnCam" onclick="toggleCam()" class="off">📹 Camera OFF</button>
-<button id="btnMic" onclick="toggleMic()" class="off">🎤 Mic OFF</button>
-<button onclick="switchCam()">🔄 Switch</button>
-<button class="gold" onclick="openGift()">🎁 Gift</button>
+  <div class="ring-bar" id="ringBar">💍 CONNECTED! Ikaw at si Cherry — may GOLD RING na!</div>
+  <div style="font-size:12px;color:#ff9dff;text-align:center">👇 Pindot ka ng seat para pumili kung kanino ka mag-gift — magri-RING siya!</div>
+  <div class="seats" id="seats"></div>
+
+  <div class="chatbox" id="chat"><b>CHAT (89)</b><div><b>Kai:</b> yo who's next?</div><div><b>Pink Speaking:</b> freestyle incoming 🔥</div></div>
+  <div class="wheelbox">
+    <b>🎡 Lucky Wheel — Followers Edition</b><div style="font-size:12px">Balance: <b id="bal" style="color:#ffd700">10,000</b> FP • <span onclick="addPoints(10000)" style="color:#ff9dff;cursor:pointer">Free Refill</span></div>
+    <div class="wheel" id="wheel" onclick="spin()"><span>SPIN 🎡</span></div>
+    <div style="font-size:13px" id="wheelMsg">Pili ka ng follower, taya ka, pindot SPIN!</div>
+    <div class="bets"><button onclick="setBet(50,this)">Bet 50</button><button class="on" onclick="setBet(100,this)">Bet 100</button><button onclick="setBet(200,this)">Bet 200</button></div>
+    <div style="font-size:12px;margin-top:8px">Prize Pool: <b style="color:#ffd700">002694</b> FP</div>
+  </div>
+  <div class="actions"><button onclick="react('Cheer 👏')">👏 Cheer</button><button onclick="react('Clap 👏')">👏 Clap</button><button onclick="react('Laugh 😂')">😂 Laugh</button><button onclick="react('Tension ⚡')">⚡ Tension</button></div>
+  <div class="msg"><input id="msg" placeholder="Type a message..."><button class="join" style="width:110px" onclick="sendMsg()">Send</button></div>
+  <div style="display:flex;gap:8px;margin-top:10px"><button class="login-btn" onclick="joinMic()">JOIN MIC 🎤</button><button class="login-btn" style="background:linear-gradient(90deg,#ff2fd6,#ffd700)" onclick="openGift()">🎁 SEND GIFT + RING</button></div>
+  <div class="center" style="font-size:12px;margin-top:8px">💍 Ring Connections: <b id="ringList">Wala pa — mag-gift ka para mag-connect!</b></div>
 </div>
-<div style="margin:0 12px;display:flex;gap:8px">
-<button onclick="startCamera()" style="flex:1;padding:13px;border:0;border-radius:14px;background:#ff2d78;color:#fff;font-weight:800;cursor:pointer">📹 START CAMERA</button>
-<button onclick="joinSeat()" style="flex:1;padding:13px;border:0;border-radius:14px;background:#fff;color:#111;font-weight:800;cursor:pointer">👥 JOIN SEAT</button>
+
+<div class="modal" id="giftModal" onclick="if(event.target==this)closeGift()">
+  <div class="sheet">
+    <div style="display:flex;justify-content:space-between"><b>🎁 Send Gift + Ring to <span id="giftTo">Cherry</span></b><span onclick="closeGift()" style="cursor:pointer">✖</span></div>
+    <div style="font-size:12px;color:#aaa">Balance: <b id="bal3" style="color:#ffd700">10,000</b> FP • Pag nag-send ka, magri-RING yung seat niya at magko-CONNECT kayo!</div>
+    <div style="font-size:13px;font-weight:800;margin-top:10px">1. Sino bibigyan mo? Pili ng seat:</div>
+    <div class="seat-pick" id="seatPick"></div>
+    <div style="font-size:13px;font-weight:800">2. Pili ng Gift (1 to 9999):</div>
+    <div class="gift-tabs"><button class="on" onclick="filterGift('all',this)">All</button><button onclick="filterGift('cheap',this)">1-99</button><button onclick="filterGift('mid',this)">100-999</button><button onclick="filterGift('vip',this)">1K-9,999</button></div>
+    <div class="gifts" id="giftList"></div>
+    <div class="qty"><button onclick="changeQty(-1)">-</button><b>Qty: <span id="qty">1</span> x</b><button onclick="changeQty(1)">+</button><span style="font-size:13px">Total: <b id="giftTotal" style="color:#ffd700">1 FP</b></span></div>
+    <div style="background:#2a1a00;border:1px solid #ffd700;border-radius:12px;padding:10px;font-size:12px;text-align:center">💍 Pag nag-send ka, si <b id="ringPreview">Cherry</b> magkaka-GOLD RING + CONNECTED kay <b id="ringMe">Guest</b>!</div>
+    <button class="sendgift" onclick="sendGift()" style="margin-top:10px">SEND GIFT + RING 💍🎁</button>
+  </div>
 </div>
 
-<div class="pk"><div style="display:flex;justify-content:space-between"><b>⚔️ PK BATTLE</b><span id="pkTimer">05:00</span></div><div style="display:flex;justify-content:space-between;margin-top:8px"><span>🔴 Ikaw: <b id="pkLeft">0</b></span><span><b id="pkRight">0</b> :🔵 Kalaban</span></div><div class="pkBar"><div style="width:50%;background:#ff2d78"></div><div style="width:50%;background:#00c2ff"></div></div><button onclick="supportPK()" style="width:100%;padding:10px;border:0;border-radius:10px;background:#fff;color:#ff2d78;font-weight:800;cursor:pointer">🔴 Support - Send Gift para Manalo!</button></div>
-
-<div class="chat"><b>💬 Live Chat</b><div id="chatBox" style="margin-top:10px;max-height:180px;overflow:auto"></div><div class="chatInput"><input id="chatInput" placeholder="Type..."><button onclick="sendChat()">Send</button></div></div>
-
-<div style="padding:10px 12px"><h2>🔥 Live Ngayon</h2></div>
-<div class="grid" id="liveGrid"></div>
-
-<div class="bottom"><div onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>🏠</span>Home</div><div class="active"><span>📷</span>Live</div><div onclick="document.querySelector('.pk').scrollIntoView({behavior:'smooth'})"><span>⚔️</span>PK</div><div onclick="openProfile()"><span>👤</span>Me</div></div>
-
-<div id="giftModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>🎁 Send Gift</h2><p class="small">Coins: <b id="myCoins">1000</b> 🪙</p><div class="giftGrid" id="giftGrid"></div><button onclick="confirmGift()">Send Gift 🚀</button></div></div>
-<div id="profileModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>👤 My Profile</h2><input id="profileName" placeholder="Your Name"><button onclick="saveProfile()">Save</button><p class="small" style="margin-top:10px">Admin Password: zero123<br>Coins mo: <span id="myCoins2">1000</span></p><button onclick="closeAll()" style="background:#333">Close</button></div></div>
+<div class="nav"><button class="on" onclick="show('p-rooms',this)">▶ Live Rooms</button><button onclick="show('p-room',this)">🎤 Mic</button><button onclick="openGift()">🎁 Gifts</button><button onclick="toast('Me - Profile mo')">👤 Me</button></div>
 
 <script>
-let localStream=null, camOn=false, micOn=false, peer=null, myPeerId='ZERO-'+Math.floor(1000+Math.random()*9000);
-let coins=parseInt(localStorage.getItem('zero_live_coins')||'1000');
-let myName=localStorage.getItem('zero_live_name')||'Guest';
-let seats=[{name:'Ikaw',isYou:true},{name:'Bakante'},{name:'Bakante'},{name:'Bakante'},{name:'Bakante'},{name:'Bakante'},{name:'Bakante'},{name:'Bakante'}];
-let gifts=[{name:'Rose',emoji:'🌹',price:10},{name:'Heart',emoji:'❤️',price:20},{name:'Diamond',emoji:'💎',price:50},{name:'Car',emoji:'🚗',price:500},{name:'Crown',emoji:'👑',price:1000},{name:'Rocket',emoji:'🚀',price:2000},{name:'Castle',emoji:'🏰',price:5000},{name:'Dragon',emoji:'🐉',price:10000}];
-let selectedGift=gifts[0], pkLeft=0, pkRight=0;
-let lives=[{name:'Maria • Singing',viewers:'12.5k',img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80'},{name:'Alex • Talk',viewers:'8.2k',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'},{name:'Jessa • Dance',viewers:'5.1k',img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80'},{name:'Kuya Boy • Game',viewers:'3.8k',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80'}];
-
-async function startCamera(){
-try{
-localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
-document.getElementById('mainVideo').srcObject=localStream;
-camOn=true;micOn=true;
-document.getElementById('btnCam').innerText='📹 Camera ON';document.getElementById('btnCam').className='on';
-document.getElementById('btnMic').innerText='🎤 Mic ON';document.getElementById('btnMic').className='on';
-document.getElementById('camStatus').innerText='✅ LIVE NA! Nakikita ka na! Camera + Mic ON!';
-document.getElementById('viewers').innerText='1';
-addChat('System','📹 '+myName+' nag-START CAMERA! Live na!');
-alert('✅ CAMERA ON! Nakikita mo na sarili mo sa taas! Ngayon, share mo Room ID mo sa kaibigan mo para makita ka niya!');
-}catch(e){alert('❌ Ayaw magbukas camera! Need mo i-ALLOW yung Camera permission sa browser mo. Click mo yung 🔒 sa taas ng Chrome, Allow Camera + Mic! Error: '+e.message);}
-}
-function toggleCam(){
-if(!localStream){startCamera();return;}
-let track=localStream.getVideoTracks()[0];camOn=!camOn;track.enabled=camOn;
-document.getElementById('btnCam').innerText=camOn?'📹 Camera ON':'📹 Camera OFF';document.getElementById('btnCam').className=camOn?'on':'off';
-}
-function toggleMic(){
-if(!localStream){startCamera();return;}
-let track=localStream.getAudioTracks()[0];micOn=!micOn;track.enabled=micOn;
-document.getElementById('btnMic').innerText=micOn?'🎤 Mic ON':'🎤 Mic OFF';document.getElementById('btnMic').className=micOn?'on':'off';
-}
-function switchCam(){
-if(!localStream){alert('Start Camera muna!');return;}
-alert('🔄 Switch Camera - Sa phone, may Front / Back camera. I-close mo muna camera, open ulit, pipiliin yung likod!');
-}
+let balance=10000,bet=100,myName="Guest",qty=1,selectedGift=null,selectedCat='all',totalGifted=0,selectedSeat="Cherry";
+let rooms=[
+ {name:"CHAIN SMOK",view:"2.4k watching • Lucky Wheel",emoji:"🎤",members:["DogHat","Lie Ann","rey pinyo","Mopy","SANTINO"]},
+ {name:"SANTINO ZONE",view:"1.8k watching • Karaoke Room",emoji:"🐱",members:[]},
+ {name:"DogHat Room",view:"1.2k watching • Fun Bets",emoji:"🐶",members:[]},
+ {name:"Lie Ann",view:"980 watching • Hugot Night",emoji:"💜",members:[]},
+ {name:"Mopy",view:"755 watching • Games",emoji:"👾",members:[]},
+ {name:"rey pinyo",view:"620 watching • Chill Talk",emoji:"😎",members:[]},
+];
+let gifts=[
+ {name:"Rose",emoji:"🌹",price:1,cat:"cheap"},{name:"Heart",emoji:"❤️",price:5,cat:"cheap"},{name:"Candy",emoji:"🍬",price:9,cat:"cheap"},{name:"Coffee",emoji:"☕",price:15,cat:"cheap"},{name:"Beer",emoji:"🍺",price:25,cat:"cheap"},{name:"Bubble Tea",emoji:"🧋",price:35,cat:"cheap"},{name:"Cat",emoji:"🐱",price:49,cat:"cheap"},{name:"DogHat",emoji:"🐶",price:55,cat:"cheap"},{name:"Clap",emoji:"👏",price:69,cat:"cheap"},{name:"Kiss",emoji:"💋",price:88,cat:"cheap"},{name:"Star",emoji:"⭐",price:99,cat:"cheap"},
+ {name:"Flower",emoji:"🌸",price:120,cat:"mid"},{name:"Guitar",emoji:"🎸",price:150,cat:"mid"},{name:"Mic",emoji:"🎤",price:199,cat:"mid"},{name:"Crown Mini",emoji:"👑",price:250,cat:"mid"},{name:"Diamond",emoji:"💎",price:300,cat:"mid"},{name:"Fire",emoji:"🔥",price:350,cat:"mid"},{name:"Rocket",emoji:"🚀",price:499,cat:"mid"},{name:"Sports Car",emoji:"🏎️",price:555,cat:"mid"},{name:"Cake",emoji:"🎂",price:666,cat:"mid"},{name:"Teddy",emoji:"🧸",price:777,cat:"mid"},{name:"Neon Crown",emoji:"👑",price:888,cat:"mid"},{name:"Dragon",emoji:"🐉",price:999,cat:"mid"},
+ {name:"Golden Mic",emoji:"🎙️",price:1000,cat:"vip"},{name:"VIP Badge",emoji:"🏅",price:1500,cat:"vip"},{name:"Luxury Car",emoji:"🚗",price:2000,cat:"vip"},{name:"Castle",emoji:"🏰",price:2500,cat:"vip"},{name:"Galaxy",emoji:"🌌",price:3000,cat:"vip"},{name:"Phoenix",emoji:"🦅",price:4000,cat:"vip"},{name:"Unicorn",emoji:"🦄",price:5000,cat:"vip"},{name:"Superstar",emoji:"🌟",price:7500,cat:"vip"},{name:"ZERO KING",emoji:"👑",price:9999,cat:"vip"},
+ {name:"Gold Ring",emoji:"💍",price:999,cat:"mid"},{name:"Diamond Ring",emoji:"💎",price:1999,cat:"vip"},{name:"Couple Ring",emoji:"💍",price:2999,cat:"vip"},{name:"Eternal Ring",emoji:"💍",price:9999,cat:"vip"},
+];
+let seatsData=[
+ {name:"Mia Co-Host",emoji:"👩",tag:"CO-HOST",gift:0},
+ {name:"Cherry",emoji:"👑",tag:"Host",gift:0},
+ {name:"Ken Co-Host",emoji:"🧑",tag:"CO-HOST • VIP",gift:0},
+ {name:"Pink Speaking",emoji:"💗",tag:"Speaking",gift:0},
+ {name:"Ryu",emoji:"🧑‍🎤",tag:"Ryu",gift:0},
+ {name:"Blue Speaking",emoji:"💙",tag:"Speaking",gift:0},
+ {name:"VIP Lena",emoji:"👸",tag:"Muted",gift:0},
+ {name:"Kai",emoji:"🧑",tag:"",gift:0},
+ {name:"Orange",emoji:"🧡",tag:"",gift:0},
+ {name:"Green",emoji:"💚",tag:"",gift:0},
+ {name:"Black",emoji:"🖤",tag:"",gift:0},
+ {name:"Empty",emoji:"+",tag:"Join +",gift:0},
+];
+let connected={};
+function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2600)}
+function show(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');window.scrollTo(0,0)}
+function login(){myName=document.getElementById('user').value||"Guest";document.getElementById('ringMe').innerText=myName;goRooms('Login')}
+function goRooms(f){toast('Welcome '+myName+'! '+f+' Login OK!');show('p-rooms');renderRooms()}
+function renderRooms(){let q=(document.getElementById('search').value||"").toLowerCase();document.getElementById('roomList').innerHTML=rooms.filter(r=>r.name.toLowerCase().includes(q)).map(r=>`<div class="room"><span class="live">LIVE</span><div class="avatar">${r.emoji}</div><h3>${r.name}</h3><p>${r.view}</p>${r.members.length?`<div class="mini">${r.members.map(m=>`<i>${m[0]}</i>`).join('')}</div>`:''}<button class="join" onclick="openRoom('${r.name}')">JOIN</button></div>`).join('')}
+function filterRooms(){renderRooms()}
+function openRoom(n){document.getElementById('roomName').innerText=n;document.getElementById('giftTo').innerText=selectedSeat;toast('Pasok ka sa '+n+' room!');show('p-room');renderSeats()}
 function renderSeats(){
-document.getElementById('seats').innerHTML=seats.map((s,i)=>{
-if(s.name==='Bakante') return `<div class="seat" onclick="joinSeatAt(${i})"><div class="empty">+</div><p>Seat ${i+1}<br>+ Join</p></div>`;
-if(s.isYou) return `<div class="seat active" onclick="alert('Ikaw yan! Seat ${i+1}')"><video id="seatVideo${i}" autoplay playsinline muted></video><p>Seat ${i+1}<br>${myName} • 🎤 ON</p></div>`;
-return `<div class="seat" onclick="alert('${s.name} - Seat ${i+1}')"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80"><p>Seat ${i+1}<br>${s.name}</p></div>`;
-}).join('');
-let v=document.getElementById('seatVideo0');if(v&&localStream) v.srcObject=localStream;
-document.getElementById('myCoins').innerText=coins;document.getElementById('myCoins2').innerText=coins;
-document.getElementById('liveGrid').innerHTML=lives.map(l=>`<div class="card" onclick="alert('Nanonoood ka kay ${l.name}')"><div style="position:absolute;top:8px;left:8px;background:#f00;font-size:11px;padding:4px 7px;border-radius:6px;font-weight:800">LIVE • ${l.viewers}</div><img src="${l.img}"><div class="in"><b>${l.name}</b><p>Click para manood</p></div></div>`).join('');
-document.getElementById('giftGrid').innerHTML=gifts.map((g,i)=>`<div class="giftItem ${selectedGift.name===g.name?'active':''}" onclick="selectGift(${i})"><div style="font-size:30px">${g.emoji}</div><b>${g.name}</b><br><span class="small">${g.price} coins</span></div>`).join('');
+ document.getElementById('seats').innerHTML=seatsData.map((s,i)=>{
+  let ring = s.gift>0 ? 'ringed' : '';
+  let sel = s.name==selectedSeat ? 'selected' : '';
+  let badge = s.gift>0 ? `<span class="gift-badge">🎁 ${s.gift.toLocaleString()} FP</span>` : '';
+  let conn = connected[s.name] ? `<span class="connect">💍 ${connected[s.name]} ↔ ${s.name}</span>` : '';
+  return `<div class="seat ${ring} ${sel}" onclick="takeSeat('${s.name}')">${conn}${badge}<div class="a">${s.emoji}</div><b>${s.name}</b><br><small>${s.tag}</small><br><small style="color:#ffd700">${s.gift>0?'💍 Connected':''}</small></div>`
+ }).join('');
+ document.getElementById('seatPick').innerHTML=seatsData.filter(s=>s.name!='Empty').map(s=>`<button class="${s.name==selectedSeat?'on':''}" onclick="pickSeat('${s.name}')">${s.emoji} ${s.name}</button>`).join('');
 }
-function joinSeat(){
-if(!localStream){alert('START CAMERA ka muna bago umakyat sa Seat!');startCamera();return;}
-let empty=seats.findIndex(s=>s.name==='Bakante');if(empty===-1){alert('Puno na!');return;}joinSeatAt(empty);
+function takeSeat(n){if(n=='Empty'){toast('Umupo ka sa Empty Seat!');return}pickSeat(n);toast('Pinili mo si '+n+' — pag nag-send ka ng gift, magri-RING siya!')}
+function pickSeat(n){selectedSeat=n;document.getElementById('giftTo').innerText=n;document.getElementById('ringPreview').innerText=n;renderSeats()}
+function joinMic(){toast('JOIN MIC - Umakyat ka! Mic ON! 🎤')}
+function setBet(v,el){bet=v;document.querySelectorAll('.bets button').forEach(b=>b.classList.remove('on'));el.classList.add('on');toast('Bet mo: '+v+' FP')}
+function addPoints(v){balance+=v;updateBal();toast('Free Refill +'+v+'!')}
+function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString();document.getElementById('bal2').innerText=balance.toLocaleString()+' Fun Points';document.getElementById('bal3').innerText=balance.toLocaleString();document.getElementById('totalGifts').innerText=totalGifted.toLocaleString()+' FP'}
+function spin(){if(balance<bet){toast('Ubos na! Free Refill!');return}balance-=bet;updateBal();let names=["Cherry","Mia","Ken","Ryu","Pink","Blue","Lena","Kai"];let win=names[Math.floor(Math.random()*names.length)];let deg=360*5+Math.floor(Math.random()*360);document.getElementById('wheel').style.transform='rotate('+deg+'deg)';document.getElementById('wheelMsg').innerText='Umiikot...';setTimeout(()=>{if(Math.random()<0.35){balance+=bet*5;updateBal();document.getElementById('wheelMsg').innerText='🎉 LUMAPAG KAY '+win+'! PANALO +'+(bet*5)+' FP!';toast('PANALO!')}else{document.getElementById('wheelMsg').innerText='Lumapag kay '+win+' - Si '+win+' ang kakanta!';toast('Lapag kay '+win)}},2600)}
+function react(r){toast(r+' sent!')}
+function sendMsg(){let m=document.getElementById('msg').value;if(!m)return;document.getElementById('chat').innerHTML+='<div><b>'+myName+':</b> '+m+'</div>';document.getElementById('msg').value=''}
+function openGift(){document.getElementById('giftModal').classList.add('open');renderGifts();updateGiftTotal();renderSeats()}
+function closeGift(){document.getElementById('giftModal').classList.remove('open')}
+function filterGift(c,el){selectedCat=c;document.querySelectorAll('.gift-tabs button').forEach(b=>b.classList.remove('on'));el.classList.add('on');renderGifts()}
+function renderGifts(){let list=gifts.filter(g=>selectedCat=='all'||g.cat==selectedCat);document.getElementById('giftList').innerHTML=list.map(g=>`<div class="gift ${selectedGift&&selectedGift.name==g.name&&selectedGift.price==g.price?'on':''}" onclick="selectGiftBy(${g.price},'${g.name}')"><div class="e">${g.emoji}</div><b>${g.name}</b><small>${g.price} FP</small></div>`).join('')}
+function selectGiftBy(price,name){selectedGift=gifts.find(g=>g.price==price&&g.name==name);qty=1;document.getElementById('qty').innerText=qty;renderGifts();updateGiftTotal()}
+function changeQty(d){qty=Math.max(1,Math.min(99,qty+d));document.getElementById('qty').innerText=qty;updateGiftTotal()}
+function updateGiftTotal(){if(!selectedGift)return;document.getElementById('giftTotal').innerText=(selectedGift.price*qty).toLocaleString()+' FP'}
+function sendGift(){
+ if(!selectedGift)return;let total=selectedGift.price*qty;
+ if(balance<total){toast('Kulang! Free Refill muna!');addPoints(10000);return}
+ balance-=total;totalGifted+=total;updateBal();closeGift();
+ // RING CONNECT LOGIC
+ let seat=seatsData.find(s=>s.name==selectedSeat);if(seat){seat.gift+=total;connected[selectedSeat]=myName;}
+ renderSeats();
+ let bar=document.getElementById('ringBar');bar.style.display='block';bar.innerText=`💍 CONNECTED! ${myName} ↔ ${selectedSeat} — ${qty}x ${selectedGift.emoji} ${selectedGift.name} (${total.toLocaleString()} FP)`;
+ document.getElementById('ringList').innerText=Object.keys(connected).map(k=>`${connected[k]} ↔ ${k}`).join(' • ');
+ let anim=document.getElementById('giftAnim');anim.innerText=selectedGift.emoji;anim.style.display='block';setTimeout(()=>anim.style.display='none',1000);
+ document.getElementById('chat').innerHTML+='<div><b>'+myName+' 💍🎁</b> nag-send ng '+qty+'x '+selectedGift.emoji+' '+selectedGift.name+' ('+total.toLocaleString()+' FP) kay '+selectedSeat+' — <b>CONNECTED NA KAYO!</b></div>';
+ toast('💍 CONNECTED ka na kay '+selectedSeat+'! Gold Ring na siya!');
 }
-function joinSeatAt(i){
-if(!localStream){alert('START CAMERA muna!');startCamera();return;}
-seats[i]={name:myName,isYou:true};renderSeats();addChat('System','🎤 '+myName+' umakyat sa Seat '+(i+1)+'!');alert('🎤 Umakyat ka na sa Seat '+(i+1)+'! Video mo nandyan na!');
-}
-function selectGift(i){selectedGift=gifts[i];renderSeats();}
-function openGift(){document.getElementById('giftModal').classList.add('open');}
-function confirmGift(){
-if(coins<selectedGift.price){alert('Kulang coins!');return;}
-coins-=selectedGift.price;localStorage.setItem('zero_live_coins',coins);pkLeft+=selectedGift.price;document.getElementById('pkLeft').innerText=pkLeft;renderSeats();closeAll();addChat(myName,'🎁 Nag-send ng '+selectedGift.emoji+' '+selectedGift.name+'!');alert('🎁 Sent '+selectedGift.name+'!');
-}
-function supportPK(){openGift();}
-function copyId(){
-let inp=document.getElementById('myId');inp.select();document.execCommand('copy');alert('📋 Na-copy na Room ID mo: '+myPeerId+' - Send mo sa kaibigan mo!');
-}
-function joinFriend(){
-let fid=document.getElementById('friendId').value.trim();
-if(!fid){alert('Paste mo muna Room ID ng kaibigan mo!');return;}
-if(!localStream){alert('START CAMERA ka muna!');startCamera();return;}
-alert('📞 Calling '+fid+'... Pag nag-ACCEPT siya, magkikita na kayo! Make sure naka-open din yung ZERO LIVE niya at naka-START CAMERA din siya!');
-try{
-let call=peer.call(fid,localStream);
-call.on('stream',stream=>{document.getElementById('mainVideo').srcObject=stream;document.getElementById('camStatus').innerText='✅ CONNECTED kay '+fid+'! Video Call na!';document.getElementById('viewers').innerText='2';addChat('System','✅ Connected kay '+fid+'!');});
-}catch(e){alert('Error: '+e.message);}
-}
-function initPeer(){
-try{
-peer=new Peer(myPeerId);
-document.getElementById('myId').value=myPeerId;
-peer.on('open',id=>{document.getElementById('peerStatus').innerText='✅ Peer Ready! Room ID mo: '+id;});
-peer.on('call',call=>{
-if(confirm('📞 May tumatawag! Si '+call.peer+' - ACCEPT mo?')){
-if(!localStream){alert('START CAMERA ka muna bago mag-accept!');return;}
-call.answer(localStream);
-call.on('stream',stream=>{document.getElementById('mainVideo').srcObject=stream;document.getElementById('camStatus').innerText='✅ CONNECTED! Video Call na kay '+call.peer;document.getElementById('viewers').innerText='2';});
-}
-});
-peer.on('error',e=>{document.getElementById('peerStatus').innerText='Peer Error: '+e.type+' - Refresh mo page!';});
-}catch(e){document.getElementById('peerStatus').innerText='PeerJS failed - need internet!';}
-}
-function addChat(u,m){let b=document.getElementById('chatBox');b.innerHTML+=`<div class="chatMsg"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80"><div><b>${u}:</b> ${m}</div></div>`;b.scrollTop=b.scrollHeight;}
-function sendChat(){let v=document.getElementById('chatInput').value;if(!v)return;addChat(myName,v);document.getElementById('chatInput').value='';}
-function openProfile(){document.getElementById('profileName').value=myName;document.getElementById('profileModal').classList.add('open');}
-function saveProfile(){let v=document.getElementById('profileName').value;if(v){myName=v;localStorage.setItem('zero_live_name',myName);renderSeats();}closeAll();}
-function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));}
-let pkTime=5*60;setInterval(()=>{pkTime--;if(pkTime<0)pkTime=5*60;document.getElementById('pkTimer').innerText=String(Math.floor(pkTime/60)).padStart(2,'0')+':'+String(pkTime%60).padStart(2,'0');},1000);
-addChat('user_star23','Amazing voice!! ❤️');
-renderSeats();initPeer();
+renderRooms();renderSeats();updateBal();selectedGift=gifts[0];
 </script>
 </body>
 </html>
