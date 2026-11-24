@@ -3,170 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZERO LIVE V13 - Date with friends near you</title>
+<title>ZERO Dating — Magkita tayo sa malapit.</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-body{background:#FFD400;color:#111;-webkit-font-smoothing:antialiased}
-.page{display:none;max-width:480px;margin:0 auto;min-height:100vh;padding:16px 16px 96px;background:#FFFBEA}
-.page.active{display:block}
+body{background:#FFDCC8;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.topbar{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 14px rgba(0,0,0,.05)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.logo{font-size:32px;font-weight:900;color:#E8875A;letter-spacing:-1px;cursor:pointer}
+.logo span{font-size:11px;vertical-align:top;background:#FFF3E6;color:#E8875A;padding:2px 6px;border-radius:99px;margin-left:4px}
+.navlinks{display:flex;gap:8px}.navlinks button{border:none;background:none;padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px}.navlinks button.on{background:#FFE8D6}
+.nav-right{display:flex;gap:10px;align-items:center}.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid #eee;background:#fff;cursor:pointer;font-size:18px}.avatar-top{width:38px;height:38px;border-radius:50%;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;font-weight:800}
+.page{display:none;padding:20px 0 100px}.page.active{display:block}
 .center{text-align:center}
-.logo{font-size:30px;font-weight:900;letter-spacing:-.5px;line-height:1}
-.logo span{color:#111}.logo i{font-style:normal;background:#111;color:#FFD400;padding:2px 8px;border-radius:10px}
-.tag{font-size:12px;color:#666;margin:6px 0 16px}
-.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.card h2{font-size:20px}.card .sub{font-size:13px;color:#888;margin:4px 0 14px}
-.btn{display:flex;align-items:center;gap:12px;background:#FFFBEA;border:1px solid #F1E68A;border-radius:14px;padding:13px;cursor:pointer;font-weight:600;font-size:14px;margin-bottom:10px}
-.btn span{width:28px;height:28px;background:#FFD400;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.card h2{font-size:22px}.sub{font-size:13px;color:#999;margin:5px 0 14px}
 label{font-size:12px;font-weight:700;color:#666;display:block}
-input{width:100%;background:#FFFBEA;border:1px solid #F1E68A;border-radius:14px;padding:13px;margin:6px 0 10px;outline:none;font-size:14px}
-input:focus{border-color:#111;background:#fff}
-.main-btn{background:#111;border:none;border-radius:14px;padding:15px;width:100%;color:#FFD400;font-weight:900;font-size:15px;cursor:pointer}
-.link{font-weight:800;cursor:pointer;text-decoration:underline}
-.guest{margin-top:12px;background:#fff;border:1px solid #eee;border-radius:14px;padding:12px;font-size:13px;text-align:center;cursor:pointer}
-.footer{font-size:11px;color:#999;text-align:center;margin-top:14px;line-height:1.6}
-/* DISCOVER - SWIPE */
-.swipe-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.10);position:relative}
-.swipe-img{height:340px;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:110px;position:relative}
+input,select{width:100%;background:#FFF7F2;border:1px solid #FFE8D6;border-radius:14px;padding:13px;margin:6px 0 10px;outline:none;font-size:14px}
+input:focus{border-color:#E8875A;background:#fff}
+.main-btn{background:#E8875A;border:none;border-radius:999px;padding:15px;width:100%;color:#fff;font-weight:900;font-size:15px;cursor:pointer}
+.main-btn.dark{background:#111}.main-btn.yellow{background:#FFD400;color:#111}
+.btn-row{display:flex;align-items:center;gap:12px;background:#FFF7F2;border:1px solid #FFE8D6;border-radius:14px;padding:13px;cursor:pointer;font-weight:600;margin-bottom:10px}
+.btn-row span{width:30px;height:30px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.link{font-weight:800;cursor:pointer;color:#E8875A}
+.guest{margin-top:12px;background:#fff;border:1px solid #eee;border-radius:14px;padding:12px;text-align:center;cursor:pointer;font-size:13px;color:#666}
+.footer{font-size:11px;color:#AAA;text-align:center;margin-top:14px;line-height:1.6}
+.hero h1{font-size:38px;color:#E8875A;line-height:1.05;letter-spacing:-1px}.hero p{color:#888;margin:8px 0 16px}
+.grid{display:grid;grid-template-columns:1.6fr .9fr;gap:16px}
+.swipe-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.swipe-img{height:360px;background:linear-gradient(180deg,#FFE8D6,#FFF7F2);display:flex;align-items:center;justify-content:center;font-size:110px;position:relative}
 .swipe-img .near{position:absolute;top:12px;left:12px;background:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}
-.swipe-img .live{position:absolute;top:12px;right:12px;background:#FF3B5C;color:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}
-.swipe-info{padding:16px}
-.swipe-info h2{font-size:22px}.swipe-info p{font-size:13px;color:#888;margin:4px 0 10px}
-.tags{display:flex;gap:6px;flex-wrap:wrap}.tags span{background:#FFFBEA;border:1px solid #F1E68A;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
-.swipe-btns{display:flex;gap:12px;margin-top:16px}.swipe-btns button{flex:1;padding:14px;border-radius:999px;border:none;font-weight:900;font-size:14px;cursor:pointer}.nope{background:#F1F1F1}.like{background:#111;color:#FFD400;font-size:16px}.micbtn{background:#FFD400}
-.match-banner{background:#111;color:#FFD400;padding:12px;border-radius:14px;text-align:center;font-weight:800;margin:12px 0;display:none}
-.rooms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.room{background:#fff;border-radius:18px;padding:14px;text-align:center;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.room .live{position:absolute;top:10px;right:10px;background:#FF3B5C;color:#fff;font-size:10px;padding:4px 8px;border-radius:999px;font-weight:800}
-.avatar{width:52px;height:52px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px}
-.room h3{font-size:14px}.room p{font-size:11px;color:#888;margin:5px 0 10px}
-.join{background:#111;border:none;color:#FFD400;padding:10px;width:100%;border-radius:12px;font-weight:800;cursor:pointer}
-.chatlist{display:flex;flex-direction:column;gap:10px}.chat-item{display:flex;gap:12px;background:#fff;padding:12px;border-radius:16px;align-items:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}.chat-item .av{width:48px;height:48px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 48px}.chat-item b{font-size:14px}.chat-item small{color:#888;font-size:12px}.chat-item .go{margin-left:auto;background:#FFD400;padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px}
-.topbar{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:13px;border-radius:16px}
-.host{text-align:center;margin:16px 0 10px}.host .big{width:84px;height:84px;border-radius:50%;background:#FFD400;display:flex;align-items:center;justify-content:center;font-size:42px;margin:auto;border:3px solid #111}
-.hint{font-size:12px;text-align:center;background:#fff;padding:10px;border-radius:12px;margin-bottom:10px}
+.swipe-img .live{position:absolute;top:12px;right:12px;background:#FF4D6D;color:#fff;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}
+.swipe-info{padding:16px}.swipe-info h2{font-size:22px}.swipe-info p{font-size:13px;color:#888;margin:5px 0 10px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}.tags span{background:#FFF7F2;border:1px solid #FFE8D6;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.swipe-btns{display:flex;gap:8px;margin-top:14px}.swipe-btns button{flex:1;padding:13px;border-radius:999px;border:none;font-weight:900;cursor:pointer}.nope{background:#F1F1F1}.super{background:#FFD400}.like{background:#E8875A;color:#fff}
+.match-banner{background:#111;color:#fff;padding:12px;border-radius:14px;text-align:center;font-weight:800;margin:12px 0;display:none}
+.side{background:#FFE8A3;border-radius:22px;padding:18px}
+.side h3{font-size:19px}.room-item{display:flex;align-items:center;gap:10px;background:#FFF3D6;padding:12px;border-radius:14px;margin:10px 0}.room-item .ic{width:38px;height:38px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}.room-item b{font-size:14px}.room-item small{color:#888}.room-item .join{margin-left:auto;background:#FFD400;border:none;padding:8px 14px;border-radius:999px;font-weight:800;cursor:pointer;font-size:12px}
+.nearby{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.near-card{background:#fff;border-radius:16px;padding:14px;text-align:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.near-card .ph{width:64px;height:64px;border-radius:12px;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:32px;margin:auto}
+.near-card b{font-size:14px;display:block;margin-top:8px}.near-card small{color:#888}
+.giftbar{background:#FFEB9A;border-radius:20px;padding:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px}
+.giftbar .g{flex:1;text-align:center;background:#FFF7D6;border-radius:14px;padding:10px;cursor:pointer}.giftbar .g.on{outline:2px solid #111}.giftbar .g b{display:block;font-size:13px}.giftbar .g small{background:#FFD400;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.chatlist{display:flex;flex-direction:column;gap:10px}.chat-item{display:flex;gap:12px;background:#fff;padding:12px;border-radius:16px;align-items:center;cursor:pointer}.chat-item .av{width:48px;height:48px;border-radius:50%;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:22px}.chat-item .go{margin-left:auto;background:#FFD400;padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px}
 .seats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 .seat{background:#fff;border:1px solid #eee;border-radius:16px;padding:11px 6px;text-align:center;font-size:11px;min-height:90px;cursor:pointer;position:relative}
-.seat .a{width:38px;height:38px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:20px;background:#FFFBEA}
-.seat.selected{border-color:#111;background:#FFFBEB}.seat.ringed{border-color:#EAB308;background:#FFFBEB;box-shadow:0 0 0 2px #FDE68A}.seat .badge{position:absolute;top:-6px;right:-4px;background:#111;color:#FFD400;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px}.seat .conn{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#111;color:#FFD400;font-size:9px;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.seat .a{width:38px;height:38px;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-size:20px;background:#FFF7F2}
+.seat.selected{border-color:#E8875A;background:#FFF0F0}.seat.ringed{border-color:#EAB308;background:#FFFBEB;box-shadow:0 0 0 2px #FDE68A}.seat .badge{position:absolute;top:-6px;right:-4px;background:#E8875A;color:#fff;font-size:10px;font-weight:800;padding:3px 7px;border-radius:999px}.seat .conn{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:9px;padding:2px 7px;border-radius:999px;white-space:nowrap}
 .chatbox{background:#fff;border-radius:16px;padding:12px;font-size:13px;margin:10px 0}.chatbox div{margin:5px 0}
 .wheelbox{background:#fff;border-radius:18px;padding:14px;text-align:center}
-.wheel{width:126px;height:126px;border-radius:50%;margin:10px auto;background:conic-gradient(#FFD400 0 45deg,#111 45deg 90deg,#FF8A00 90deg 135deg,#FFE27A 135deg 180deg,#FFD400 180deg 225deg,#111 225deg 270deg,#FF8A00 270deg 315deg,#FFE27A 315deg 360deg);border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;transition:transform 2.2s cubic-bezier(.1,.8,.2,1);cursor:pointer}.wheel span{background:#111;color:#FFD400;border-radius:999px;padding:8px 12px;font-weight:800;font-size:12px}
-.bets{display:flex;gap:8px;margin-top:10px}.bets button{flex:1;background:#FFFBEA;border:1px solid #F1E68A;padding:10px;border-radius:12px;font-weight:700;cursor:pointer}.bets button.on{background:#111;color:#FFD400}
+.wheel{width:126px;height:126px;border-radius:50%;margin:10px auto;background:conic-gradient(#FFD400 0 45deg,#E8875A 45deg 90deg,#FF8A00 90deg 135deg,#FFE8D6 135deg 180deg,#FFD400 180deg 225deg,#E8875A 225deg 270deg,#FF8A00 270deg 315deg,#FFE8D6 315deg 360deg);border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;transition:transform 2.2s cubic-bezier(.1,.8,.2,1);cursor:pointer}.wheel span{background:#111;color:#fff;border-radius:999px;padding:8px 12px;font-weight:800;font-size:12px}
+.bets{display:flex;gap:8px;margin-top:10px}.bets button{flex:1;background:#FFF7F2;border:1px solid #FFE8D6;padding:10px;border-radius:12px;font-weight:700;cursor:pointer}.bets button.on{background:#111;color:#fff}
 .actions{display:flex;gap:8px;margin:12px 0}.actions button{flex:1;background:#fff;border:1px solid #eee;border-radius:12px;padding:10px;cursor:pointer;font-size:12px}
 .msg{display:flex;gap:8px}.msg input{flex:1;margin:0;background:#fff}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:10;max-width:480px;margin:0 auto}
-.nav button{flex:1;background:none;border:none;color:#aaa;font-weight:700;font-size:12px;cursor:pointer}.nav button.on{color:#111}
-.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#111;color:#FFD400;padding:11px 18px;border-radius:999px;font-weight:800;font-size:13px;display:none;z-index:99;max-width:90%;text-align:center}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:30;max-width:1100px;margin:0 auto;left:50%;transform:translateX(-50%);width:100%}
+.nav button{flex:1;background:none;border:none;color:#AAA;font-weight:700;font-size:12px;cursor:pointer}.nav button.on{color:#E8875A}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:11px 18px;border-radius:999px;font-weight:700;font-size:13px;display:none;z-index:99;max-width:90%;text-align:center}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:flex-end;justify-content:center}.modal.open{display:flex}
-.sheet{background:#fff;width:100%;max-width:480px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px}
-.gift-tabs{display:flex;gap:8px;margin:12px 0}.gift-tabs button{flex:1;padding:9px;border-radius:999px;border:1px solid #eee;background:#FFFBEA;cursor:pointer;font-size:12px}.gift-tabs button.on{background:#111;color:#FFD400}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px}
+.gift-tabs{display:flex;gap:8px;margin:12px 0}.gift-tabs button{flex:1;padding:9px;border-radius:999px;border:1px solid #eee;background:#FFF7F2;cursor:pointer;font-size:12px}.gift-tabs button.on{background:#111;color:#fff}
 .gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.gift{background:#FFFBEA;border:1px solid #F1E68A;border-radius:16px;padding:11px 6px;text-align:center;cursor:pointer}.gift.on{border-color:#111;background:#FFFBEB}
+.gift{background:#FFF7F2;border:1px solid #FFE8D6;border-radius:16px;padding:11px 6px;text-align:center;cursor:pointer}.gift.on{border-color:#111;background:#FFFBEB}
 .gift .e{font-size:28px}.gift b{font-size:12px;display:block}.gift small{color:#888;font-size:11px;font-weight:700}
-.qty{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0}.qty button{width:36px;height:36px;border-radius:50%;border:1px solid #eee;background:#FFFBEA;font-size:20px;cursor:pointer}
-.sendgift{background:#111;border:none;width:100%;padding:14px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;color:#FFD400}
-.seat-pick{display:flex;gap:8px;overflow-x:auto;padding:8px 0}.seat-pick button{flex:0 0 auto;background:#FFFBEA;border:1px solid #F1E68A;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-size:12px}.seat-pick button.on{background:#111;color:#FFD400}
+.qty{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0}.qty button{width:36px;height:36px;border-radius:50%;border:1px solid #eee;background:#FFF7F2;font-size:20px;cursor:pointer}
+.sendgift{background:#E8875A;border:none;width:100%;padding:14px;border-radius:999px;font-weight:800;font-size:15px;cursor:pointer;color:#fff}
+.seat-pick{display:flex;gap:8px;overflow-x:auto;padding:8px 0}.seat-pick button{flex:0 0 auto;background:#FFF7F2;border:1px solid #FFE8D6;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-size:12px}.seat-pick button.on{background:#111;color:#fff}
 .ring-bar{background:#FFFBEB;border:1px solid #FDE68A;padding:10px;border-radius:14px;text-align:center;font-weight:700;margin:10px 0;display:none;font-size:13px}
 .gift-anim{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-size:90px;z-index:200;display:none;animation:pop .8s ease}
 @keyframes pop{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}100%{transform:translate(-50%,-80%) scale(1);opacity:0}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero h1{font-size:30px}.nearby{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.swipe-img{height:300px}}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div><div class="gift-anim" id="giftAnim">🎁</div>
 
-<!-- LOGIN -->
-<div class="page active" id="p-login">
-  <div class="center" style="padding-top:22px"><div class="logo">ZERO <i>LIVE</i></div><div class="tag">Date with friends near you • Live Mic Room</div></div>
-  <div class="card"><div class="center"><h2>Welcome back</h2><div class="sub">Log in to join CHAIN SMOK room.</div></div>
-  <div class="btn" onclick="goDiscover('Google')"><span>G</span> Continue with Google</div>
-  <div class="btn" onclick="goDiscover('Facebook')"><span>f</span> Continue with Facebook</div>
-  <div class="btn" onclick="goDiscover('Phone')"><span>📞</span> Continue with Phone Number</div>
-  <label>Username</label><input id="user" value="Guest"><label>Password</label><input id="pass" type="password" value="1234">
-  <button class="main-btn" onclick="login()">Log In</button></div>
-  <div class="center" style="margin-top:14px;font-size:13px">Don't have account? <span class="link" onclick="toast('Sign Up FREE!')">Sign Up FREE</span></div>
-  <div class="guest" onclick="goDiscover('Guest')">Guest Mode — Play as Guest • 0 Coins →</div>
-  <div class="footer">FREE FUN POINTS ONLY • No real money • For entertainment only.<br><b>V13 • Dating + Live Mic</b></div>
-</div>
+<div class="topbar"><div class="wrap"><div class="logo" onclick="goHome()">zero<span>v12</span></div><div class="navlinks"><button class="on" onclick="showPage('p-discover',this)">Discover</button><button onclick="showPage('p-chats',this)">Chats</button><button onclick="showPage('p-rooms',this)">Rooms</button><button onclick="showPage('p-me',this)">Me</button></div><div class="nav-right"><button class="icon-btn" onclick="toast('3 new likes!')">🔔</button><div class="avatar-top" id="topAvatar" onclick="showPage('p-me')">😊</div><button class="icon-btn" onclick="logout()" title="Log out">↩</button></div></div></div>
 
-<!-- DISCOVER - SWIPE -->
-<div class="page" id="p-discover">
-  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Swipe to meet more friends!</h2><div class="tag">Nearby • Date with friends near you</div></div>
-  <div class="match-banner" id="matchBanner">🎉 IT'S A MATCH! Pwede na kayo mag-Live Mic!</div>
-  <div class="swipe-card">
-    <div class="swipe-img"><span class="near">📍 Nearby • <span id="dist">2.1 km</span></span><span class="live">● LIVE MIC</span><span id="pEmoji">👩</span></div>
-    <div class="swipe-info"><h2 id="pName">Lie Ann, 22</h2><p id="pBio">Hugot Night host • Gusto ko ng kausap sa mic 🎤</p><div class="tags"><span>🎤 Live Mic</span><span>💬 Chat</span><span>📍 Quezon City</span><span id="pTag">Hugot</span></div>
-    <div class="swipe-btns"><button class="nope" onclick="nextPerson()">✕ Pass</button><button class="micbtn" onclick="openRoomFromDiscover()">🎤 Live Mic</button><button class="like" onclick="likePerson()">❤️ Like</button></div></div>
+<!-- LOGIN / SIGNUP -->
+<div class="wrap"><div class="page active" id="p-auth">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:20px auto" id="authGrid">
+    <div><h1 style="font-size:36px;color:#E8875A;line-height:1.05">Magkita tayo<br>sa malapit.</h1><p style="color:#888;margin:10px 0">Swipe. Match. Usap sa Live Mic.<br>Pag nag-click kayo, Ring na! 💍</p>
+    <div class="card"><b>🔐 Paano mag-Log In ang User?</b><div style="font-size:13px;color:#666;margin-top:6px;line-height:1.6">1. Pindot <b>Sign Up</b> → gawa ka account<br>2. Log In gamit username + password<br>3. Naka-save na account mo — kahit i-refresh mo, naka-log in ka pa rin!<br>4. Bawat user, may sariling profile, likes, at balance!</div></div></div>
+    <div class="card">
+      <div style="display:flex;gap:8px"><button class="main-btn" id="tabSignup" onclick="switchAuth('signup')" style="background:#E8875A">Sign Up</button><button class="main-btn dark" id="tabLogin" onclick="switchAuth('login')" style="background:#eee;color:#111">Log In</button></div>
+      <div id="signupBox" style="margin-top:14px">
+        <div class="center"><div style="width:64px;height:64px;border-radius:50%;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:30px;margin:auto;cursor:pointer" onclick="pickEmoji()"><span id="myEmoji">😊</span></div><div style="font-size:11px;color:#999">Pindot para palit avatar</div></div>
+        <label>Username (pang-log in)</label><input id="suUser" placeholder="Ex: juan123">
+        <label>Full Name / Display Name</label><input id="suName" placeholder="Ex: Juan Dela Cruz">
+        <label>Age</label><input id="suAge" type="number" placeholder="18+" value="22">
+        <label>City</label><select id="suCity"><option>Quezon City</option><option>Manila</option><option>Makati</option><option>Cebu</option><option>Davao</option><option>Baguio</option></select>
+        <label>Bio</label><input id="suBio" placeholder="Gusto ko ng kausap sa mic..." value="Gusto ko ng kausap sa mic, chill lang!">
+        <label>Password</label><input id="suPass" type="password" placeholder="Gawa ka ng password">
+        <button class="main-btn" onclick="doSignup()">Create Account — FREE →</button>
+        <div style="font-size:11px;color:#999;text-align:center;margin-top:8px">Naka-save sa device mo — pwede magkaiba-ibang user sa isang phone!</div>
+      </div>
+      <div id="loginBox" style="margin-top:14px;display:none">
+        <div class="btn-row" onclick="quickLogin('Google')"><span>G</span> Continue with Google (Demo)</div>
+        <div class="btn-row" onclick="quickLogin('Facebook')"><span>f</span> Continue with Facebook (Demo)</div>
+        <label>Username</label><input id="liUser" placeholder="Username mo">
+        <label>Password</label><input id="liPass" type="password" placeholder="Password mo">
+        <button class="main-btn" onclick="doLogin()">Log In</button>
+        <div style="margin-top:10px;font-size:13px;text-align:center">Wala ka pa? <span class="link" onclick="switchAuth('signup')">Sign Up FREE</span></div>
+        <div style="margin-top:10px;background:#FFF7F2;border-radius:12px;padding:10px;font-size:12px"><b>Saved Accounts:</b><div id="savedList">Wala pa — mag-Sign Up ka muna!</div></div>
+      </div>
+    </div>
   </div>
-  <div class="center" style="font-size:12px;color:#888;margin-top:10px">Swipe / Like → Match → Live Mic Room + Ring 💍</div>
-  <div style="margin-top:14px"><b style="font-size:14px">Nearby now:</b></div>
-  <div class="chatlist" id="nearbyList" style="margin-top:8px"></div>
 </div>
 
-<!-- CHATS - GET CONNECTED -->
-<div class="page" id="p-chats">
-  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Get connected!</h2><div class="tag">Chats • Yung mga nag-match sayo</div></div>
-  <div class="chatlist" id="chatList"></div>
-  <div class="center" style="margin-top:12px;font-size:12px;color:#888">Pag nag-Chat ka, pwede mo siya i-invite sa Live Mic Room!</div>
+<!-- DISCOVER -->
+<div class="page" id="p-discover">
+  <div class="hero"><h1>Magkita tayo<br>sa malapit.</h1><p>Swipe to meet more friends! • <b id="helloUser">Hi, Guest!</b> • <span id="myCityLabel">Quezon City</span></p></div>
+  <div class="match-banner" id="matchBanner"></div>
+  <div class="grid"><div>
+    <div class="swipe-card"><div class="swipe-img"><span class="near">📍 <span id="dist">2.1 km</span></span><span class="live">● LIVE MIC</span><span id="pEmoji">👩</span></div>
+    <div class="swipe-info"><h2 id="pName">Lie Ann, 22</h2><p id="pBio">Hugot Night host • Gusto ko ng kausap sa mic 🎤</p><div class="tags"><span>🎤 Live Mic</span><span>💬 Chat</span><span id="pTag">Hugot</span><span>📍 <span id="pCity">Quezon City</span></span></div>
+    <div class="swipe-btns"><button class="nope" onclick="nextPerson()">✕ Pass</button><button class="super" onclick="superLike()">⭐ Super Like</button><button class="like" onclick="likePerson()">❤️ Like</button></div>
+    <button class="main-btn dark" style="margin-top:10px" onclick="openRoomFromDiscover()">🎤 Live Mic with <span id="micName">Lie Ann</span></button></div></div>
+    <h3 style="margin-top:16px">Nearby Profiles</h3>
+    <div class="nearby" id="nearbyList"></div>
+  </div>
+  <div class="side"><h3>Live Mic Rooms <span style="background:#FF4D6D;color:#fff;font-size:11px;padding:3px 8px;border-radius:999px">● LIVE</span></h3>
+    <div class="room-item"><div class="ic">👥</div><div><b>KITA Tambayan</b><br><small>2.4k watching 👁</small></div><button class="join" onclick="openRoom('KITA Tambayan')">JOIN</button></div>
+    <div class="room-item"><div class="ic">🎤</div><div><b>KITA Karaoke</b><br><small>1.8k watching 👁</small></div><button class="join" onclick="openRoom('KITA Karaoke')">JOIN</button></div>
+    <div class="room-item"><div class="ic">💬</div><div><b>KITA Hugot</b><br><small>980 watching 👁</small></div><button class="join" onclick="openRoom('KITA Hugot')">JOIN</button></div>
+    <div style="background:#fff;border-radius:14px;padding:12px;font-size:13px"><b>Balance mo:</b> <b id="balSide">10,000 FP</b> • <span class="link" onclick="addPoints(10000)">Free Refill</span><br><b>Matches mo:</b> <span id="matchCountSide">0</span></div>
+  </div></div>
+  <div class="giftbar"><b>🎁 Gifts +</b><div class="g" onclick="quickGift(1,'Rose','🌹',this)"><span style="font-size:24px">🌹</span><b>Rose</b><small>1 FP</small></div><div class="g" onclick="quickGift(999,'Gold Ring','💍',this)"><span style="font-size:24px">💍</span><b>Gold Ring</b><small>999 FP</small></div><div class="g" onclick="quickGift(9999,'ZERO KING','👑',this)"><span style="font-size:24px">👑</span><b>ZERO KING</b><small>9999 FP</small></div><button class="main-btn" style="width:auto;padding:12px 22px" onclick="openGift()">Send Gift</button></div>
 </div>
+
+<!-- CHATS -->
+<div class="page" id="p-chats"><h2>Get connected!</h2><p class="sub">Yung mga nag-match sayo</p><div class="chatlist" id="chatList"></div></div>
 
 <!-- ROOMS -->
-<div class="page" id="p-rooms">
-  <div class="center"><div class="logo">ZERO <i>LIVE</i></div><h2 style="font-size:20px;margin-top:8px">Live Mic Rooms</h2><div class="tag">Choose your room — parang party room!</div></div>
-  <input class="search" id="search" placeholder="🔍 Search rooms, hosts" oninput="filterRooms()" style="background:#fff">
-  <div class="rooms" id="roomList"></div>
-  <div class="center" style="margin-top:12px;font-size:13px">Balance: <b id="bal2">10,000 Fun Points</b> • <span class="link" onclick="addPoints(10000)">Free Refill</span></div>
-</div>
+<div class="page" id="p-rooms"><h2>Live Mic Rooms</h2><p class="sub">Party room — usap, kanta, tawa!</p><input class="search" id="search" placeholder="🔍 Search rooms, hosts" oninput="filterRooms()" style="margin-bottom:12px"><div class="rooms" id="roomList" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div><div class="center" style="margin-top:12px">Balance: <b id="bal2">10,000 FP</b> • <span class="link" onclick="addPoints(10000)">Free Refill</span></div></div>
 
 <!-- INSIDE ROOM -->
-<div class="page" id="p-room">
-  <div class="topbar"><div><b id="roomName">CHAIN SMOK</b><br><small>host ID 1846091 • 2,081 score</small></div><div style="text-align:right"><span style="background:#FF3B5C;color:#fff;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800">● LIVE MIC</span></div></div>
-  <div class="host"><div class="big">🐱</div><b style="display:block;margin-top:8px">SANTINO ZONE — Host</b><div style="font-size:12px;color:#888">Total Gifts: <b id="totalGifts">0 FP</b></div></div>
-  <div class="ring-bar" id="ringBar"></div>
-  <div class="hint">Tap a seat — pag nag-gift ka, magri-RING at magko-CONNECT kayo 💍</div>
+<div class="page" id="p-room"><div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center"><div><b id="roomName" style="font-size:18px">KITA Tambayan</b><br><small style="color:#999">host • LIVE MIC</small></div><span style="background:#FF4D6D;color:#fff;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800">● LIVE MIC</span></div>
+  <div class="center" style="margin:14px 0"><div style="width:84px;height:84px;border-radius:50%;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:42px;margin:auto;border:3px solid #E8875A">🐱</div><b>SANTINO — Host</b><div style="font-size:12px;color:#999">Total Gifts: <b id="totalGifts">0 FP</b></div></div>
+  <div class="ring-bar" id="ringBar"></div><div class="hint" style="background:#fff;padding:10px;border-radius:12px;text-align:center;font-size:12px">Tap a seat — pag nag-gift ka, magri-RING at magko-CONNECT kayo 💍</div>
   <div class="seats" id="seats"></div>
-  <div class="chatbox" id="chat"><b>Chat (89)</b><div><b>Kai:</b> yo who's next?</div><div><b>Pink Speaking:</b> freestyle incoming 🔥</div></div>
-  <div class="wheelbox"><b>Lucky Wheel — Followers Edition</b><div style="font-size:12px;color:#888">Balance: <b id="bal">10,000</b> FP • <span class="link" onclick="addPoints(10000)">Free Refill</span></div>
-  <div class="wheel" id="wheel" onclick="spin()"><span>SPIN 🎡</span></div><div style="font-size:13px" id="wheelMsg">Pili ka ng follower, taya ka, pindot SPIN!</div>
-  <div class="bets"><button onclick="setBet(50,this)">Bet 50</button><button class="on" onclick="setBet(100,this)">Bet 100</button><button onclick="setBet(200,this)">Bet 200</button></div>
-  <div style="font-size:12px;margin-top:8px;color:#888">Prize Pool: <b style="color:#111">002694 FP</b></div></div>
+  <div class="chatbox" id="chat"><b>Chat (89)</b><div><b>Kai:</b> yo who's next?</div><div><b>Pink:</b> freestyle incoming 🔥</div></div>
+  <div class="wheelbox"><b>Lucky Wheel — Followers Edition</b><div style="font-size:12px;color:#999">Balance: <b id="bal">10,000</b> FP • <span class="link" onclick="addPoints(10000)">Free Refill</span></div><div class="wheel" id="wheel" onclick="spin()"><span>SPIN 🎡</span></div><div id="wheelMsg" style="font-size:13px">Pili ka ng follower, taya ka, pindot SPIN!</div><div class="bets"><button onclick="setBet(50,this)">Bet 50</button><button class="on" onclick="setBet(100,this)">Bet 100</button><button onclick="setBet(200,this)">Bet 200</button></div></div>
   <div class="actions"><button onclick="react('Cheer')">👏 Cheer</button><button onclick="react('Clap')">👏 Clap</button><button onclick="react('Laugh')">😂 Laugh</button><button onclick="react('Tension')">⚡ Tension</button></div>
-  <div class="msg"><input id="msg" placeholder="Type a message..."><button class="join" style="width:84px" onclick="sendMsg()">Send</button></div>
-  <div style="display:flex;gap:10px;margin-top:12px"><button class="main-btn" onclick="joinMic()">Join Mic 🎤</button><button class="main-btn" style="background:#FFD400;color:#111" onclick="openGift()">🎁 Gift + Ring</button></div>
-  <div class="center" style="font-size:12px;margin-top:10px;color:#888">Ring Connections: <b id="ringList" style="color:#111">Wala pa — mag-gift ka!</b></div>
+  <div class="msg"><input id="msg" placeholder="Type a message..."><button class="join" style="background:#111;color:#fff;border:none;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer" onclick="sendMsg()">Send</button></div>
+  <div style="display:flex;gap:10px;margin-top:12px"><button class="main-btn" onclick="joinMic()">Join Mic 🎤</button><button class="main-btn yellow" onclick="openGift()">🎁 Gift + Ring</button></div>
+  <div class="center" style="font-size:12px;margin-top:10px;color:#999">Ring Connections: <b id="ringList" style="color:#111">Wala pa — mag-gift ka!</b></div></div>
+
+<!-- ME -->
+<div class="page" id="p-me"><div class="card" style="text-align:center"><div style="width:90px;height:90px;border-radius:50%;background:#FFE8D6;display:flex;align-items:center;justify-content:center;font-size:44px;margin:auto" id="meEmoji">😊</div><h2 id="meName" style="margin-top:10px">Guest, 22</h2><p id="meBio" style="color:#999;font-size:13px">Gusto ko ng kausap sa mic!</p><div class="tags" style="justify-content:center"><span>📍 <span id="meCity">Quezon City</span></span><span>💍 <span id="meRings">0</span> Rings</span><span>❤️ <span id="meMatches">0</span> Matches</span></div><div style="margin-top:12px">Balance: <b id="bal4">10,000 FP</b></div><button class="main-btn" style="margin-top:10px" onclick="addPoints(10000)">Free Refill +10,000</button><button class="main-btn dark" style="margin-top:10px" onclick="logout()">Log Out</button></div>
+  <div class="card" style="margin-top:12px"><b>My Matches:</b><div id="myMatches" style="font-size:13px;color:#666;margin-top:6px">Wala pa — mag-swipe ka!</div><b style="display:block;margin-top:12px">My Account Info:</b><div id="myInfo" style="font-size:13px;color:#666;margin-top:6px"></div></div></div>
 </div>
 
 <!-- GIFT MODAL -->
-<div class="modal" id="giftModal" onclick="if(event.target==this)closeGift()">
-  <div class="sheet"><div style="display:flex;justify-content:space-between"><b>Send Gift + Ring to <span id="giftTo">Cherry</span></b><span onclick="closeGift()" style="cursor:pointer;font-size:18px">✕</span></div>
-  <div style="font-size:12px;color:#888">Balance: <b id="bal3">10,000</b> FP • Magri-RING yung seat niya!</div>
-  <div style="font-weight:800;margin-top:12px;font-size:13px">1. Sino bibigyan mo?</div><div class="seat-pick" id="seatPick"></div>
-  <div style="font-weight:800;font-size:13px">2. Pili ng Gift (1 to 9,999)</div>
-  <div class="gift-tabs"><button class="on" onclick="filterGift('all',this)">All</button><button onclick="filterGift('cheap',this)">1-99</button><button onclick="filterGift('mid',this)">100-999</button><button onclick="filterGift('vip',this)">1K-9,999</button></div>
-  <div class="gifts" id="giftList"></div>
-  <div class="qty"><button onclick="changeQty(-1)">−</button><b>Qty: <span id="qty">1</span></b><button onclick="changeQty(1)">+</button><span style="font-size:13px">Total: <b id="giftTotal">1 FP</b></span></div>
-  <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:12px;font-size:12px;text-align:center">💍 Si <b id="ringPreview">Cherry</b> magkaka-GOLD RING + CONNECTED kay <b id="ringMe">Guest</b>!</div>
-  <button class="sendgift" onclick="sendGift()" style="margin-top:12px">Send Gift + Ring 💍🎁</button></div>
-</div>
+<div class="modal" id="giftModal" onclick="if(event.target==this)closeGift()"><div class="sheet"><div style="display:flex;justify-content:space-between"><b>Send Gift + Ring to <span id="giftTo">Cherry</span></b><span onclick="closeGift()" style="cursor:pointer;font-size:18px">✕</span></div><div style="font-size:12px;color:#999">Balance: <b id="bal3">10,000</b> FP • <span id="giftUser">Guest</span></div><div style="font-weight:800;margin-top:12px;font-size:13px">1. Sino bibigyan mo?</div><div class="seat-pick" id="seatPick"></div><div style="font-weight:800;font-size:13px">2. Pili ng Gift (1 to 9,999)</div><div class="gift-tabs"><button class="on" onclick="filterGift('all',this)">All</button><button onclick="filterGift('cheap',this)">1-99</button><button onclick="filterGift('mid',this)">100-999</button><button onclick="filterGift('vip',this)">1K-9,999</button></div><div class="gifts" id="giftList"></div><div class="qty"><button onclick="changeQty(-1)">−</button><b>Qty: <span id="qty">1</span></b><button onclick="changeQty(1)">+</button><span>Total: <b id="giftTotal">1 FP</b></span></div><div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:12px;font-size:12px;text-align:center">💍 Si <b id="ringPreview">Cherry</b> magkaka-GOLD RING + CONNECTED kay <b id="ringMe">Guest</b>!</div><button class="sendgift" onclick="sendGift()" style="margin-top:12px">Send Gift + Ring 💍🎁</button></div></div>
 
-<div class="nav"><button onclick="show('p-discover',this)">👆 Discover</button><button onclick="show('p-chats',this)">💬 Chats</button><button class="on" onclick="show('p-rooms',this)">🎤 Rooms</button><button onclick="openGift()">🎁 Gifts</button><button onclick="toast('Me - Profile mo')">👤 Me</button></div>
+<div class="nav"><button onclick="showPage('p-discover',this)">💛 Discover</button><button onclick="showPage('p-chats',this)">💬 Chats</button><button onclick="showPage('p-rooms',this)">🎤 Rooms</button><button onclick="openGift()">🎁 Gifts</button><button onclick="showPage('p-me',this)">👤 Me</button></div>
 
 <script>
-let balance=10000,bet=100,myName="Guest",qty=1,selectedGift=null,selectedCat='all',totalGifted=0,selectedSeat="Cherry",pIdx=0;
+// ===== USER LOGIN SYSTEM - localStorage =====
+let users = JSON.parse(localStorage.getItem('zero_users')||'{}');
+let currentUser = JSON.parse(localStorage.getItem('zero_current')||'null');
+let balance=10000,bet=100,myName="Guest",myAge=22,myCity="Quezon City",myBio="Gusto ko ng kausap sa mic!",myEmoji="😊",qty=1,selectedGift=null,selectedCat='all',totalGifted=0,selectedSeat="Cherry",pIdx=0;
 let people=[
- {name:"Lie Ann, 22",emoji:"👩",bio:"Hugot Night host • Gusto ko ng kausap sa mic 🎤",tag:"Hugot",dist:"2.1 km"},
- {name:"Cherry, 21",emoji:"👑",bio:"Host • Mahilig mag-karaoke at mag-live mic",tag:"Karaoke",dist:"1.4 km"},
- {name:"Mia, 23",emoji:"💗",bio:"Co-Host • Chill talk lang, tara mic tayo!",tag:"Chill Talk",dist:"3.2 km"},
- {name:"Ken, 24",emoji:"🧑",bio:"Co-Host • Gusto ko ng ka-duet sa mic!",tag:"Duet",dist:"0.8 km"},
- {name:"SANTINO, 20",emoji:"🐱",bio:"Cat host • Meow, tara live mic?",tag:"Fun",dist:"1.1 km"},
- {name:"DogHat, 22",emoji:"🐶",bio:"Fun Bets master • Tara taya tayo!",tag:"Fun Bets",dist:"2.8 km"},
+ {name:"Lie Ann, 22",emoji:"👩",bio:"Hugot Night host • Gusto ko ng kausap sa mic 🎤",tag:"Hugot",dist:"2.1 km",city:"Quezon City"},
+ {name:"Cherry, 21",emoji:"👑",bio:"Host • Mahilig mag-karaoke at mag-live mic",tag:"Karaoke",dist:"1.4 km",city:"Manila"},
+ {name:"Mia, 23",emoji:"💗",bio:"Co-Host • Chill talk lang, tara mic tayo!",tag:"Chill Talk",dist:"3.2 km",city:"Makati"},
+ {name:"Ken, 24",emoji:"🧑",bio:"Co-Host • Gusto ko ng ka-duet sa mic!",tag:"Duet",dist:"0.8 km",city:"Quezon City"},
+ {name:"SANTINO, 20",emoji:"🐱",bio:"Cat host • Meow, tara live mic?",tag:"Fun",dist:"1.1 km",city:"Cebu"},
+ {name:"DogHat, 22",emoji:"🐶",bio:"Fun Bets master • Tara taya tayo!",tag:"Fun Bets",dist:"2.8 km",city:"Davao"},
 ];
 let rooms=[
- {name:"CHAIN SMOK",view:"2.4k watching • Lucky Wheel",emoji:"🎤",members:["DogHat","Lie Ann","rey pinyo","Mopy","SANTINO"]},
- {name:"SANTINO ZONE",view:"1.8k watching • Karaoke Room",emoji:"🐱",members:[]},
- {name:"DogHat Room",view:"1.2k watching • Fun Bets",emoji:"🐶",members:[]},
- {name:"Lie Ann",view:"980 watching • Hugot Night",emoji:"💜",members:[]},
- {name:"Mopy",view:"755 watching • Games",emoji:"👾",members:[]},
- {name:"rey pinyo",view:"620 watching • Chill Talk",emoji:"😎",members:[]},
+ {name:"KITA Tambayan",view:"2.4k • Lucky Wheel",emoji:"💛"},{name:"KITA Karaoke",view:"1.8k • Karaoke",emoji:"🎤"},{name:"KITA Hugot",view:"980 • Hugot Night",emoji:"💜"},{name:"KITA Games",view:"755 • Games",emoji:"🎮"},{name:"KITA Chill",view:"620 • Chill Talk",emoji:"😎"},{name:"KITA Duet",view:"540 • Duet",emoji:"🎶"},
 ];
 let gifts=[
  {name:"Rose",emoji:"🌹",price:1,cat:"cheap"},{name:"Heart",emoji:"❤️",price:5,cat:"cheap"},{name:"Candy",emoji:"🍬",price:9,cat:"cheap"},{name:"Coffee",emoji:"☕",price:15,cat:"cheap"},{name:"Beer",emoji:"🍺",price:25,cat:"cheap"},{name:"Bubble Tea",emoji:"🧋",price:35,cat:"cheap"},{name:"Cat",emoji:"🐱",price:49,cat:"cheap"},{name:"Kiss",emoji:"💋",price:88,cat:"cheap"},{name:"Star",emoji:"⭐",price:99,cat:"cheap"},
@@ -177,39 +185,56 @@ let gifts=[
 let seatsData=[
  {name:"Mia Co-Host",emoji:"👩",tag:"CO-HOST",gift:0},{name:"Cherry",emoji:"👑",tag:"Host",gift:0},{name:"Ken Co-Host",emoji:"🧑",tag:"CO-HOST • VIP",gift:0},{name:"Pink Speaking",emoji:"💗",tag:"Speaking",gift:0},{name:"Ryu",emoji:"🧑‍🎤",tag:"Ryu",gift:0},{name:"Blue Speaking",emoji:"💙",tag:"Speaking",gift:0},{name:"VIP Lena",emoji:"👸",tag:"Muted",gift:0},{name:"Kai",emoji:"🧑",tag:"",gift:0},{name:"Orange",emoji:"🧡",tag:"",gift:0},{name:"Green",emoji:"💚",tag:"",gift:0},{name:"Black",emoji:"🖤",tag:"",gift:0},{name:"Empty",emoji:"+",tag:"Join +",gift:0},
 ];
-let connected={}, matched=[];
-function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2600)}
-function show(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');window.scrollTo(0,0)}
-function login(){myName=document.getElementById('user').value||"Guest";document.getElementById('ringMe').innerText=myName;goDiscover('Login')}
-function goDiscover(f){toast('Welcome '+myName+'!');show('p-discover');renderPeople();renderChats();renderRooms()}
-function renderPeople(){let p=people[pIdx%people.length];document.getElementById('pEmoji').innerText=p.emoji;document.getElementById('pName').innerText=p.name;document.getElementById('pBio').innerText=p.bio;document.getElementById('pTag').innerText=p.tag;document.getElementById('dist').innerText=p.dist}
-function nextPerson(){pIdx++;renderPeople();toast('Pass — next person!')}
-function likePerson(){let p=people[pIdx%people.length];matched.push(p);document.getElementById('matchBanner').style.display='block';document.getElementById('matchBanner').innerText="🎉 IT'S A MATCH with "+p.name+"! Chat na kayo / Live Mic na!";toast('❤️ You liked '+p.name);renderChats();setTimeout(()=>{pIdx++;renderPeople()},800)}
-function openRoomFromDiscover(){let p=people[pIdx%people.length];openRoom(p.name.split(',')[0]);toast('Live Mic with '+p.name+'!')}
-function renderChats(){
- let list = matched.length?matched:people.slice(0,4);
- document.getElementById('chatList').innerHTML=list.map((p,i)=>`<div class="chat-item" onclick="openRoomFromDiscover()"><div class="av">${p.emoji}</div><div><b>${p.name}</b><br><small>${i==0?'Gusto mo mag-live mic? 🎤':'Tara chat tayo! 💬'}</small></div><span class="go">Chat</span></div>`).join('');
- document.getElementById('nearbyList').innerHTML=people.map(p=>`<div class="chat-item" onclick="openRoomFromDiscover()"><div class="av">${p.emoji}</div><div><b>${p.name}</b><br><small>📍 ${p.dist} away • ${p.tag}</small></div><span class="go">View</span></div>`).join('');
+let connected={},matched=[];
+function saveUsers(){localStorage.setItem('zero_users',JSON.stringify(users));localStorage.setItem('zero_current',JSON.stringify(currentUser));}
+function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2800)}
+function switchAuth(m){document.getElementById('signupBox').style.display=m=='signup'?'block':'none';document.getElementById('loginBox').style.display=m=='login'?'block':'none';document.getElementById('tabSignup').style.background=m=='signup'?'#E8875A':'#eee';document.getElementById('tabSignup').style.color=m=='signup'?'#fff':'#111';document.getElementById('tabLogin').style.background=m=='login'?'#111':'#eee';document.getElementById('tabLogin').style.color=m=='login'?'#fff':'#111';renderSaved();}
+function renderSaved(){let names=Object.keys(users);document.getElementById('savedList').innerHTML=names.length?names.map(n=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee"><span>👤 <b>${n}</b> — ${users[n].name}</span><span style="color:#E8875A;cursor:pointer" onclick="fillLogin('${n}')">Log In →</span></div>`).join(''):'Wala pa — mag-Sign Up ka muna!';}
+function fillLogin(n){document.getElementById('liUser').value=n;toast('Username na-fill na — lagay mo password mo!');}
+function pickEmoji(){let e=["😊","😎","🥰","😍","🤩","😇","😂","😺","🐶","🦁","👑","💛"];myEmoji=e[Math.floor(Math.random()*e.length)];document.getElementById('myEmoji').innerText=myEmoji;document.getElementById('meEmoji').innerText=myEmoji;document.getElementById('topAvatar').innerText=myEmoji;}
+function doSignup(){
+ let u=document.getElementById('suUser').value.trim(),n=document.getElementById('suName').value.trim(),p=document.getElementById('suPass').value;
+ if(!u||!n||!p){toast('Fill mo lahat — Username, Name, Password!');return}
+ if(users[u]){toast('May account na si '+u+' — Log In ka na lang!');switchAuth('login');return}
+ users[u]={name:n,age:document.getElementById('suAge').value||22,city:document.getElementById('suCity').value,bio:document.getElementById('suBio').value,pass:p,emoji:myEmoji,balance:10000,matches:[],rings:[]};
+ currentUser=u;saveUsers();applyUser();toast('Welcome sa ZERO, '+n+'! Account mo naka-save na!');showPage('p-discover');
 }
-function renderRooms(){let q=(document.getElementById('search').value||"").toLowerCase();document.getElementById('roomList').innerHTML=rooms.filter(r=>r.name.toLowerCase().includes(q)).map(r=>`<div class="room"><span class="live">LIVE</span><div class="avatar">${r.emoji}</div><h3>${r.name}</h3><p>${r.view}</p>${r.members.length?`<div class="mini">${r.members.map(m=>`<i>${m[0]}</i>`).join('')}</div>`:''}<button class="join" onclick="openRoom('${r.name}')">Join Mic</button></div>`).join('')}
+function doLogin(){
+ let u=document.getElementById('liUser').value.trim(),p=document.getElementById('liPass').value;
+ if(!users[u]){toast('Walang account si '+u+' — Sign Up ka muna!');switchAuth('signup');return}
+ if(users[u].pass!==p){toast('Mali password! Try ulit.');return}
+ currentUser=u;saveUsers();applyUser();toast('Welcome back, '+users[u].name+'!');showPage('p-discover');
+}
+function quickLogin(provider){let u='guest_'+provider.toLowerCase();if(!users[u]){users[u]={name:provider+' User',age:22,city:'Quezon City',bio:'Gusto ko ng kausap sa mic!',pass:'demo',emoji:'😊',balance:10000,matches:[],rings:[]};}currentUser=u;saveUsers();applyUser();toast(provider+' Login OK!');showPage('p-discover');}
+function applyUser(){
+ if(!currentUser)return;let d=users[currentUser];myName=d.name;myAge=d.age;myCity=d.city;myBio=d.bio;myEmoji=d.emoji;balance=d.balance||10000;matched=d.matches||[];connected={};(d.rings||[]).forEach(r=>connected[r]=myName);
+ document.getElementById('helloUser').innerText='Hi, '+myName+'!';document.getElementById('myCityLabel').innerText=myCity;document.getElementById('meName').innerText=myName+', '+myAge;document.getElementById('meBio').innerText=myBio;document.getElementById('meCity').innerText=myCity;document.getElementById('meEmoji').innerText=myEmoji;document.getElementById('topAvatar').innerText=myEmoji;document.getElementById('ringMe').innerText=myName;document.getElementById('giftUser').innerText=myName;document.getElementById('myInfo').innerText='Username: '+currentUser+' • Name: '+myName+' • Age: '+myAge+' • City: '+myCity+' • Bio: '+myBio;document.getElementById('meMatches').innerText=matched.length;document.getElementById('matchCountSide').innerText=matched.length;document.getElementById('myMatches').innerText=matched.length?matched.map(m=>m.name).join(' • '):'Wala pa — mag-swipe ka!';updateBal();renderChats();renderSeats();
+}
+function logout(){if(currentUser){let d=users[currentUser];d.balance=balance;d.matches=matched;d.rings=Object.keys(connected);saveUsers();}currentUser=null;localStorage.removeItem('zero_current');myName='Guest';balance=10000;matched=[];connected={};toast('Logged out!');showPage('p-auth');renderSaved();}
+function goHome(){if(currentUser)showPage('p-discover');else showPage('p-auth');}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.navlinks button').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');window.scrollTo(0,0);if(id=='p-discover')renderPeople();}
+// DISCOVER / CHAT / ROOMS
+function renderPeople(){let p=people[pIdx%people.length];document.getElementById('pEmoji').innerText=p.emoji;document.getElementById('pName').innerText=p.name;document.getElementById('pBio').innerText=p.bio;document.getElementById('pTag').innerText=p.tag;document.getElementById('dist').innerText=p.dist;document.getElementById('pCity').innerText=p.city;document.getElementById('micName').innerText=p.name.split(',')[0]}
+function nextPerson(){pIdx++;renderPeople();toast('Pass — next!')}
+function likePerson(){let p=people[pIdx%people.length];if(!matched.find(m=>m.name==p.name))matched.push(p);saveCurrent();document.getElementById('matchBanner').style.display='block';document.getElementById('matchBanner').innerText="🎉 IT'S A MATCH with "+p.name+"! Chat na kayo!";toast('❤️ You liked '+p.name);renderChats();applyUser();setTimeout(()=>{pIdx++;renderPeople()},700)}
+function superLike(){let p=people[pIdx%people.length];if(!matched.find(m=>m.name==p.name))matched.push(p);saveCurrent();document.getElementById('matchBanner').style.display='block';document.getElementById('matchBanner').innerText="⭐ SUPER LIKE! "+p.name+" — diretso Live Mic na!";toast('⭐ SUPER LIKE!');renderChats();applyUser();openRoomFromDiscover();}
+function saveCurrent(){if(!currentUser)return;users[currentUser].balance=balance;users[currentUser].matches=matched;users[currentUser].rings=Object.keys(connected);saveUsers();}
+function openRoomFromDiscover(){let p=people[pIdx%people.length];openRoom(p.name.split(',')[0])}
+function renderChats(){let list=matched.length?matched:people.slice(0,4);document.getElementById('chatList').innerHTML=list.map((p,i)=>`<div class="chat-item" onclick="openRoomFromDiscover()"><div class="av">${p.emoji}</div><div><b>${p.name}</b><br><small>${i==0?'Gusto mo mag-live mic? 🎤':'Tara chat tayo! 💬'}</small></div><span class="go">Chat</span></div>`).join('');document.getElementById('nearbyList').innerHTML=people.map(p=>`<div class="near-card" onclick="openRoom('${p.name.split(',')[0]}')"><div class="ph">${p.emoji}</div><b>${p.name}</b><small>${p.dist} away</small></div>`).join('')}
+function renderRooms(){let q=(document.getElementById('search').value||"").toLowerCase();document.getElementById('roomList').innerHTML=rooms.filter(r=>r.name.toLowerCase().includes(q)).map(r=>`<div class="room" style="background:#fff;border-radius:18px;padding:14px;text-align:center"><div class="avatar">${r.emoji}</div><h3>${r.name}</h3><p style="font-size:11px;color:#888">${r.view}</p><button class="join" style="background:#111;color:#fff;border:none;padding:10px;width:100%;border-radius:12px;font-weight:800;cursor:pointer" onclick="openRoom('${r.name}')">Join Mic</button></div>`).join('')}
 function filterRooms(){renderRooms()}
-function openRoom(n){document.getElementById('roomName').innerText=n;toast('Pasok ka sa '+n+' Live Mic Room!');show('p-room');renderSeats()}
-function renderSeats(){
- document.getElementById('seats').innerHTML=seatsData.map(s=>{
-  let ring=s.gift>0?'ringed':'';let sel=s.name==selectedSeat?'selected':'';
-  let badge=s.gift>0?`<span class="badge">🎁 ${s.gift.toLocaleString()}</span>`:'';
-  let conn=connected[s.name]?`<span class="conn">💍 ${connected[s.name]} ↔ ${s.name}</span>`:'';
-  return `<div class="seat ${ring} ${sel}" onclick="takeSeat('${s.name}')">${conn}${badge}<div class="a">${s.emoji}</div><b>${s.name}</b><br><small style="color:#888">${s.tag}</small></div>`
- }).join('');
- document.getElementById('seatPick').innerHTML=seatsData.filter(s=>s.name!='Empty').map(s=>`<button class="${s.name==selectedSeat?'on':''}" onclick="pickSeat('${s.name}')">${s.emoji} ${s.name}</button>`).join('');
-}
+function openRoom(n){document.getElementById('roomName').innerText=n;toast('Pasok ka sa '+n+' Live Mic Room!');showPage('p-room');renderSeats()}
+function renderSeats(){document.getElementById('seats').innerHTML=seatsData.map(s=>{let ring=s.gift>0?'ringed':'';let sel=s.name==selectedSeat?'selected':'';let badge=s.gift>0?`<span class="badge">🎁 ${s.gift.toLocaleString()}</span>`:'';
+let conn=connected[s.name]?`<span class="conn">💍 ${connected[s.name]} ↔ ${s.name}</span>`:'';
+return `<div class="seat ${ring} ${sel}" onclick="takeSeat('${s.name}')">${conn}${badge}<div class="a">${s.emoji}</div><b>${s.name}</b><br><small style="color:#999">${s.tag}</small></div>`}).join('');
+document.getElementById('seatPick').innerHTML=seatsData.filter(s=>s.name!='Empty').map(s=>`<button class="${s.name==selectedSeat?'on':''}" onclick="pickSeat('${s.name}')">${s.emoji} ${s.name}</button>`).join('')}
 function takeSeat(n){if(n=='Empty'){toast('Umupo ka!');return}pickSeat(n);toast('Pinili mo si '+n)}
 function pickSeat(n){selectedSeat=n;document.getElementById('giftTo').innerText=n;document.getElementById('ringPreview').innerText=n;renderSeats()}
 function joinMic(){toast('Join Mic — Umakyat ka!')}
 function setBet(v,el){bet=v;document.querySelectorAll('.bets button').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
-function addPoints(v){balance+=v;updateBal();toast('Free Refill +'+v.toLocaleString())}
-function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString();document.getElementById('bal2').innerText=balance.toLocaleString()+' Fun Points';document.getElementById('bal3').innerText=balance.toLocaleString();document.getElementById('totalGifts').innerText=totalGifted.toLocaleString()+' FP'}
-function spin(){if(balance<bet){toast('Ubos na! Free Refill!');return}balance-=bet;updateBal();let names=["Cherry","Mia","Ken","Ryu","Pink","Blue","Lena","Kai"];let win=names[Math.floor(Math.random()*names.length)];let deg=360*5+Math.floor(Math.random()*360);document.getElementById('wheel').style.transform='rotate('+deg+'deg)';document.getElementById('wheelMsg').innerText='Umiikot...';setTimeout(()=>{if(Math.random()<0.35){balance+=bet*5;updateBal();document.getElementById('wheelMsg').innerText='🎉 Lumapag kay '+win+'! Panalo +'+(bet*5)+' FP!';toast('Panalo!')}else{document.getElementById('wheelMsg').innerText='Lumapag kay '+win+' — si '+win+' ang kakanta!';toast('Lapag kay '+win)}},2200)}
+function addPoints(v){balance+=v;updateBal();saveCurrent();toast('Free Refill +'+v.toLocaleString())}
+function updateBal(){let b=balance.toLocaleString();document.getElementById('bal').innerText=b;document.getElementById('bal2').innerText=b+' FP';document.getElementById('bal3').innerText=b;document.getElementById('bal4').innerText=b+' FP';document.getElementById('balSide').innerText=b+' FP';document.getElementById('totalGifts').innerText=totalGifted.toLocaleString()+' FP'}
+function spin(){if(balance<bet){toast('Ubos na! Free Refill!');return}balance-=bet;updateBal();let names=["Cherry","Mia","Ken","Ryu","Pink","Blue","Lena","Kai"];let win=names[Math.floor(Math.random()*names.length)];let deg=360*5+Math.floor(Math.random()*360);document.getElementById('wheel').style.transform='rotate('+deg+'deg)';document.getElementById('wheelMsg').innerText='Umiikot...';setTimeout(()=>{if(Math.random()<0.35){balance+=bet*5;updateBal();saveCurrent();document.getElementById('wheelMsg').innerText='🎉 Lumapag kay '+win+'! Panalo +'+(bet*5)+' FP!';toast('Panalo!')}else{document.getElementById('wheelMsg').innerText='Lumapag kay '+win+' — si '+win+' ang kakanta!';toast('Lapag kay '+win)}},2200)}
 function react(r){toast(r+' sent!')}
 function sendMsg(){let m=document.getElementById('msg').value;if(!m)return;document.getElementById('chat').innerHTML+='<div><b>'+myName+':</b> '+m+'</div>';document.getElementById('msg').value=''}
 function openGift(){document.getElementById('giftModal').classList.add('open');renderGifts();updateGiftTotal();renderSeats()}
@@ -219,19 +244,12 @@ function renderGifts(){let list=gifts.filter(g=>selectedCat=='all'||g.cat==selec
 function selectGiftBy(price,name){selectedGift=gifts.find(g=>g.price==price&&g.name==name);qty=1;document.getElementById('qty').innerText=qty;renderGifts();updateGiftTotal()}
 function changeQty(d){qty=Math.max(1,Math.min(99,qty+d));document.getElementById('qty').innerText=qty;updateGiftTotal()}
 function updateGiftTotal(){if(!selectedGift)return;document.getElementById('giftTotal').innerText=(selectedGift.price*qty).toLocaleString()+' FP'}
-function sendGift(){
- if(!selectedGift)return;let total=selectedGift.price*qty;
- if(balance<total){toast('Kulang! Free Refill!');addPoints(10000);return}
- balance-=total;totalGifted+=total;updateBal();closeGift();
- let seat=seatsData.find(s=>s.name==selectedSeat);if(seat){seat.gift+=total;connected[selectedSeat]=myName;}
- renderSeats();
- let bar=document.getElementById('ringBar');bar.style.display='block';bar.innerText=`💍 CONNECTED! ${myName} ↔ ${selectedSeat} — ${qty}x ${selectedGift.emoji} ${selectedGift.name}`;
- document.getElementById('ringList').innerText=Object.keys(connected).map(k=>`${connected[k]} ↔ ${k}`).join(' • ');
- let anim=document.getElementById('giftAnim');anim.innerText=selectedGift.emoji;anim.style.display='block';setTimeout(()=>anim.style.display='none',900);
- document.getElementById('chat').innerHTML+='<div><b>'+myName+' 💍🎁</b> nag-send ng '+qty+'x '+selectedGift.emoji+' '+selectedGift.name+' kay '+selectedSeat+' — CONNECTED NA!</div>';
- toast('💍 Connected ka na kay '+selectedSeat+'!');
-}
-renderPeople();renderChats();renderRooms();renderSeats();updateBal();selectedGift=gifts[0];
+function quickGift(price,name,emoji,el){document.querySelectorAll('.giftbar .g').forEach(g=>g.classList.remove('on'));if(el)el.classList.add('on');selectedGift={price,name,emoji};qty=1;sendGiftToCurrent();}
+function sendGiftToCurrent(){let total=selectedGift.price*qty;if(balance<total){toast('Kulang! Free Refill!');addPoints(10000);return}balance-=total;totalGifted+=total;updateBal();saveCurrent();let seat=seatsData.find(s=>s.name==selectedSeat);if(seat){seat.gift+=total;connected[selectedSeat]=myName;}renderSeats();document.getElementById('meRings').innerText=Object.keys(connected).length;let bar=document.getElementById('ringBar');bar.style.display='block';bar.innerText=`💍 CONNECTED! ${myName} ↔ ${selectedSeat} — ${qty}x ${selectedGift.emoji} ${selectedGift.name}`;document.getElementById('ringList').innerText=Object.keys(connected).map(k=>`${connected[k]} ↔ ${k}`).join(' • ');let anim=document.getElementById('giftAnim');anim.innerText=selectedGift.emoji;anim.style.display='block';setTimeout(()=>anim.style.display='none',900);document.getElementById('chat').innerHTML+='<div><b>'+myName+' 💍🎁</b> nag-send ng '+qty+'x '+selectedGift.emoji+' '+selectedGift.name+' kay '+selectedSeat+' — CONNECTED NA!</div>';toast('💍 Connected ka na kay '+selectedSeat+'!');}
+function sendGift(){if(!selectedGift)return;let total=selectedGift.price*qty;if(balance<total){toast('Kulang! Free Refill!');addPoints(10000);return}closeGift();sendGiftToCurrent();}
+// INIT
+renderSaved();renderPeople();renderChats();renderRooms();renderSeats();updateBal();selectedGift=gifts[0];
+if(currentUser && users[currentUser]){applyUser();showPage('p-discover');toast('Welcome back, '+users[currentUser].name+'! Naka-log in ka pa rin!');}else{showPage('p-auth');}
 </script>
 </body>
 </html>
