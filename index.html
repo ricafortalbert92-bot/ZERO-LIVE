@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZERO LIVE - Parang Bigo!</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:#0f0f0f;color:#fff;padding-bottom:72px}
+header{background:linear-gradient(90deg,#ff9eb5,#e6007a);margin:10px 12px;padding:12px 14px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:10px;z-index:20}
+.logo{font-size:24px;font-weight:900;color:#111}
+.logo span{font-size:12px;background:#111;color:#ffcc00;padding:3px 7px;border-radius:20px;vertical-align:middle;margin-left:6px}
+.hicons{display:flex;gap:12px;font-size:22px;cursor:pointer}
+.topTabs{display:flex;gap:8px;padding:8px 12px;overflow-x:auto}
+.topTabs button{flex:0 0 auto;border:0;padding:9px 16px;border-radius:20px;font-weight:800;cursor:pointer;background:#222;color:#fff}
+.topTabs button.active{background:#ff2d78;color:#fff}
+.hostCard{margin:0 12px;background:linear-gradient(180deg,#ff4d9e,#7a1a5a);border-radius:20px;overflow:hidden;position:relative}
+.hostCard img{width:100%;height:320px;object-fit:cover;display:block}
+.hostTop{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start}
+.liveBadge{background:#ff0000;padding:5px 10px;border-radius:6px;font-weight:900;font-size:13px}
+.viewers{background:rgba(0,0,0,.6);padding:5px 10px;border-radius:20px;font-size:13px}
+.rankBadge{background:#ffcc00;color:#111;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}
+.giftsSide{position:absolute;right:10px;top:90px;display:flex;flex-direction:column;gap:8px}
+.giftSide{background:rgba(0,0,0,.45);border-radius:14px;padding:8px;text-align:center;backdrop-filter:blur(4px)}
+.giftSide div{font-size:26px}
+.giftSide span{font-size:12px;font-weight:700}
+.hostName{position:absolute;bottom:12px;left:12px}
+.hostName b{font-size:22px;text-shadow:0 2px 8px #000}
+.hostName p{font-size:13px;opacity:.9}
+.seats{background:linear-gradient(90deg,#ff5ea8,#c44dff);margin:-2px 12px 0;padding:14px 10px;border-radius:0 0 20px 20px;display:flex;gap:10px;overflow-x:auto}
+.seat{flex:0 0 auto;text-align:center;min-width:68px;cursor:pointer}
+.seat img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:3px solid #fff}
+.seat .empty{width:62px;height:62px;border-radius:50%;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;font-size:30px;background:rgba(0,0,0,.25);margin:auto}
+.seat p{font-size:12px;font-weight:700;margin-top:5px;line-height:1.2}
+.seat span{font-size:11px}
+.seat.muted img{filter:grayscale(1);opacity:.6}
+.chat{margin:12px;background:#1c1c1c;border-radius:16px;padding:12px}
+.chatMsg{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start}
+.chatMsg img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.chatMsg div{background:#2a2a2a;padding:8px 10px;border-radius:14px;font-size:14px}
+.chatMsg b{color:#ff7ab8}
+.chatInput{display:flex;gap:8px;margin-top:10px}
+.chatInput input{flex:1;padding:12px;border:0;border-radius:20px;background:#333;color:#fff;outline:none}
+.chatInput button{border:0;padding:0 16px;border-radius:20px;background:#ff2d78;color:#fff;font-weight:800;cursor:pointer}
+.actions{margin:0 12px;display:flex;gap:10px}
+.actions button{flex:1;border:1px solid #444;background:#1c1c1c;color:#fff;padding:14px 0;border-radius:16px;cursor:pointer;font-weight:800;font-size:14px}
+.actions button.pink{background:#ff2d78;border:0}
+.actions button.gold{background:#ffcc00;color:#111;border:0}
+.section{padding:14px 12px 6px;display:flex;justify-content:space-between}
+.section h2{font-size:18px}
+.grid{padding:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#1c1c1c;border-radius:16px;overflow:hidden;cursor:pointer;position:relative}
+.card img{width:100%;height:180px;object-fit:cover}
+.card .in{padding:10px}
+.card b{font-size:15px}
+.card p{font-size:12px;color:#aaa}
+.card .liveSm{position:absolute;top:8px;left:8px;background:#ff0000;font-size:11px;font-weight:800;padding:4px 7px;border-radius:6px}
+.pk{margin:12px;background:linear-gradient(90deg,#ff2d78,#7a00ff);border-radius:16px;padding:14px}
+.pkBar{display:flex;height:14px;background:#333;border-radius:20px;overflow:hidden;margin:10px 0}
+.pkBar div:first-child{background:#ff2d78}
+.pkBar div:last-child{background:#00c2ff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:9px 0 8px;border-top:1px solid #222;z-index:30}
+.bottom div{text-align:center;font-size:12px;color:#888;cursor:pointer;font-weight:700}
+.bottom div.active{color:#ff2d78}
+.bottom div span{font-size:24px;display:block}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-end;justify-content:center;z-index:99}
+.modal.open{display:flex}
+.box{background:#1c1c1c;width:100%;max-width:560px;border-radius:22px 22px 0 0;padding:20px;max-height:92vh;overflow:auto}
+@media(min-width:600px){.modal{align-items:center}.box{border-radius:20px}}
+.box input,.box select,.box textarea{width:100%;padding:13px;margin:6px 0;border:1px solid #333;border-radius:12px;background:#2a2a2a;color:#fff}
+.box button{width:100%;padding:14px;background:#ff2d78;color:#fff;border:0;border-radius:12px;font-weight:800;cursor:pointer;margin-top:8px}
+.close{float:right;cursor:pointer;font-size:22px}
+.small{font-size:12px;color:#aaa}
+.giftGrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:10px 0}
+.giftItem{background:#2a2a2a;padding:12px 6px;border-radius:14px;text-align:center;cursor:pointer}
+.giftItem.active{border:2px solid #ff2d78}
+.giftItem div{font-size:30px}
+</style>
+</head>
+<body>
+<header><div class="logo">⚡ ZERO LIVE <span>🏆 TOP • RANKING #1</span></div><div class="hicons"><span onclick="alert('🔍 Search Live!')">🔍</span><span onclick="openWallet()">🔔</span><span onclick="openProfile()">⋯</span></div></header>
+
+<div class="topTabs">
+<button class="active" onclick="filterLive('all',this)">🔥 For You</button>
+<button onclick="filterLive('sing',this)">🎤 Singing</button>
+<button onclick="filterLive('talk',this)">💬 Talk</button>
+<button onclick="filterLive('game',this)">🎮 Game</button>
+<button onclick="filterLive('dance',this)">💃 Dance</button>
+<button onclick="openGoLive()">➕ GO LIVE</button>
+</div>
+
+<div class="hostCard" id="mainHost">
+<img id="mainImg" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80">
+<div class="hostTop"><div style="display:flex;gap:6px"><span class="liveBadge">LIVE</span><span class="viewers">👁 <span id="viewers">12.5k</span> viewers</span></div><span class="rankBadge">⭐ TOP RANKING #1</span></div>
+<div class="giftsSide">
+<div class="giftSide" onclick="sendGift('Rose')"><div>🌹</div><span>x<span id="gRose">120</span></span></div>
+<div class="giftSide" onclick="sendGift('Diamond')"><div>💎</div><span>x<span id="gDiamond">56</span></span></div>
+<div class="giftSide" onclick="sendGift('Car')"><div>🚗</div><span>x<span id="gCar">12</span></span></div>
+<div class="giftSide" onclick="sendGift('Crown')"><div>👑</div><span>x<span id="gCrown">5</span></span></div>
+</div>
+<div class="hostName"><b id="mainName">Maria • Singing Queen 🎤</b><p>Quezon City • 🪙 <span id="hostCoins">8,450</span> coins • ❤️ <span id="hostLikes">2.1k</span></p></div>
+</div>
+
+<!-- MULTI GUEST 8 SEATS -->
+<div class="seats" id="seats"></div>
+
+<!-- PK BATTLE -->
+<div class="pk">
+<div style="display:flex;justify-content:space-between"><b>⚔️ PK BATTLE - LIVE!</b><span id="pkTimer">05:00</span></div>
+<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:14px"><span>🔴 Maria: <b id="pkLeft">1,250</b></span><span><b id="pkRight">980</b> :🔵 Alex</span></div>
+<div class="pkBar"><div id="pkBarL" style="width:56%"></div><div id="pkBarR" style="width:44%"></div></div>
+<div style="display:flex;gap:8px"><button onclick="supportPK('left')" style="flex:1;background:#fff;color:#ff2d78;border:0;padding:10px;border-radius:10px;font-weight:800;cursor:pointer">🔴 Support Maria</button><button onclick="supportPK('right')" style="flex:1;background:#00c2ff;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:800;cursor:pointer">🔵 Support Alex</button></div>
+</div>
+
+<div class="actions">
+<button class="pink" onclick="openGift()">🎁 Gift</button>
+<button onclick="toggleMyMic()">🎤 <span id="micTxt">Mic Off</span></button>
+<button onclick="joinSeat()">👥 Join Seat</button>
+<button class="gold" onclick="document.querySelector('.pk').scrollIntoView({behavior:'smooth'})">⚔️ PK Battle</button>
+</div>
+
+<div class="chat">
+<b>💬 Live Chat</b>
+<div id="chatBox" style="margin-top:10px;max-height:220px;overflow:auto"></div>
+<div class="chatInput"><input id="chatInput" placeholder="Type... Ganda ng boses!"><button onclick="sendChat()">Send</button></div>
+</div>
+
+<div class="section"><h2>🔥 Live Ngayon</h2><span style="color:#ff2d78;font-size:13px" onclick="alert('Lahat ng Live!')">See All ›</span></div>
+<div class="grid" id="liveGrid"></div>
+
+<div class="section"><h2>👑 Top Gifters</h2></div>
+<div style="margin:0 12px;background:#1c1c1c;padding:12px;border-radius:14px">
+<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #333"><span>🥇 <b>BossAlbert</b></span><span>💎 12,500 coins</span></div>
+<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #333"><span>🥈 <b>user_star23</b></span><span>💎 8,200 coins</span></div>
+<div style="display:flex;justify-content:space-between;padding:8px 0"><span>🥉 <b>musiclover_88</b></span><span>💎 5,900 coins</span></div>
+</div>
+
+<div class="bottom">
+<div onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>🏠</span>Home</div>
+<div class="active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>📷</span>Live</div>
+<div onclick="document.querySelector('.pk').scrollIntoView({behavior:'smooth'})"><span>⚔️</span>PK</div>
+<div onclick="openProfile()"><span>👤</span>Me</div>
+</div>
+
+<!-- GIFT MODAL -->
+<div id="giftModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>🎁 Send Gift to <span id="giftTo">Maria</span></h2><p class="small">Coins mo: <b id="myCoins">1000</b> 🪙 • <span onclick="recharge()" style="color:#ff2d78;cursor:pointer">Recharge via GCash</span></p><div class="giftGrid" id="giftGrid"></div><button onclick="confirmGift()">Send Gift 🚀</button></div></div>
+
+<!-- GO LIVE -->
+<div id="goLiveModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>📷 GO LIVE - Maging Host!</h2><input id="liveName" placeholder="Live Title - e.g. Kantahan Tayo!"><select id="liveCat"><option>🎤 Singing</option><option>💬 Talk / Chikahan</option><option>🎮 Game</option><option>💃 Dance</option></select><input id="liveImg" placeholder="Your Photo URL - o blank"><button onclick="startLive()">🔴 START LIVE NOW!</button><p class="small" style="margin-top:8px">Kikita ka 70% sa gifts! 30% kay ZERO. Example: 1000 coins gift = 700 sayo!</p></div></div>
+
+<!-- WALLET / PROFILE -->
+<div id="profileModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>👤 My Profile - ZERO LIVE</h2><div style="text-align:center"><div style="font-size:60px">😎</div><b id="myName">Guest User</b><p class="small">ID: ZERO_12345 • Level 5</p></div><div style="background:#ff2d78;padding:14px;border-radius:14px;margin-top:12px"><b>🪙 Coins:</b> <span id="myCoins2">1000</span><br><b>💰 Earnings (Host):</b> <span id="myEarn">₱0</span><br><span class="small" style="color:#fff">Withdraw via GCash pag ₱500+</span></div><input id="profileName" placeholder="Change Name - e.g. BossAlbert"><button onclick="saveProfile()">Save Name</button><button onclick="recharge()" style="background:#ffcc00;color:#111">💳 Recharge Coins via GCash</button><button onclick="withdraw()" style="background:#fff;color:#111">💸 Withdraw Earnings</button><button onclick="openAdmin()" style="background:#333">👑 Admin Login</button><button onclick="closeAll()" style="background:#333">Close</button></div></div>
+
+<!-- ADMIN -->
+<div id="adminModal" class="modal"><div class="box"><span class="close" onclick="closeAll()">✕</span><h2>👑 ZERO LIVE Admin</h2><div style="background:#ff2d78;padding:14px;border-radius:14px"><b>💰 Total Commission (30%):</b> <span id="adminComm">₱0</span><br><b>Total Gifts:</b> <span id="adminGifts">0</span> • <b>Total Lives:</b> <span id="adminLives">0</span></div><h3 style="margin-top:12px">📷 Live Rooms</h3><div id="adminLivesList"></div><h3>🎁 Gift History</h3><div id="adminGiftList"></div><button onclick="closeAll()" style="background:#333">Close</button></div></div>
+
+<script>
+let coins = parseInt(localStorage.getItem('zero_live_coins')||'1000');
+let myName = localStorage.getItem('zero_live_name')||'Guest User';
+let earnings = parseInt(localStorage.getItem('zero_live_earn')||'0');
+let giftCounts = JSON.parse(localStorage.getItem('zero_live_gifts')||'{"Rose":120,"Diamond":56,"Car":12,"Crown":5}');
+let lives = JSON.parse(localStorage.getItem('zero_live_rooms')) || [
+{name:"Maria • Singing Queen",cat:"sing",viewers:"12.5k",img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",coins:8450},
+{name:"Alex • Chikahan",cat:"talk",viewers:"8.2k",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",coins:6200},
+{name:"Jessa • Dance",cat:"dance",viewers:"5.1k",img:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",coins:4100},
+{name:"Kuya Boy • Game",cat:"game",viewers:"3.8k",img:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80",coins:3200},
+{name:"Mika • Singing",cat:"sing",viewers:"2.9k",img:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80",coins:2800},
+{name:"DJ Paolo • Party",cat:"talk",viewers:"2.1k",img:"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",coins:1900},
+];
+let seats = JSON.parse(localStorage.getItem('zero_live_seats')) || [
+{name:"Ken",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",mic:true},
+{name:"Sofia",img:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",mic:true},
+null,
+{name:"Mark",img:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",mic:false},
+null,
+{name:"Luna",img:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",mic:true},
+null,null
+];
+let gifts = [
+{name:"Rose",emoji:"🌹",price:10},{name:"Heart",emoji:"❤️",price:20},{name:"Diamond",emoji:"💎",price:50},{name:"Car",emoji:"🚗",price:500},{name:"Crown",emoji:"👑",price:1000},{name:"Rocket",emoji:"🚀",price:2000},{name:"Castle",emoji:"🏰",price:5000},{name:"Dragon",emoji:"🐉",price:10000},
+];
+let selectedGift = gifts[0];
+let pkLeft = 1250, pkRight = 980;
+let myMicOn = false;
+let currentFilter = 'all';
+let giftHistory = JSON.parse(localStorage.getItem('zero_live_history')||'[]');
+function save(){localStorage.setItem('zero_live_coins',coins);localStorage.setItem('zero_live_name',myName);localStorage.setItem('zero_live_earn',earnings);localStorage.setItem('zero_live_gifts',JSON.stringify(giftCounts));localStorage.setItem('zero_live_rooms',JSON.stringify(lives));localStorage.setItem('zero_live_seats',JSON.stringify(seats));localStorage.setItem('zero_live_history',JSON.stringify(giftHistory));}
+function render(){
+document.getElementById('myCoins').innerText=coins;document.getElementById('myCoins2').innerText=coins;document.getElementById('myEarn').innerText='₱'+earnings;document.getElementById('myName').innerText=myName;
+document.getElementById('gRose').innerText=giftCounts.Rose||0;document.getElementById('gDiamond').innerText=giftCounts.Diamond||0;document.getElementById('gCar').innerText=giftCounts.Car||0;document.getElementById('gCrown').innerText=giftCounts.Crown||0;
+document.getElementById('hostCoins').innerText=(8450+giftHistory.length*50).toLocaleString();
+document.getElementById('seats').innerHTML=seats.map((s,i)=>{
+if(!s) return `<div class="seat" onclick="joinSeatAt(${i})"><div class="empty">+</div><p>Seat ${i+1}<br><span>+ Join</span></p></div>`;
+return `<div class="seat ${s.mic?'':'muted'}" onclick="toggleSeatMic(${i})"><img src="${s.img}"><p>Seat ${i+1}<br><span>${s.name} • ${s.mic?'🎤 Mic On':'🔇 Muted'}</span></p></div>`;
+}).join('');
+let list = lives.filter(l=>currentFilter==='all'||l.cat===currentFilter);
+document.getElementById('liveGrid').innerHTML=list.map((l,i)=>`<div class="card" onclick="watchLive(${lives.indexOf(l)})"><span class="liveSm">LIVE • ${l.viewers}</span><img src="${l.img}"><div class="in"><b>${l.name}</b><p>🪙 ${l.coins.toLocaleString()} coins • ❤️ ${Math.floor(l.coins/4)} likes</p></div></div>`).join('');
+document.getElementById('giftGrid').innerHTML=gifts.map((g,i)=>`<div class="giftItem ${selectedGift.name===g.name?'active':''}" onclick="selectGift(${i})"><div>${g.emoji}</div><b>${g.name}</b><br><span class="small">${g.price} coins</span></div>`).join('');
+}
+function filterLive(cat,btn){currentFilter=cat;document.querySelectorAll('.topTabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+function watchLive(i){let l=lives[i];document.getElementById('mainImg').src=l.img;document.getElementById('mainName').innerText=l.name;document.getElementById('viewers').innerText=l.viewers;document.getElementById('giftTo').innerText=l.name;window.scrollTo({top:0,behavior:'smooth'});alert('📺 Nanonood ka na kay '+l.name+'!');}
+function joinSeat(){let empty=seats.findIndex(s=>!s);if(empty===-1){alert('Puno na! 8 seats lang!');return;}joinSeatAt(empty);}
+function joinSeatAt(i){if(seats[i]){toggleSeatMic(i);return;}let name=prompt('Your Name sa Seat '+(i+1)+':',myName)||myName;seats[i]={name,img:"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&q=80",mic:true};myMicOn=true;document.getElementById('micTxt').innerText='Mic On';save();render();addChat('System','🎤 '+name+' umakyat sa Seat '+(i+1)+'! Welcome!');alert('🎤 Umakyat ka na sa Seat '+(i+1)+'! Mic On ka na!');}
+function toggleSeatMic(i){seats[i].mic=!seats[i].mic;save();render();addChat('System',(seats[i].mic?'🎤':'🔇')+' '+seats[i].name+' '+(seats[i].mic?'naka-Mic On':'naka-Mute'));}
+function toggleMyMic(){myMicOn=!myMicOn;document.getElementById('micTxt').innerText=myMicOn?'Mic On':'Mic Off';alert(myMicOn?'🎤 Mic On ka na! Magsalita ka na!':'🔇 Mic Off');}
+function openGift(){document.getElementById('giftModal').classList.add('open');}
+function selectGift(i){selectedGift=gifts[i];render();}
+function confirmGift(){if(coins<selectedGift.price){alert('Kulang coins! Recharge ka muna via GCash!');return;}coins-=selectedGift.price;giftCounts[selectedGift.name]=(giftCounts[selectedGift.name]||0)+1;giftHistory.push({gift:selectedGift.name,price:selectedGift.price,from:myName,to:document.getElementById('mainName').innerText,time:new Date().toLocaleString()});earnings+=Math.floor(selectedGift.price*0.7);save();render();closeAll();addChat(myName,'🎁 Nag-send ng '+selectedGift.emoji+' '+selectedGift.name+' ('+selectedGift.price+' coins)!');alert('🎁 Sent '+selectedGift.emoji+' '+selectedGift.name+'! Thank you!');}
+function sendGift(name){let g=gifts.find(x=>x.name===name);if(g){selectedGift=g;openGift();}}
+function recharge(){let amt=prompt('Magkano i-recharge mo via GCash? (100 = 100 coins, 500 = 550 coins, 1000 = 1200 coins)','500');if(!amt)return;let a=parseInt(amt);let bonus=a>=1000?200:a>=500?50:0;coins+=a+bonus;save();render();alert('✅ Recharged! +'+(a+bonus)+' coins! GCash: Send to 0912-ZERO-LIVE. Salamat!');}
+function withdraw(){if(earnings<500){alert('Need ₱500+ para mag-withdraw. Earnings mo ₱'+earnings+' pa lang. Mag-live ka pa!');return;}alert('💸 Withdraw Request ₱'+earnings+' sent! GCash mo in 24h!');earnings=0;save();render();}
+function supportPK(side){if(side==='left'){pkLeft+=50}else{pkRight+=50}document.getElementById('pkLeft').innerText=pkLeft.toLocaleString();document.getElementById('pkRight').innerText=pkRight.toLocaleString();let total=pkLeft+pkRight;document.getElementById('pkBarL').style.width=(pkLeft/total*100)+'%';document.getElementById('pkBarR').style.width=(pkRight/total*100)+'%';addChat('System','⚔️ PK Support +50 kay '+(side==='left'?'Maria':'Alex')+'!');}
+function openGoLive(){document.getElementById('goLiveModal').classList.add('open');}
+function startLive(){let t=document.getElementById('liveName').value||'Live ni '+myName;let cat=document.getElementById('liveCat').value;let img=document.getElementById('liveImg').value||'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80';let catCode=cat.includes('Sing')?'sing':cat.includes('Game')?'game':cat.includes('Dance')?'dance':'talk';lives.unshift({name:t,cat:catCode,viewers:"1",img,coins:0});save();render();closeAll();watchLive(0);alert('🔴 LIVE KA NA! '+t+' - Good luck host!');}
+function openProfile(){document.getElementById('profileName').value=myName;document.getElementById('profileModal').classList.add('open');}
+function openWallet(){openProfile();}
+function saveProfile(){let v=document.getElementById('profileName').value;if(v){myName=v;save();render();alert('Saved! Hello '+myName);}closeAll();}
+function openAdmin(){let p=prompt('Admin Password:');if(p==='zero123'){let total=giftHistory.reduce((s,g)=>s+g.price,0);document.getElementById('adminComm').innerText='₱'+Math.floor(total*0.3);document.getElementById('adminGifts').innerText=giftHistory.length;document.getElementById('adminLives').innerText=lives.length;document.getElementById('adminLivesList').innerHTML=lives.map(l=>`<div style="border:1px solid #333;padding:10px;border-radius:10px;margin-bottom:6px">🔴 <b>${l.name}</b> - ${l.viewers} viewers</div>`).join('');document.getElementById('adminGiftList').innerHTML=giftHistory.length?giftHistory.map(g=>`<div style="border:1px solid #333;padding:10px;border-radius:10px;margin-bottom:6px">🎁 ${g.gift} ${g.price} coins • ${g.from} → ${g.to}</div>`).join(''):'Wala pang gifts';document.getElementById('adminModal').classList.add('open');}else alert('Wrong!');}
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));}
+function addChat(user,msg){let box=document.getElementById('chatBox');let img="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80";if(user==='System') img="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80";box.innerHTML+=`<div class="chatMsg"><img src="${img}"><div><b>${user}:</b> ${msg}</div></div>`;box.scrollTop=box.scrollHeight;}
+function sendChat(){let v=document.getElementById('chatInput').value;if(!v)return;addChat(myName,v);document.getElementById('chatInput').value='';setTimeout(()=>{let replies=['Ganda ng boses!! ❤️','Sali ako sa seat! 🎤','Pa-shoutout po!','Ang galing! 🔥'];addChat('Viewer_'+Math.floor(Math.random()*99),replies[Math.floor(Math.random()*replies.length)]);},900);}
+let pkTime=5*60;
+setInterval(()=>{pkTime--;if(pkTime<0)pkTime=5*60;let m=String(Math.floor(pkTime/60)).padStart(2,'0'),s=String(pkTime%60).padStart(2,'0');document.getElementById('pkTimer').innerText=m+':'+s;},1000);
+setInterval(()=>{let v=parseInt(document.getElementById('viewers').innerText.replace('k',''))||12;},5000);
+addChat('user_star23','❤️❤️ Amazing voice!!');
+addChat('musiclover_88','Your cover is so good! 🔥');
+addChat('follower_x','Rose sent! Thanks!');
+render();
+</script>
+</body>
+</html>
