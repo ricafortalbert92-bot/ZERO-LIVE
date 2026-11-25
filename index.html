@@ -2,138 +2,196 @@
 <html lang="tl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZERO LIVE - Fixed</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ZERO LIVE - The Best Live App</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:linear-gradient(180deg,#FF4D7D,#FF8A00);min-height:100vh}
-.wrap{max-width:430px;margin:0 auto;padding:16px;padding-bottom:100px}
-.auth{position:fixed;inset:0;background:linear-gradient(180deg,#FF4D7D,#FF8A00);z-index:999;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:#fff;width:100%;max-width:380px;border-radius:28px;padding:22px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.3)}
-.logo{width:70px;height:70px;border:5px solid #FF4D7D;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FF4D7D;font-size:32px;margin:0 auto}
-h1{line-height:.9;margin:8px 0}.zero{font-size:44px;font-weight:900;color:#FF4D7D}.live{font-size:44px;font-weight:900;color:#C2185B}
-.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1;border:none;padding:12px;border-radius:999px;font-weight:900;cursor:pointer}.tabs button.on{background:#FF4D7D;color:#fff}.tabs button.off{background:#FFF5F7;color:#888}
-input,select{width:100%;background:#FFF5F7;border:1px solid #FFE8EE;border-radius:12px;padding:13px;margin:6px 0;outline:none}
-.btn{background:#FF4D7D;color:#fff;border:none;border-radius:999px;padding:14px;width:100%;font-weight:900;cursor:pointer;font-size:15px}
-.btn2{background:#111;color:#fff;border:none;border-radius:999px;padding:14px;width:100%;font-weight:900;cursor:pointer;margin-top:8px}
-.header{background:#fff;border-radius:20px;padding:12px;display:flex;justify-content:space-between;align-items:center}
-.page{display:none}.page.show{display:block}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.box{background:#fff;border-radius:16px;padding:14px;margin-top:10px}
-.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
-.game{background:#fff;border-radius:16px;padding:12px;text-align:center;cursor:pointer}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-radius:28px 28px 0 0;display:flex;justify-content:space-around;padding:12px 10px 18px}
-.bottom button{background:none;border:none;cursor:pointer;color:#888;font-weight:700;font-size:11px}.bottom button.on{color:#FF4D7D}.go{width:60px;height:60px;background:#FF4D7D;color:#fff;border-radius:50%;font-size:30px;margin-top:-26px;border:4px solid #FFF5F7}
-#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:11px 18px;border-radius:999px;font-weight:700;display:none;z-index:1000;max-width:90%;text-align:center}
-.topnav{display:flex;gap:8px;overflow-x:auto;padding:10px 0}.topnav button{flex:0 0 auto;background:#fff;border:none;padding:8px 14px;border-radius:999px;font-weight:700;cursor:pointer}.topnav button.on{background:#FF4D7D;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;-webkit-tap-highlight-color:transparent}
+body{background:#08080F;color:#fff;overflow-x:hidden}
+.wrap{max-width:430px;margin:0 auto;padding-bottom:110px}
+::-webkit-scrollbar{display:none}
+/* AUTH */
+.auth{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%,#FF2D78 0%,#1A0B2E 55%,#08080F 100%);z-index:999;display:flex;align-items:center;justify-content:center;padding:16px}
+.acard{background:#fff;color:#111;width:100%;max-width:385px;border-radius:30px;padding:24px;text-align:center;box-shadow:0 30px 80px rgba(255,45,120,.4);animation:pop .4s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.alogo{width:78px;height:78px;background:linear-gradient(135deg,#FF2D78,#FF8A00);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;margin:0 auto;box-shadow:0 10px 30px rgba(255,45,120,.4)}
+h1{line-height:.85;margin:10px 0}.zero{font-size:52px;font-weight:900;letter-spacing:-2px;color:#FF2D78}.live{font-size:52px;font-weight:900;letter-spacing:-2px;color:#7B00FF}
+.tabs{display:flex;gap:8px;margin:14px 0;background:#F5F5F5;padding:4px;border-radius:999px}.tabs button{flex:1;border:none;padding:11px;border-radius:999px;font-weight:900;cursor:pointer;background:transparent;color:#888}.tabs button.on{background:#111;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+input,select{width:100%;background:#F8F8F8;border:1px solid #EEE;border-radius:14px;padding:14px;margin:6px 0;outline:none;font-size:15px}
+.btn{background:linear-gradient(90deg,#FF2D78,#FF8A00);color:#fff;border:none;border-radius:999px;padding:15px;width:100%;font-weight:900;cursor:pointer;font-size:15px;box-shadow:0 8px 20px rgba(255,45,120,.35)}
+.btn-dark{background:#111;color:#fff;border:none;border-radius:999px;padding:14px;width:100%;font-weight:900;cursor:pointer;margin-top:8px}
+.badge{font-size:10px;font-weight:900;padding:4px 8px;border-radius:999px}
+/* HEADER */
+.header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,15,.85);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo-txt{font-size:24px;font-weight:900;letter-spacing:-1px}.logo-txt span{color:#FF2D78}.logo-txt i{color:#FFD700;font-style:normal}
+.page{display:none;padding:0 14px}.page.show{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,#FF2D78,#FF8A00 50%,#7B00FF);border-radius:24px;padding:18px;position:relative;overflow:hidden;margin:12px 0}
+.hero:after{content:"✨";position:absolute;right:14px;top:10px;font-size:40px;opacity:.6}
+.hero h2{font-size:22px;line-height:1.1}.hero p{font-size:13px;opacity:.9;margin:6px 0}
+.hero-btn{background:#fff;color:#111;border:none;padding:11px 18px;border-radius:999px;font-weight:900;cursor:pointer;margin-top:6px}
+.stats{display:flex;gap:10px}.stat{flex:1;background:#161626;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:12px;text-align:center}.stat b{font-size:16px;display:block}.stat small{color:#AAA;font-size:11px}
+.topnav{display:flex;gap:8px;overflow-x:auto;padding:10px 0}.topnav button{flex:0 0 auto;background:#161626;color:#AAA;border:1px solid rgba(255,255,255,.08);padding:9px 16px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap}.topnav button.on{background:#fff;color:#111;border-color:#fff}
+.sec{margin:16px 0 8px;display:flex;justify-content:space-between;align-items:center}.sec h3{font-size:17px}.sec span{color:#FF2D78;font-size:12px;font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.livecard{border-radius:20px;overflow:hidden;background:#161626;position:relative;cursor:pointer;border:1px solid rgba(255,255,255,.08);transition:.2s}.livecard:active{transform:scale(.97)}
+.livecard img{width:100%;height:220px;object-fit:cover;display:block}
+.grad{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.9))}
+.live-badge{position:absolute;top:10px;left:10px;background:#FF2D55;color:#fff;font-size:11px;font-weight:900;padding:5px 9px;border-radius:6px;z-index:2;box-shadow:0 4px 12px rgba(255,45,85,.5)}
+.viewers{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);color:#fff;font-size:11px;padding:5px 8px;border-radius:999px;z-index:2}
+.info{position:absolute;bottom:0;left:0;right:0;padding:10px;z-index:2;display:flex;gap:8px;align-items:center}
+.info img{width:38px;height:38px;border-radius:50%;border:2px solid #fff;object-fit:cover}
+.info b{font-size:13px;display:block;line-height:1.2}.info small{font-size:11px;color:#DDD}
+.heart{position:absolute;bottom:60px;right:10px;z-index:2;font-size:20px;animation:float 2s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.box{background:#161626;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:14px;margin:10px 0}
+.streamer-card{background:linear-gradient(135deg,#1E1E2E,#2A1A3A);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:12px;margin:10px 0;display:flex;gap:12px;align-items:center}
+.streamer-card img{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid #FFD700}
+.bronze{background:#CD7F32;color:#fff}.silver{background:#C0C0C0;color:#111}.gold{background:#FFD700;color:#111}.diamond{background:#00E5FF;color:#111}
+.tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}.tier{background:#161626;border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;text-align:center}.tier.active{border:2px solid #FFD700;background:#2A2200;box-shadow:0 8px 20px rgba(255,215,0,.2)}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.game{background:#161626;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;text-align:center;cursor:pointer}.game:active{transform:scale(.95)}.game div{font-size:34px}.game b{font-size:12px;display:block;margin:5px 0 2px}.game small{color:#888;font-size:11px}
+.leader-row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}.leader-row img{width:46px;height:46px;border-radius:50%;object-fit:cover}.rank{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;background:#333;flex:0 0 30px}.rank.gold{background:#FFD700;color:#111}.rank.silver{background:#C0C0C0;color:#111}.rank.bronze{background:#CD7F32;color:#fff}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(15,15,26,.95);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.1);border-radius:26px 26px 0 0;display:flex;justify-content:space-around;align-items:flex-end;padding:10px 10px 16px;z-index:30}
+.bottom button{background:none;border:none;cursor:pointer;color:#888;font-weight:700;font-size:11px}.bottom button.on{color:#FF2D78}.bottom .ic{font-size:22px;display:block}.go{width:64px;height:64px;background:linear-gradient(135deg,#FF2D78,#FF8A00);color:#fff;border-radius:50%;font-size:32px;margin-top:-30px;border:4px solid #08080F;box-shadow:0 10px 24px rgba(255,45,120,.5);display:flex;align-items:center;justify-content:center}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:12px 18px;border-radius:999px;font-weight:800;display:none;z-index:1000;max-width:90%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:10px;margin:14px 0}.pod{flex:1;text-align:center}.pod img{border-radius:50%;object-fit:cover;border:3px solid #FFD700}.pod .bar{background:linear-gradient(180deg,#FFD700,#FF8A00);border-radius:12px 12px 0 0;padding:10px 4px;font-weight:900}
+.pk-bar{height:14px;border-radius:999px;overflow:hidden;display:flex;background:#222;margin:10px 0}.pk-bar div:first-child{background:linear-gradient(90deg,#FF2D78,#FF8A00);transition:.5s}.pk-bar div:last-child{background:#00E5FF;transition:.5s}
 </style>
 </head>
 <body>
 <div id="toast"></div>
 
-<!-- LOGIN / SIGNUP - GITNA -->
-<div class="auth" id="authGate">
-<div class="card">
-<div class="logo">▶</div>
-<h1><div class="zero">ZERO</div><div class="live">LIVE</div></h1>
-<p style="color:#888;font-size:13px">Live • Games • Family • Real Users Only!</p>
-<p style="color:#FF4D7D;font-weight:800;font-size:13px">🔒 Login ka muna bago makapasok!</p>
-<div class="tabs"><button type="button" id="tabSignup" class="on" onclick="switchAuth('signup')">Sign Up</button><button type="button" id="tabLogin" class="off" onclick="switchAuth('login')">Log In</button></div>
-<div id="signupBox">
-<input id="suUser" placeholder="Username - Ex: bert234">
-<input id="suName" placeholder="Display Name - Ex: Albert Ricafort">
-<select id="suEmoji"><option value="😊">😊 Smiley</option><option value="😎">😎 Cool</option><option value="🔥">🔥 Fire</option><option value="👑">👑 King</option><option value="💖">💖 Pink</option><option value="🎤">🎤 Singer</option><option value="🎮">🎮 Gamer</option></select>
-<input id="suPass" type="password" placeholder="Password">
-<button type="button" class="btn" onclick="doSignup()">Create Account + FREE 200 Coins →</button>
-<p style="font-size:11px;color:#999;margin-top:8px">Sign Up = FREE 200 Coins agad!</p>
-</div>
-<div id="loginBox" style="display:none">
-<input id="liUser" placeholder="Username mo">
-<input id="liPass" type="password" placeholder="Password mo">
-<button type="button" class="btn" onclick="doLogin()">Log In → Pasok sa ZERO LIVE</button>
-<button type="button" class="btn2" onclick="guestLogin()">👀 Guest Muna - Tingin Lang</button>
-</div>
-<div style="margin-top:12px;background:#FFF5F7;border-radius:12px;padding:10px;font-size:12px;text-align:left"><b>Real Users:</b> <span id="savedCount">0</span><div id="savedList">Wala pa - ikaw una!</div></div>
-<p id="debug" style="font-size:11px;color:#00C853;margin-top:8px">✅ File loaded - Gumagana!</p>
-</div>
-</div>
+<!-- LOGIN -->
+<div class="auth" id="authGate"><div class="acard"><div class="alogo">▶</div><h1><div class="zero">ZERO</div><div class="live">LIVE</div></h1><p style="color:#888;font-size:13px">The Best Live App in PH 🇵🇭 • Real Streamers • Real Games • Real PK</p><p style="color:#FF2D78;font-weight:800;font-size:13px;margin-top:4px">🔒 Login ka muna bago makapasok!</p><div class="tabs"><button type="button" id="tabSignup" class="on" onclick="switchAuth('signup')">Sign Up</button><button type="button" id="tabLogin" class="off" onclick="switchAuth('login')">Log In</button></div><div id="signupBox"><input id="suUser" placeholder="Username - Ex: bert234"><input id="suName" placeholder="Display Name - Ex: Albert Ricafort"><select id="suEmoji"><option value="😊">😊 Smiley</option><option value="😎">😎 Cool</option><option value="🔥">🔥 Fire</option><option value="👑">👑 King</option><option value="💖">💖 Pink</option><option value="🎤">🎤 Singer</option><option value="🎮">🎮 Gamer</option></select><input id="suPass" type="password" placeholder="Password"><button type="button" class="btn" onclick="doSignup()">✨ Create Account + FREE 200 Coins →</button><p style="font-size:11px;color:#999;margin-top:8px">Sign Up = FREE 200 Coins + Newbie Badge!</p></div><div id="loginBox" style="display:none"><input id="liUser" placeholder="Username mo"><input id="liPass" type="password" placeholder="Password mo"><button type="button" class="btn" onclick="doLogin()">Log In → Pasok sa ZERO LIVE</button><button type="button" class="btn-dark" onclick="guestLogin()">👀 Guest Muna - Tingin Lang</button></div><div style="margin-top:12px;background:#FFF5F7;border-radius:14px;padding:10px;font-size:12px;text-align:left"><b>🔥 Real Users:</b> <span id="savedCount">0</span> • <b>Online Now:</b> <span id="onlineCount">1,240+</span><div id="savedList" style="margin-top:6px">Wala pa - ikaw una!</div></div><p style="font-size:11px;color:#00C853;margin-top:8px">✅ BEST VERSION - Gumagana!</p></div></div>
 
-<!-- MAIN APP -->
 <div class="wrap">
+<div class="header"><div class="logo-txt">ZERO <span>LIVE</span> <i>★</i></div><div style="font-size:20px">🔍 &nbsp; 🔔</div></div>
+
+<!-- HOME -->
 <div id="p-home" class="page show">
-<div class="header"><div><b style="font-size:22px;color:#FF4D7D">ZERO <span style="color:#C2185B">LIVE</span></b></div><div>🔍 🔔</div></div>
-<div class="box"><b id="helloUser">Guest</b><br><small>Balance: <b id="balHome">0 Coins</b> • <span id="realCount">0 Real Users</span></small><br><button type="button" class="btn" style="margin-top:10px;background:#111" onclick="logout()">Log Out</button></div>
-<div class="topnav"><button type="button" class="on" onclick="showTab('home',this)">For You</button><button type="button" onclick="showTab('discover',this)">Discover</button><button type="button" onclick="showTab('trending',this)">Trending</button><button type="button" onclick="showTab('leader',this)">Leaderboard</button></div>
-<div class="box"><h3>Live Now • <span id="liveNowText">0 Real Live</span></h3><div id="liveGrid" style="margin-top:10px"></div></div>
-<div class="box"><h3>👥 Real Users</h3><div id="realUsersList"></div></div>
+<div class="hero"><h2>👑 ZERO LIVE<br>Pinaka Maganda<br>Sa Lahat!</h2><p>Real Streamers Program • 1 Hour Live = +500 Coins<br>Top Streamer = +10,000 Coins / Week!</p><button type="button" class="hero-btn" onclick="showPage('p-streamer')">🚀 Apply as Streamer →</button></div>
+<div class="stats"><div class="stat"><b id="balHome">0</b><small>🪙 Coins</small></div><div class="stat"><b id="realCount">0</b><small>👥 Real Users</small></div><div class="stat"><b id="liveNowText">0 Live</b><small>🔴 Live Now</small></div></div>
+<div style="display:flex;gap:10px;align-items:center;margin-top:12px;background:#161626;border-radius:18px;padding:10px"><img id="myAvatarImg" src="https://i.pravatar.cc/100?img=12" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #FF2D78"><div><b id="helloUser">Guest</b><br><small style="color:#AAA">Level <span id="myLevel">1</span> • Tier: <b id="myTier" style="color:#FFD700">No Tier</b> • <span id="myStreamerBadge">Newbie</span></small></div><button type="button" style="margin-left:auto;background:#FF2D78;color:#fff;border:none;padding:8px 14px;border-radius:999px;font-weight:800;cursor:pointer" onclick="logout()">Log Out</button></div>
+<div class="topnav"><button type="button" class="on" onclick="filterTab('foryou',this)">✨ For You</button><button type="button" onclick="filterTab('discover',this)">🔍 Discover</button><button type="button" onclick="filterTab('trending',this)">🔥 Trending</button><button type="button" onclick="filterTab('leader',this)">🏆 Leaderboard</button><button type="button" onclick="filterTab('pk',this)">⚔️ PK</button></div>
+<div class="sec"><h3>🔴 Live Now - Real Streamers</h3><span id="liveCountTxt" onclick="showPage('p-home')">0 Live</span></div>
+<div class="grid" id="liveGrid"></div>
+<div class="sec"><h3>🌟 Featured Real Streamers</h3><span onclick="showPage('p-streamer')">View All →</span></div>
+<div id="featuredStreamers"></div>
+<div class="sec"><h3>🏆 Top 3 This Week</h3><span onclick="showPage('p-leader')">View All →</span></div>
+<div class="podium" id="podium"></div>
+<div class="sec"><h3>🎮 Hot Games - 100 Games</h3><span onclick="showPage('p-games')">View All →</span></div>
+<div class="games" id="homeGames"></div>
+<div class="box" style="text-align:center"><h3>⚔️ PK Battle - Live Now!</h3><p style="color:#AAA;font-size:13px">Laban na! Winner takes +500 Coins!</p><button type="button" class="btn" style="margin-top:10px" onclick="showPage('p-pk')">⚔️ ENTER PK BATTLE →</button></div>
 </div>
 
-<div id="p-games" class="page"><div class="box" style="text-align:center;background:linear-gradient(135deg,#FF4D7D,#FF8A00);color:#fff"><h2>🎮 100 Games!</h2><p>Balance: <b id="balGames">0 Coins</b></p><button type="button" class="btn" style="background:#111;margin-top:10px" onclick="claimDaily()">🎁 Daily +50</button></div><div class="games" id="gamesGrid"></div><div class="box"><b>History:</b><div id="history">Wala pa</div></div></div>
+<!-- STREAMER -->
+<div id="p-streamer" class="page">
+<div class="hero"><h2>🚀 Real Streamers<br>Program</h2><p>Official Program ng ZERO LIVE. Walang dummy!</p></div>
+<div class="box"><h3>🎯 Paano Sumali?</h3><p style="color:#AAA;font-size:13px;margin-top:6px">1. Sign Up ka<br>2. Apply dito<br>3. Mag-live ka 1 hour<br>4. Kumita ka ng Coins + Tier + Crown!</p><input id="streamerName" placeholder="Streamer Name mo"><input id="streamerCat" placeholder="Category - Singing / Gaming / Talk"><button type="button" class="btn" onclick="applyStreamer()">🚀 APPLY AS STREAMER → +500 Coins</button><p style="font-size:12px;color:#AAA;margin-top:8px">Status: <b id="streamerStatus" style="color:#FFD700">Hindi ka pa Streamer</b></p></div>
+<h3 style="margin-top:14px">🏆 Streamer Tiers</h3><div class="tier-grid"><div class="tier"><span class="badge bronze">BRONZE</span><h3 style="margin:8px 0">Bronze</h3><p style="font-size:12px;color:#AAA">1H Live • +500 Coins</p></div><div class="tier"><span class="badge silver">SILVER</span><h3 style="margin:8px 0">Silver</h3><p style="font-size:12px;color:#AAA">5H Live • +1,500 Coins</p></div><div class="tier"><span class="badge gold">GOLD</span><h3 style="margin:8px 0">Gold</h3><p style="font-size:12px;color:#AAA">20H Live • +3,000 Coins</p></div><div class="tier active"><span class="badge diamond">DIAMOND 👑</span><h3 style="margin:8px 0">Diamond</h3><p style="font-size:12px;color:#AAA">50H Live • +10,000 Coins</p></div></div>
+<div class="box"><h3>📋 All Real Streamers</h3><div id="allStreamers"></div></div>
+</div>
 
-<div id="p-golive" class="page"><div class="box" style="text-align:center"><h2>🎥 GO LIVE</h2><p>Ikaw ang lalabas - hindi dummy!</p></div><div class="box"><input id="liveTitle" value="Tara tambay - Real Live ko!"><select id="liveGame"><option>🎮 MLBB</option><option>🎮 Valorant</option><option>🎮 CODM</option><option>🎮 Roblox</option><option>🎰 Slots Live</option></select><button type="button" class="btn" style="background:#00C853" onclick="startLive()">🔴 START MY REAL LIVE →</button><button type="button" class="btn2" onclick="endLive()">⏹ End My Live</button><p style="text-align:center;margin-top:8px">Status: <b id="myLiveStatus">Hindi ka pa naka-live</b></p></div></div>
+<!-- LEADERBOARD -->
+<div id="p-leader" class="page">
+<div class="hero"><h2>🏆 Top Leaderboard</h2><p>Top Streamers This Week - Real Coins, Real Fame!</p></div>
+<div class="podium" id="podium2"></div>
+<div class="box"><h3>🏆 Top 10 - Leaderboard</h3><div id="leaderList"></div></div>
+</div>
 
-<div id="p-pk" class="page"><div class="box" style="text-align:center"><h2>⚔️ PK BATTLE</h2><p>VS - Sino mas maraming gifts?</p></div><div class="box" style="display:flex;gap:10px;text-align:center"><div style="flex:1"><div style="font-size:50px">😊</div><b>YOU</b><p id="pkMe">0 pts</p></div><div style="font-size:30px;align-self:center">VS</div><div style="flex:1"><div style="font-size:50px">🔥</div><b>CHALLENGER</b><p id="pkEnemy">0 pts</p></div></div><button type="button" class="btn" onclick="doPK()">🎁 Send Gift +100 PK Points!</button><div class="box"><b>🏆 Top Leaderboard</b><div id="leaderList"></div></div></div>
+<!-- GAMES -->
+<div id="p-games" class="page">
+<div class="hero"><h2>🎮 100 Games!</h2><p>Balance: <b id="balGames">0 Coins</b> • Win Chance up to 50%!</p><button type="button" class="hero-btn" onclick="claimDaily()">🎁 Daily +50 Coins</button> <button type="button" class="hero-btn" style="background:#111;color:#fff" onclick="randomGame()">🎲 Random Game!</button></div>
+<div class="topnav"><button type="button" class="on">All 100</button><button type="button">Slots</button><button type="button">Dice</button><button type="button">Cards</button><button type="button">Wheel</button><button type="button">Mines</button></div>
+<div class="games" id="gamesGrid"></div>
+<div class="box"><b>🏆 History:</b><div id="history" style="color:#AAA;font-size:13px">Wala pa</div></div>
+</div>
 
-<div id="p-me" class="page"><div class="box" style="text-align:center"><div style="font-size:50px" id="meEmoji">😊</div><h2 id="meName">Guest</h2><p>Username: <b id="meUser">@guest</b><br>Balance: <b id="balMe">0 Coins</b></p><button type="button" class="btn" onclick="showPage('p-golive')">🎥 GO LIVE</button><button type="button" class="btn2" onclick="logout()">Log Out</button></div></div>
+<!-- GO LIVE -->
+<div id="p-golive" class="page">
+<div class="hero"><h2>🎥 GO LIVE</h2><p>Ikaw ang bida! Ikaw ang lalabas sa Live Now!</p></div>
+<div class="box" style="text-align:center"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" style="width:100%;height:180px;object-fit:cover;border-radius:16px"><p style="margin-top:8px;color:#AAA;font-size:13px">Preview ng Live mo - ganyan ka kaganda!</p></div>
+<div class="box"><label style="font-size:13px;color:#AAA">Live Title</label><input id="liveTitle" value="Tara tambay - Real Live ko! 🔥"><label style="font-size:13px;color:#AAA">Category</label><select id="liveGame"><option>🎤 Singing Live</option><option>🎮 MLBB - Gaming</option><option>🎮 Valorant</option><option>🎮 CODM</option><option>💬 Talk / Tambay</option><option>🎰 Slots Live</option><option>🎲 Dice Live</option></select><button type="button" class="btn" style="background:#00C853" onclick="startLive()">🔴 START MY REAL LIVE → +500 Coins</button><button type="button" class="btn-dark" onclick="endLive()">⏹ End My Live</button><p style="text-align:center;margin-top:10px">Status: <b id="myLiveStatus">Hindi ka pa naka-live</b></p></div>
+<div class="box"><h3>💡 Tips Para Sumikat:</h3><p style="color:#AAA;font-size:13px">• Mag-live ka same time everyday<br>• Batiin mo lahat ng papasok<br>• Mag-PK Battle ka para dumami followers!</p></div>
+</div>
+
+<!-- PK -->
+<div id="p-pk" class="page">
+<div class="hero"><h2>⚔️ PK BATTLE</h2><p>VS - Sino mas maraming gifts? Winner +500 Coins!</p></div>
+<div class="box" style="text-align:center"><div style="display:flex;gap:10px;align-items:center;justify-content:center"><div><img src="https://i.pravatar.cc/100?img=12" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #FF2D78"><br><b>YOU</b><br><span id="pkMe" style="color:#FF2D78;font-weight:900">0 pts</span></div><div style="font-size:30px">⚔️</div><div><img src="https://i.pravatar.cc/100?img=32" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #00E5FF"><br><b>CHALLENGER</b><br><span id="pkEnemy" style="color:#00E5FF;font-weight:900">0 pts</span></div></div><div class="pk-bar"><div id="pkBarMe" style="width:50%"></div><div id="pkBarEn" style="width:50%"></div></div><p style="color:#AAA;font-size:12px">⏰ Time Left: <b id="pkTimer">02:00</b></p><button type="button" class="btn" style="margin-top:10px" onclick="doPK()">🎁 Send Gift +100 PK Points!</button></div>
+<div class="box"><h3>🏆 PK Leaderboard</h3><div id="pkLeader"></div></div>
+</div>
+
+<!-- ME -->
+<div id="p-me" class="page">
+<div class="box" style="text-align:center"><img id="meImg" src="https://i.pravatar.cc/150?img=12" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid #FF2D78"><h2 id="meName" style="margin-top:8px">Guest</h2><p style="color:#AAA">Username: <b id="meUser">@guest</b><br>Balance: <b id="balMe" style="color:#FFD700">0 Coins</b><br>Level: <b id="meLevel">1</b> • Tier: <b id="meTier">No Tier</b><br>Streamer: <b id="meStreamer">No</b> • Hours Live: <b id="meHours">0</b></p><button type="button" class="btn" onclick="showPage('p-golive')">🎥 GO LIVE</button><button type="button" class="btn-dark" onclick="showPage('p-streamer')">🚀 Streamer Program</button><button type="button" class="btn-dark" style="background:#333" onclick="logout()">Log Out</button></div>
+<div class="box"><b>📜 History:</b><div id="history2" style="color:#AAA;font-size:13px">Wala pa</div></div>
+</div>
 </div>
 
 <div class="bottom">
-<button type="button" class="on" onclick="showPage('p-home',this)">📺<br>Live</button>
-<button type="button" onclick="showPage('p-games',this)">🎮<br>Games</button>
+<button type="button" class="on" onclick="showPage('p-home',this)"><span class="ic">📺</span>Live</button>
+<button type="button" onclick="showPage('p-games',this)"><span class="ic">🎮</span>Games</button>
 <button type="button" onclick="showPage('p-golive',this)"><div class="go">+</div>Go Live</button>
-<button type="button" onclick="showPage('p-pk',this)">⚔️<br>PK</button>
-<button type="button" onclick="showPage('p-me',this)">👤<br>Me</button>
+<button type="button" onclick="showPage('p-streamer',this)"><span class="ic">🌟</span>Streamer</button>
+<button type="button" onclick="showPage('p-me',this)"><span class="ic">👤</span>Me</button>
 </div>
 
 <script>
 function $(id){return document.getElementById(id)}
-function toast(t){var e=$('toast');if(!e)return;e.innerText=t;e.style.display='block';setTimeout(function(){e.style.display='none'},2500)}
-var users={};var currentUser=null;var liveUsers={};var balance=0;var history=[];var isGuest=false;
-try{users=JSON.parse(localStorage.getItem('zero_real_users')||'{}');currentUser=JSON.parse(localStorage.getItem('zero_real_users_cur')||'null');liveUsers=JSON.parse(localStorage.getItem('zero_real_live')||'{}');}catch(e){users={};currentUser=null;liveUsers={};}
-function saveAll(){try{localStorage.setItem('zero_real_users',JSON.stringify(users));localStorage.setItem('zero_real_users_cur',JSON.stringify(currentUser));localStorage.setItem('zero_real_live',JSON.stringify(liveUsers));}catch(e){}}
+function toast(t){var e=$('toast');if(!e)return;e.innerText=t;e.style.display='block';setTimeout(function(){e.style.display='none'},2600)}
+var users={};var currentUser=null;var liveUsers={};var streamers={};var balance=0;var history=[];var isGuest=false;var pkMePts=0;var pkEnPts=0;
+try{users=JSON.parse(localStorage.getItem('zero_real_users')||'{}');currentUser=JSON.parse(localStorage.getItem('zero_real_users_cur')||'null');liveUsers=JSON.parse(localStorage.getItem('zero_real_live')||'{}');streamers=JSON.parse(localStorage.getItem('zero_streamers')||'{}');}catch(e){users={};currentUser=null;liveUsers={};streamers={};}
+function saveAll(){try{localStorage.setItem('zero_real_users',JSON.stringify(users));localStorage.setItem('zero_real_users_cur',JSON.stringify(currentUser));localStorage.setItem('zero_real_live',JSON.stringify(liveUsers));localStorage.setItem('zero_streamers',JSON.stringify(streamers));}catch(e){}}
 function switchAuth(m){$('signupBox').style.display=m=='signup'?'block':'none';$('loginBox').style.display=m=='login'?'block':'none';$('tabSignup').className=m=='signup'?'on':'off';$('tabLogin').className=m=='login'?'on':'off';}
-function renderSaved(){var n=Object.keys(users);if($('savedCount'))$('savedCount').innerText=n.length;if($('savedList'))$('savedList').innerHTML=n.length?n.map(function(u){return '<div>'+users[u].emoji+' <b>'+users[u].name+'</b> @'+u+'</div>'}).join(''):'Wala pa - ikaw una!';}
+function getTier(h){if(h>=50)return'Diamond 👑';if(h>=20)return'Gold';if(h>=5)return'Silver';if(h>=1)return'Bronze';return'No Tier';}
+function renderSaved(){var n=Object.keys(users);if($('savedCount'))$('savedCount').innerText=n.length;if($('savedList'))$('savedList').innerHTML=n.length?n.map(function(u){return '<div>'+users[u].emoji+' <b>'+users[u].name+'</b> @'+u+' • 🪙 '+users[u].balance+'</div>'}).join(''):'Wala pa - ikaw una!';}
 function checkGate(){if(currentUser||isGuest){$('authGate').style.display='none';}else{$('authGate').style.display='flex';}renderSaved();}
-function doSignup(){
-  var u=$('suUser').value.trim();var n=$('suName').value.trim();var p=$('suPass').value;var e=$('suEmoji').value;
-  if(!u||!n||!p){toast('Fill mo lahat! Username, Name, Password');return;}
-  if(users[u]){toast('May account na si '+u+' - Log In ka!');switchAuth('login');return;}
-  users[u]={name:n,pass:p,emoji:e,balance:200,history:['Welcome +200 Coins'],played:0,wins:0};
-  currentUser=u;isGuest=false;saveAll();applyUser();renderReal();checkGate();showPage('p-home');
-  toast('🎉 Welcome '+n+'! FREE 200 Coins! Pasok ka na!');
-}
-function doLogin(){
-  var u=$('liUser').value.trim();var p=$('liPass').value;
-  if(!users[u]){toast('Walang account si '+u+' - Sign Up ka muna!');switchAuth('signup');return;}
-  if(users[u].pass!==p){toast('Mali password!');return;}
-  currentUser=u;isGuest=false;saveAll();applyUser();renderReal();checkGate();showPage('p-home');toast('Welcome back '+users[u].name+'!');
-}
-function guestLogin(){isGuest=true;currentUser=null;balance=0;if($('helloUser'))$('helloUser').innerText='👀 Guest - Tingin lang';checkGate();showPage('p-home');toast('Guest Mode!');}
-function applyUser(){if(!currentUser)return;var d=users[currentUser];balance=d.balance||0;history=d.history||[];if($('helloUser'))$('helloUser').innerText=d.emoji+' '+d.name+' (@'+currentUser+') - REAL USER';if($('meName'))$('meName').innerText=d.name;if($('meUser'))$('meUser').innerText='@'+currentUser;if($('meEmoji'))$('meEmoji').innerText=d.emoji;updateBal();}
+function doSignup(){var u=$('suUser').value.trim();var n=$('suName').value.trim();var p=$('suPass').value;var e=$('suEmoji').value;if(!u||!n||!p){toast('Fill mo lahat!');return;}if(users[u]){toast('May account na si '+u+' - Log In ka!');switchAuth('login');return;}users[u]={name:n,pass:p,emoji:e,balance:200,history:['🎉 Welcome +200 Coins!'],hours:0,level:1};currentUser=u;isGuest=false;saveAll();applyUser();renderAll();checkGate();showPage('p-home');toast('🎉 Welcome '+n+'! FREE 200 Coins! Pasok ka na sa BEST ZERO LIVE!');}
+function doLogin(){var u=$('liUser').value.trim();var p=$('liPass').value;if(!users[u]){toast('Walang account - Sign Up ka muna!');switchAuth('signup');return;}if(users[u].pass!==p){toast('Mali password!');return;}currentUser=u;isGuest=false;saveAll();applyUser();renderAll();checkGate();showPage('p-home');toast('Welcome back '+users[u].name+'!');}
+function guestLogin(){isGuest=true;currentUser=null;balance=0;if($('helloUser'))$('helloUser').innerText='👀 Guest';checkGate();showPage('p-home');toast('Guest Mode - Tingin lang!');}
+function applyUser(){if(!currentUser)return;var d=users[currentUser];balance=d.balance||0;history=d.history||[];var tier=getTier(d.hours||0);if($('helloUser'))$('helloUser').innerText=d.emoji+' '+d.name+' (@'+currentUser+')';if($('myLevel'))$('myLevel').innerText=d.level||1;if($('myTier'))$('myTier').innerText=tier;if($('myStreamerBadge'))$('myStreamerBadge').innerText=streamers[currentUser]?'⭐ Official Streamer':'Newbie';if($('meName'))$('meName').innerText=d.name;if($('meUser'))$('meUser').innerText='@'+currentUser;if($('meTier'))$('meTier').innerText=tier;if($('meLevel'))$('meLevel').innerText=d.level||1;if($('meHours'))$('meHours').innerText=d.hours||0;if($('meStreamer'))$('meStreamer').innerText=streamers[currentUser]?'YES - '+streamers[currentUser].cat:'No';if($('streamerStatus'))$('streamerStatus').innerText=streamers[currentUser]?'✅ Official Streamer ka na! Tier: '+tier:'Hindi ka pa Streamer';updateBal();}
 function saveCurrent(){if(!currentUser)return;users[currentUser].balance=balance;users[currentUser].history=history;saveAll();}
-function logout(){saveCurrent();currentUser=null;isGuest=false;try{localStorage.removeItem('zero_real_users_cur');}catch(e){}balance=0;checkGate();toast('Logged out! Balik sa Login!');}
-function showPage(id,btn){if(!currentUser&&!isGuest){checkGate();toast('Login ka muna!');return;}document.querySelectorAll('.page').forEach(function(p){p.classList.remove('show')});var el=$(id);if(el)el.classList.add('show');document.querySelectorAll('.bottom button').forEach(function(b){b.classList.remove('on')});if(btn)btn.classList.add('on');window.scrollTo(0,0);if(id=='p-games')renderGames();if(id=='p-pk')renderLeader();renderReal();}
-function showTab(t,btn){document.querySelectorAll('.topnav button').forEach(function(b){b.classList.remove('on')});if(btn)btn.classList.add('on');toast('Tab: '+t+' - Real Users lang!');renderReal();}
-function updateBal(){var b=balance.toLocaleString();if($('balHome'))$('balHome').innerText=b+' Coins';if($('balGames'))$('balGames').innerText=b+' Coins';if($('balMe'))$('balMe').innerText=b+' Coins';}
-function renderReal(){
+function logout(){saveCurrent();currentUser=null;isGuest=false;try{localStorage.removeItem('zero_real_users_cur');}catch(e){}balance=0;checkGate();toast('Logged out!');}
+function showPage(id,btn){if(!currentUser&&!isGuest){checkGate();toast('Login ka muna!');return;}document.querySelectorAll('.page').forEach(function(p){p.classList.remove('show')});var el=$(id);if(el)el.classList.add('show');document.querySelectorAll('.bottom button').forEach(function(b){b.classList.remove('on')});if(btn)btn.classList.add('on');window.scrollTo(0,0);if(id=='p-games')renderGames();if(id=='p-streamer'||id=='p-leader')renderStreamers();renderAll();}
+function filterTab(t,btn){document.querySelectorAll('.topnav button').forEach(function(b){b.classList.remove('on')});if(btn)btn.classList.add('on');toast(t=='foryou'?'✨ For You - Para sayo!':t=='trending'?'🔥 Trending - Viral ngayon!':t=='leader'?'🏆 Leaderboard - Top Streamers!':'🔍 '+t);renderAll();}
+function updateBal(){var b=balance.toLocaleString();if($('balHome'))$('balHome').innerText=b;if($('balGames'))$('balGames').innerText=b+' Coins';if($('balMe'))$('balMe').innerText=b+' Coins';}
+function applyStreamer(){if(!currentUser){toast('Sign Up ka muna!');return;}var n=$('streamerName').value||users[currentUser].name;var c=$('streamerCat').value||'Talk / Tambay';streamers[currentUser]={name:n,cat:c};saveAll();applyUser();renderStreamers();balance+=500;updateBal();saveCurrent();toast('🚀 Congrats! Official Streamer ka na! +500 Coins!');}
+function renderAll(){
   var names=Object.keys(users);
-  if($('realCount'))$('realCount').innerText=names.length+' Real Users';
+  if($('realCount'))$('realCount').innerText=names.length;
   var liveNames=Object.keys(liveUsers).filter(function(u){return users[u]});
-  if($('liveNowText'))$('liveNowText').innerText=liveNames.length+' Real Live';
-  if($('liveGrid')){if(liveNames.length==0){$('liveGrid').innerHTML='<div style="text-align:center;padding:16px;background:#FFF5F7;border-radius:12px"><b>Walang naka-live ngayon</b><p style="color:#888;font-size:13px">Okay lang yan! Ikaw ang una mag-live!</p></div>';}else{$('liveGrid').innerHTML=liveNames.map(function(u){return '<div style="background:#FF4D7D;color:#fff;padding:14px;border-radius:12px;margin-bottom:8px"><b>'+users[u].emoji+' '+users[u].name+' - LIVE!</b><br><small>'+liveUsers[u].title+'</small></div>'}).join('');}}
-  if($('realUsersList')){if(names.length==0){$('realUsersList').innerHTML='Wala pa - ikaw una!';}else{$('realUsersList').innerHTML=names.map(function(u){return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee"><span>'+users[u].emoji+' <b>'+users[u].name+'</b> @'+u+'</span><span>🪙 '+users[u].balance+'</span></div>'}).join('');}}
-  renderSaved();
+  if($('liveNowText'))$('liveNowText').innerText=liveNames.length+' Live';
+  if($('liveCountTxt'))$('liveCountTxt').innerText=liveNames.length+' Live';
+  var pics=['https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400','https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400','https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400','https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400'];
+  if($('liveGrid')){
+    if(liveNames.length==0){$('liveGrid').innerHTML='<div style="grid-column:1/-1;text-align:center;background:#161626;border-radius:20px;padding:22px"><div style="font-size:44px">📺</div><b>Walang naka-live ngayon</b><p style="color:#AAA;font-size:13px">Ikaw ang una mag-live! +500 Coins!</p><button type="button" class="btn" style="margin-top:10px" onclick="showPage(\'p-golive\')">🎥 GO LIVE - Ako Una!</button></div>';}
+    else{$('liveGrid').innerHTML=liveNames.map(function(u,i){var l=liveUsers[u];var pic=pics[i%pics.length];return '<div class="livecard" onclick="toast(\'Pasok ka kay '+users[u].name+'! Real Live!\')"><span class="live-badge">● LIVE</span><span class="viewers">👁 '+(l.viewers||42)+' • 🎮 '+l.game+'</span><img src="'+pic+'"><div class="grad"></div><div class="heart">❤️</div><div class="info"><img src="'+pic+'"><div><b>'+users[u].name+' '+(streamers[u]?'⭐':'')+'</b><small>'+l.title+' • 🎁 '+(l.viewers||12)+' gifts</small></div></div></div>'}).join('');}
+  }
+  renderStreamers();renderSaved();
+}
+function renderStreamers(){
+  var sNames=Object.keys(streamers);
+  var pics=['https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200','https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200','https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200'];
+  var html=sNames.length?sNames.map(function(u,i){var s=streamers[u];var tier=getTier(users[u]?users[u].hours||0:0);return '<div class="streamer-card"><img src="'+pics[i%pics.length]+'"><div><b>'+s.name+' <span class="badge gold">'+tier+'</span></b><br><small style="color:#AAA">@'+u+' • '+s.cat+' • 🪙 '+(users[u]?users[u].balance:0)+'</small></div><span style="font-size:22px">⭐</span></div>'}).join(''):'<div class="box" style="text-align:center"><b>Wala pang Official Streamer</b><p style="color:#AAA;font-size:13px">Ikaw una mag-apply!</p></div>';
+  if($('featuredStreamers'))$('featuredStreamers').innerHTML=html;
+  if($('allStreamers'))$('allStreamers').innerHTML=html;
+  var sorted=Object.keys(users).sort(function(a,b){return (users[b].balance||0)-(users[a].balance||0)}).slice(0,10);
+  if($('leaderList'))$('leaderList').innerHTML=sorted.length?sorted.map(function(u,i){var cls=i==0?'gold':i==1?'silver':i==2?'bronze':'';return '<div class="leader-row"><div class="rank '+cls+'">'+(i+1)+'</div><img src="'+pics[i%pics.length]+'"><div><b>'+users[u].name+' '+(i==0?'👑':'')+'</b><br><small style="color:#AAA">@'+u+' • '+(streamers[u]?'⭐ Streamer':'Real User')+'</small></div><b style="margin-left:auto;color:#FFD700">🪙 '+(users[u].balance||0)+'</b></div>'}).join(''):'Wala pa - ikaw Top 1!';
+  if($('pkLeader'))$('pkLeader').innerHTML=sorted.length?sorted.map(function(u,i){return '<div class="leader-row"><div class="rank">'+(i+1)+'</div><b>'+users[u].name+'</b><span style="margin-left:auto;color:#FF2D78;font-weight:900">'+(users[u].balance||0)+' pts</span></div>'}).join(''):'Wala pa!';
+  var top3=sorted.slice(0,3);
+  var podHtml=top3.length?top3.map(function(u,i){var h=i==0?90:70;return '<div class="pod"><img src="'+pics[i%pics.length]+'" style="width:'+(i==0?70:56)+'px;height:'+(i==0?70:56)+'px"><div style="font-size:12px;margin:4px 0">'+users[u].name+'</div><div class="bar" style="height:'+h+'px">#'+(i+1)+'<br>🪙 '+(users[u].balance||0)+'</div></div>'}).join(''):'<div style="text-align:center;color:#AAA">Wala pa - ikaw Top 1!</div>';
+  if($('podium'))$('podium').innerHTML=podHtml;
+  if($('podium2'))$('podium2').innerHTML=podHtml;
 }
 function claimDaily(){if(!currentUser){toast('Sign Up ka muna!');return;}balance+=50;updateBal();saveCurrent();toast('🎁 +50 Coins!');}
-function startLive(){if(!currentUser){toast('Sign Up ka muna!');checkGate();return;}var t=$('liveTitle').value||'My Real Live!';liveUsers[currentUser]={title:t,viewers:1};saveAll();if($('myLiveStatus'))$('myLiveStatus').innerText='🔴 LIVE KA NA!';renderReal();toast('🔴 LIVE KA NA!');showPage('p-home');}
-function endLive(){if(!currentUser)return;delete liveUsers[currentUser];saveAll();if($('myLiveStatus'))$('myLiveStatus').innerText='Hindi ka pa naka-live';renderReal();toast('Live natapos!');}
-function doPK(){if(!currentUser){toast('Sign Up ka muna!');return;}var me=Math.floor(Math.random()*200)+100;var en=Math.floor(Math.random()*200)+50;if($('pkMe'))$('pkMe').innerText=me+' pts';if($('pkEnemy'))$('pkEnemy').innerText=en+' pts';toast(me>en?'🎉 PANALO KA SA PK!':'Sayang! Talo sa PK, bawi!');}
-function renderLeader(){var names=Object.keys(users);if($('leaderList'))$('leaderList').innerHTML=names.length?names.map(function(u,i){return '<div>#'+(i+1)+' '+users[u].emoji+' '+users[u].name+' - 🪙 '+users[u].balance+'</div>'}).join(''):'Wala pa - ikaw Top 1!';}
-function renderGames(){var emojis=['🎰','🎲','🎡','💎','🔥','⭐','🍒','👑','🍀','💣'];var h='';for(var i=1;i<=12;i++){h+='<div class="game" onclick="playGame('+i+')"><div style="font-size:28px">'+emojis[i%10]+'</div><b>Game '+i+'</b><small>x'+(i+1)+'</small></div>';}if($('gamesGrid'))$('gamesGrid').innerHTML=h;}
-function playGame(i){if(balance<20){toast('Kulang Coins! Daily +50 ka muna!');return;}balance-=20;var win=Math.random()<0.4;if(win)balance+=40;updateBal();saveCurrent();toast(win?'🎉 PANALO Game '+i+' +40!':'Sayang Game '+i+' -20');}
-renderSaved();renderGames();renderReal();renderLeader();updateBal();checkGate();
-if(currentUser&&users[currentUser]){applyUser();renderReal();}
-window.doSignup=doSignup;window.doLogin=doLogin;
+function startLive(){if(!currentUser){toast('Sign Up ka muna!');return;}var t=$('liveTitle').value||'My Real Live!';var g=$('liveGame').value;liveUsers[currentUser]={title:t,game:g,viewers:Math.floor(Math.random()*120)+10};users[currentUser].hours=(users[currentUser].hours||0)+1;users[currentUser].level=(users[currentUser].level||1)+1;saveAll();applyUser();if($('myLiveStatus'))$('myLiveStatus').innerText='🔴 LIVE KA NA! +500 Coins!';balance+=500;updateBal();saveCurrent();renderAll();toast('🔴 LIVE KA NA! +500 Coins! Ikaw na bida!');showPage('p-home');}
+function endLive(){if(!currentUser)return;delete liveUsers[currentUser];saveAll();if($('myLiveStatus'))$('myLiveStatus').innerText='Hindi ka pa naka-live';renderAll();toast('Live natapos! GG!');}
+function doPK(){if(!currentUser){toast('Sign Up ka muna!');return;}pkMePts+=100;pkEnPts+=Math.floor(Math.random()*120)+20;var total=pkMePts+pkEnPts;var mp=Math.round(pkMePts/total*100);if($('pkMe'))$('pkMe').innerText=pkMePts+' pts';if($('pkEnemy'))$('pkEnemy').innerText=pkEnPts+' pts';if($('pkBarMe'))$('pkBarMe').style.width=mp+'%';if($('pkBarEn'))$('pkBarEn').style.width=(100-mp)+'%';toast(pkMePts>pkEnPts?'🎉 LAMANG KA! +100 pts!':'Sayang! Humabol ka!');}
+function renderGames(){var list=[['🎰','Slots Classic','Slots','x10'],['💎','Diamond Rush','Slots','x10'],['🔥','Fire Slots','Slots','x5'],['🎡','Super Wheel','Wheel','x5'],['🎲','Dice King','Dice','x5'],['🃏','Poker Face','Cards','x5'],['💣','Mines Pro','Mines','x10'],['📈','Crash King','Crash','x20'],['🔴','Plinko Gold','Plinko','x10'],['🎱','Bingo Fun','Keno','x3'],['🪙','Coin Master','Coin','x5'],['👑','Royal Flush','Cards','x20'],['🍒','Fruit Frenzy','Slots','x5'],['⭐','Star Slots','Slots','x5'],['🍀','Lucky 777','Slots','x10']];if($('gamesGrid'))$('gamesGrid').innerHTML=list.map(function(g){return '<div class="game" onclick="playGame(\''+g[1]+'\')"><div>'+g[0]+'</div><b>'+g[1]+'</b><small>'+g[2]+' • '+g[3]+'</small></div>'}).join('');if($('homeGames'))$('homeGames').innerHTML=list.slice(0,6).map(function(g){return '<div class="game" onclick="playGame(\''+g[1]+'\')"><div>'+g[0]+'</div><b>'+g[1]+'</b><small>'+g[3]+'</small></div>'}).join('');}
+function playGame(name){if(balance<20){toast('Kulang Coins! Daily +50 ka muna!');return;}balance-=20;var win=Math.random()<0.4;if(win)balance+=40;updateBal();saveCurrent();toast(win?'🎉 PANALO '+name+' +40!':'Sayang '+name+' -20');}
+function randomGame(){var names=['Slots Classic','Dice King','Mines Pro','Crash King','Poker Face'];var n=names[Math.floor(Math.random()*names.length)];playGame(n);toast('🎲 Random: '+n+'!');}
+renderSaved();renderGames();renderAll();renderStreamers();updateBal();checkGate();
+if(currentUser&&users[currentUser]){applyUser();renderAll();}
 </script>
 </body>
 </html>
